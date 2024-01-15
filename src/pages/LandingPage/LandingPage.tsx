@@ -1,7 +1,7 @@
-import Hero from "../../components/layout/Hero.tsx";
+import Hero from "../../components/layout/Hero/Hero.tsx";
 
 function LandingPage() {
-    return <Hero />
+    return <Hero />;
 }
 
 export default LandingPage;

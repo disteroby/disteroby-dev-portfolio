@@ -1,4 +1,4 @@
-import {useEffect} from "react";
+import { useEffect } from "react";
 
 function useInterval(callback: () => void, time: number) {
     useEffect(() => {
@@ -6,8 +6,8 @@ function useInterval(callback: () => void, time: number) {
 
         return () => {
             clearInterval(timer);
-        }
-    })
+        };
+    });
 }
 
 export default useInterval;

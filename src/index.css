@@ -2,8 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+  .main-section-container {
+    @apply max-w-[72rem] w-full mx-auto
+  }

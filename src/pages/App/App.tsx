@@ -3,7 +3,7 @@ import LandingPage from "../LandingPage/LandingPage.tsx";
 
 function App() {
     return (
-        <main className="min-h-screen">
+        <main className='min-h-screen'>
             <LandingPage />
         </main>
     );

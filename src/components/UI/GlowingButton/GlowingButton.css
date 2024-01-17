@@ -1,5 +1,5 @@
 .glowing-button {
-  color: blueviolet;
+    color: blueviolet;
 }
 
 .glowing-button::before {

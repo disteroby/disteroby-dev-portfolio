@@ -1,4 +1,5 @@
 import "./GlowingButton.css";
+import "./GlowingButton.css";
 
 type GlowingButtonProps = {
     text: string;

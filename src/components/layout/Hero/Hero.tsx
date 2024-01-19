@@ -1,11 +1,10 @@
+import mainIconsDark from "../../../assets/backgrounds/mainIconsdark.svg";
 import { MutableText } from "../../UI";
 import { AnimationProps, motion } from "framer-motion";
-import { PiSwordDuotone } from "react-icons/pi";
-import { RiSparkling2Fill } from "react-icons/ri";
-
-import mainIconsDark from "../../../assets/backgrounds/mainIconsdark.svg";
 import { CiMobile3 } from "react-icons/ci";
 import { LiaLaptopCodeSolid } from "react-icons/lia";
+import { PiSwordDuotone } from "react-icons/pi";
+import { RiSparkling2Fill } from "react-icons/ri";
 
 function Hero() {
     function fadeAndSlide(delay: number) {

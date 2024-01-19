@@ -1,5 +1,6 @@
-import "./App.css";
 import HeroCarousel from "../../components/layout/HeroCarousel/HeroCarousel.tsx";
+import "./App.css";
+
 // import LandingPage from "../LandingPage/LandingPage.tsx";
 
 function App() {

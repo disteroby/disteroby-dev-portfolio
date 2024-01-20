@@ -12,6 +12,7 @@
     "dependencies": {
         "@react-three/drei": "^9.94.1",
         "@react-three/fiber": "^8.15.14",
+        "@react-three/postprocessing": "^2.15.12",
         "@types/three": "^0.160.0",
         "framer-motion": "^10.18.0",
         "maath": "^0.10.7",

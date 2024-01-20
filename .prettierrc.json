@@ -9,6 +9,7 @@
     "jsxSingleQuote": true,
     "importOrder": [
         "^react$",
+        "^three",
         "^@react-three/fiber(.*)",
         "^@react-three/drei(.*)",
         "^@ui/(.*)$",

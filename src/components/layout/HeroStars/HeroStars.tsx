@@ -1,15 +1,15 @@
 import { useRef, useState } from "react";
+import * as THREE from "three";
 import { useFrame } from "@react-three/fiber";
 import { PointMaterial, Points } from "@react-three/drei";
 import { random } from "maath";
-import * as THREE from "three";
 
 function HeroStars() {
     const ref = useRef<THREE.Points>(null!);
     const [sphere] = useState<Float32Array>(
         () =>
             random.inSphere(new Float32Array(2400), {
-                radius: 5,
+                radius: 10,
             }) as Float32Array,
     );
     useFrame((_state, delta) => {
@@ -25,9 +25,9 @@ function HeroStars() {
                 frustumCulled={false}>
                 <PointMaterial
                     transparent
-                    opacity={0.75}
+                    opacity={0.1}
                     color='#00ccff'
-                    size={0.01}
+                    size={0.1}
                     sizeAttenuation={true}
                     depthWrite={false}
                 />

@@ -15,7 +15,7 @@ function useInterval(
         return () => {
             clearInterval(timer);
         };
-    });
+    }, [callback, enabled, time]);
 }
 
 export default useInterval;

@@ -4,8 +4,10 @@ export default {
     theme: {
         extend: {
             backgroundImage: {
-                hero: "url('/src/assets/backgrounds/hero-bg.jpg')",
-                "hero-og": "url('/src/assets/backgrounds/hero-bg-og.jpg')",
+                hero: "url('/src/assets/backgrounds/tmp.jpg')",
+            },
+            colors: {
+                "dark-gray": "#0C0C0F",
             },
         },
         fontFamily: {

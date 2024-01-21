@@ -20,13 +20,11 @@ function Hero() {
         } as AnimationProps;
     }
 
-    console.log("QUI");
-
     return (
-        <section className='h-screen overflow-x-hidden pt-8 md:pt-24 main-section-container z-30'>
-            <div className='font-bold uppercase text-center tracking-wider pointer-events-none'>
+        <section className='h-screen overflow-x-hidden pt-8 xl:pt-24 main-section-container z-30'>
+            <div className='font-bold uppercase text-center tracking-widest pointer-events-none'>
                 <motion.div
-                    className='m-4 md:m-8 flex justify-center'
+                    className='m-4 md:m-6 flex justify-center'
                     {...fadeAndSlide(0.25)}>
                     <div className='flex flex-row items-center justify-center max-w-xl grow'>
                         <div className='grow bg-gradient-to-l from-white/70 h-0.5' />
@@ -36,16 +34,16 @@ function Hero() {
                         <div className='grow bg-gradient-to-r from-white/70 h-0.5' />
                     </div>
                 </motion.div>
-                <motion.div className='hero-text' {...fadeAndSlide(0.75)}>
+                <motion.div className='hero-text' {...fadeAndSlide(1.25)}>
                     I'm a
                 </motion.div>
-                <motion.div className='hero-text' {...fadeAndSlide(1)}>
+                <motion.div className='hero-text' {...fadeAndSlide(1.75)}>
                     <MutableText
                         words={["fullstack", "mobile", "game"]}
-                        time={3000}
+                        time={4000}
                     />
                 </motion.div>
-                <motion.div className='hero-text' {...fadeAndSlide(1.25)}>
+                <motion.div className='hero-text' {...fadeAndSlide(2.25)}>
                     developer
                 </motion.div>
             </div>

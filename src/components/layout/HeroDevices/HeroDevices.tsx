@@ -52,7 +52,7 @@ function HeroDevices() {
 
     return (
         <>
-            <group position={[0, -3, -1]} ref={devicesRef}>
+            <group position={[0, -3, 0]} ref={devicesRef}>
                 {devices.map(({ data, transform }, idx) => (
                     <group
                         key={idx}

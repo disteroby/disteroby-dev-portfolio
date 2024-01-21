@@ -9,6 +9,9 @@ function LandingPage() {
                 <HeroCarousel />
             </Suspense>
             <Hero />
+            <div className='bg-gradient-to-b via-50% via-neutral-950/30 from-neutral-950 h-[15rem]'>
+                <div className='bg-hero h-full w-full bg-contain'></div>
+            </div>
         </div>
     );
 }

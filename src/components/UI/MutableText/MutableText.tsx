@@ -35,8 +35,8 @@ function MutableText({
                         <motion.div
                             className='w-full'
                             key={`modal-${id}`}
-                            initial={{ x: 100, opacity: 0 }}
-                            animate={{ x: 0, opacity: 1 }}
+                            initial={{ y: "-30%", opacity: 0 }}
+                            animate={{ y: "0%", opacity: 1 }}
                             exit={{
                                 opacity: 0,
                                 transition: {
@@ -49,10 +49,7 @@ function MutableText({
                             }}>
                             {before && before(wordId, word)}
                             <span className='fuchsia-cyan-gradient relative bg-clip-text text-transparent'>
-                                <span>{word}</span>
-                                <span className='fuchsia-cyan-gradient pointer-events-none absolute left-0 bg-clip-text text-transparent opacity-40 blur-sm'>
-                                    {word}
-                                </span>
+                                {word}
                             </span>
                             {after && after(wordId, word)}
                         </motion.div>

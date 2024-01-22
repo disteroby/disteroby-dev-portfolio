@@ -11,5 +11,5 @@
 }
 
 .hero-text {
-    @apply text-5xl text-white md:text-6xl lg:text-7xl;
+    @apply text-5xl text-white md:text-6xl;
 }

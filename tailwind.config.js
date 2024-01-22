@@ -12,7 +12,7 @@ export default {
         },
         fontFamily: {
             sans: [
-                "Kulim Park",
+                "Josefin Sans",
                 "system-ui",
                 "-apple-system",
                 "BlinkMacSystemFont",

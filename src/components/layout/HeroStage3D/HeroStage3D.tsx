@@ -10,8 +10,6 @@ import { Bloom } from "@react-three/postprocessing";
  * @constructor
  */
 export default function HeroStage3D() {
-    const x = 2;
-
     return (
         <div className='absolute w-full'>
             <Canvas

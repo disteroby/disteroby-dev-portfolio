@@ -13,3 +13,31 @@
 .hero-text {
     @apply text-5xl text-white md:text-6xl;
 }
+
+:root {
+    --default-scrollbar-size: .75rem;
+    --default-scrollbar-radius: 10rem;
+    --default-scrollbar-color: hsl(223, 15%, 20%);
+    --default-scrollbar-bg-color: hsl(223, 15%, 10%);
+}
+
+::-webkit-scrollbar {
+    height: var(--default-scrollbar-size);
+    width: var(--default-scrollbar-size);
+    background-color: var(--default-scrollbar-bg-color);
+}
+
+::-webkit-scrollbar-corner {
+    background-color: var(--default-scrollbar-bg-color);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--default-scrollbar-color);
+    border-radius: var(--default-scrollbar-radius);
+}
+
+::-webkit-scrollbar-track {
+    background-color: var(--default-scrollbar-bg-color);
+    border-radius: var(--default-scrollbar-radius);
+    margin: .25rem;
+}

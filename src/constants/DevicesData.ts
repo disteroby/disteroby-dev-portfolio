@@ -1,8 +1,15 @@
 export type IDevicesData = {
-    type: "laptop" | "smartphone";
-    deviceOrientation: "portrait" | "lanscape";
     texture: string;
     href: string;
+} & (LaptopData | SmartphoneData);
+
+type LaptopData = {
+    type: "laptop";
+};
+
+type SmartphoneData = {
+    type: "smartphone";
+    deviceOrientation: "portrait" | "landscape";
 };
 
 export const carouselDevicesData: IDevicesData[] = [
@@ -10,42 +17,39 @@ export const carouselDevicesData: IDevicesData[] = [
         type: "smartphone",
         deviceOrientation: "portrait",
         texture: "texture_codehunter_0.png", //TODO
-        href: "#motivapp",
+        href: "motivapp",
     },
     {
         type: "smartphone",
         deviceOrientation: "portrait",
         texture: "texture_codehunter_0.png", //TODO
-        href: "#my-smart-opinion",
+        href: "my-smart-opinion",
     },
     {
         type: "smartphone",
-        deviceOrientation: "lanscape",
+        deviceOrientation: "landscape",
         texture: "texture_codehunter_0.png", //TODO
-        href: "#slide-run",
+        href: "slide-run",
     },
     {
         type: "smartphone",
         deviceOrientation: "portrait",
         texture: "texture_codehunter_0.png", //TODO
-        href: "#mind-blooming",
+        href: "mind-blooming",
     },
     {
         type: "laptop",
-        deviceOrientation: "portrait",
         texture: "texture_unimiibo_0.png",
-        href: "#unimiibo",
+        href: "unimiibo",
     },
     {
         type: "laptop",
-        deviceOrientation: "portrait",
         texture: "texture_codehunter_0.png",
-        href: "#code-hunter",
+        href: "code-hunter",
     },
     {
         type: "laptop",
-        deviceOrientation: "portrait",
         texture: "texture_undertale3d_0.png",
-        href: "#undertale3d",
+        href: "undertale3d",
     },
 ];

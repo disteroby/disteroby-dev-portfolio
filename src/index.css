@@ -11,7 +11,7 @@
 }
 
 .hero-text {
-    @apply text-5xl text-white md:text-6xl;
+    @apply text-4xl md:text-5xl text-white;
 }
 
 :root {
@@ -19,6 +19,10 @@
     --default-scrollbar-radius: 10rem;
     --default-scrollbar-color: hsl(223, 15%, 20%);
     --default-scrollbar-bg-color: hsl(223, 15%, 10%);
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 ::-webkit-scrollbar {

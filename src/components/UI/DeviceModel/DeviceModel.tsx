@@ -6,13 +6,15 @@ import {
     MeshStandardMaterial,
     NormalBufferAttributes,
     Object3D,
-    TextureLoader,
 } from "three";
 import * as THREE from "three";
 import { Euler, useLoader, Vector3 } from "@react-three/fiber";
 import { ThreeEvent } from "@react-three/fiber/dist/declarations/src/core/events";
-import { useGLTF } from "@react-three/drei";
-import { IDevicesData } from "../../../constants/DevicesData.ts";
+import { useGLTF, useTexture } from "@react-three/drei";
+import {
+    carouselDevicesData,
+    IDevicesData,
+} from "../../../constants/DevicesData.ts";
 import { useSmoothLerp } from "../../../hooks/useSmoothLerp.ts";
 import { Lerp } from "../../../utils/LerpUtils.ts";
 
@@ -37,11 +39,15 @@ function DeviceModel({
     onHover,
     onLeave,
 }: ModelProps) {
-    const colorMap = useLoader(TextureLoader, `./${data.texture}`);
+    const colorMap = useTexture(`./${data.texture}`);
 
     const screenRef = useRef<MeshStandardMaterial>(null!);
 
     const group = useRef<Group>(null!);
+
+    const routeChange = () => {
+        window.location.href = "#" + data.href;
+    };
 
     const initialScale = 0.2;
     const hoverScale = 0.225;
@@ -71,13 +77,11 @@ function DeviceModel({
         <group
             ref={group}
             onPointerEnter={e => {
-                console.log("over", e);
                 e.stopPropagation();
                 onHover?.(e);
                 updateTarget(1);
             }}
             onPointerLeave={e => {
-                console.log("out", e);
                 e.stopPropagation();
                 onLeave?.(e);
                 updateTarget(0);
@@ -85,6 +89,7 @@ function DeviceModel({
             onClick={e => {
                 e.stopPropagation();
                 console.log(data);
+                routeChange();
             }}
             castShadow
             receiveShadow
@@ -110,6 +115,8 @@ function DeviceModel({
                         }>
                         <meshStandardMaterial
                             ref={screenRef}
+                            roughness={0}
+                            metalness={0.65}
                             side={DoubleSide}
                             map={colorMap}
                             emissive={"#7d7d7d"}
@@ -143,5 +150,8 @@ function DeviceModel({
 }
 
 useGLTF.preload("./mac2.glb");
+carouselDevicesData.map(device => {
+    useTexture.preload(`./${device.texture}`);
+});
 
 export default DeviceModel;

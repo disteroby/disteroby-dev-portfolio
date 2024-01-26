@@ -1,21 +1,23 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 function useInterval(
     callback: () => void,
     time: number,
     enabled: boolean = true,
 ) {
+    const callbackRef = useRef(callback);
+
     useEffect(() => {
         const timer = setInterval(() => {
             if (enabled) {
-                callback();
+                callbackRef.current();
             }
         }, time);
 
         return () => {
             clearInterval(timer);
         };
-    }, [callback, enabled, time]);
+    }, [enabled, time]);
 }
 
 export default useInterval;

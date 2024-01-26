@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useState } from "react";
 import useInterval from "../../../hooks/useInterval.ts";
 import { AnimatePresence, motion } from "framer-motion";
 
@@ -19,11 +19,11 @@ function MutableText({
 }: MutableTextProps) {
     const [wordId, setWordId] = useState(0);
 
-    const handleNextWord = useCallback(() => {
+    const handleNextWord = () => {
         if (!pause) {
             setWordId(oldId => (oldId + 1) % words.length);
         }
-    }, [pause, words]);
+    };
 
     useInterval(handleNextWord, time);
 

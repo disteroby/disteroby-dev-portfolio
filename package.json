@@ -11,16 +11,17 @@
     },
     "dependencies": {
         "@react-three/drei": "^9.94.1",
-        "@react-three/fiber": "^8.15.14",
+        "@react-three/fiber": "^8.15.15",
         "@react-three/postprocessing": "^2.15.12",
         "@types/three": "^0.160.0",
         "framer-motion": "^10.18.0",
+        "framer-motion-3d": "^11.0.3",
         "leva": "^0.9.35",
         "maath": "^0.10.7",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
         "react-icons": "^5.0.1",
-        "three": "^0.160.0"
+        "three": "^0.160.1"
     },
     "devDependencies": {
         "@trivago/prettier-plugin-sort-imports": "^4.3.0",

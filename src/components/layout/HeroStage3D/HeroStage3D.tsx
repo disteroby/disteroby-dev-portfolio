@@ -17,10 +17,10 @@ export default function HeroStage3D() {
                         position: [0, 0.2365, 7.15],
                         fov: 60,
                     }}>
-                    <Environment preset='studio' blur={100}>
+                    <Environment preset='studio'>
                         <Lightformer
-                            intensity={0.005}
-                            rotation-x={Math.PI / 2}
+                            intensity={0.01}
+                            rotation-x={Math.PI}
                             position={[0, 5, -9]}
                             scale={[50, 50, 1]}
                         />

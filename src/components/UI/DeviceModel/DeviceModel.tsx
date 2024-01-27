@@ -2,12 +2,10 @@ import { RefObject, useRef } from "react";
 import {
     BufferGeometry,
     DoubleSide,
-    Group,
     MeshStandardMaterial,
     NormalBufferAttributes,
     Object3D,
 } from "three";
-import * as THREE from "three";
 import { Euler, Vector3 } from "@react-three/fiber";
 import { ThreeEvent } from "@react-three/fiber/dist/declarations/src/core/events";
 import { useGLTF, useTexture } from "@react-three/drei";
@@ -16,8 +14,7 @@ import {
     IDevicesData,
 } from "../../../constants/DevicesData.ts";
 import useSectionRef from "../../../hooks/useSectionRef.ts";
-import { useSmoothLerp } from "../../../hooks/useSmoothLerp.ts";
-import { Lerp } from "../../../utils/LerpUtils.ts";
+import { motion } from "framer-motion-3d";
 
 type ModelProps = {
     data: IDevicesData;
@@ -32,6 +29,9 @@ type IGeometry = Object3D & {
     geometry: BufferGeometry<NormalBufferAttributes>;
 };
 
+const initialScale = 0.2;
+const hoverScale = 0.225;
+
 function DeviceModel({
     data,
     position,
@@ -40,56 +40,29 @@ function DeviceModel({
     onHover,
     onLeave,
 }: ModelProps) {
-    const sectionRef = useSectionRef(data.href) as RefObject<HTMLElement>;
-
     const colorMap = useTexture(`./${data.texture}`);
 
+    const sectionRef = useSectionRef(data.href) as RefObject<HTMLElement>;
     const screenRef = useRef<MeshStandardMaterial>(null!);
 
-    const group = useRef<Group>(null!);
-
-    const initialScale = 0.2;
-    const hoverScale = 0.225;
-    const initialIntensity = 0.015;
-    const hoverIntensity = 0.03;
-
-    const updateTarget = useSmoothLerp(smooth => {
-        group.current.scale.lerpVectors(
-            new THREE.Vector3(initialScale, initialScale, initialScale),
-            new THREE.Vector3(hoverScale, hoverScale, hoverScale),
-            smooth,
-        );
-
-        screenRef.current.emissiveIntensity = Lerp(
-            initialIntensity,
-            hoverIntensity,
-            smooth,
-        );
-    }, 7);
-
-    const isLaptop = data.type === "laptop";
-
-    const modelPath = isLaptop ? "/mac2.glb" : "/mac2.glb";
+    const modelPath = data.type === "laptop" ? "/mac2.glb" : "/mac2.glb";
     const { nodes, materials } = useGLTF(modelPath);
 
     return (
-        <group
-            ref={group}
+        <motion.group
+            initial={{ scale: initialScale }}
+            whileHover={{ scale: hoverScale }}
+            transition={{ easings: "easeInOut", duration: 0.4 }}
             onPointerEnter={e => {
                 e.stopPropagation();
                 onHover?.(e);
-                updateTarget(1);
             }}
             onPointerLeave={e => {
                 e.stopPropagation();
                 onLeave?.(e);
-                updateTarget(0);
             }}
             onClick={e => {
                 e.stopPropagation();
-                // console.log(data);
-                // routeChange();
-
                 sectionRef?.current?.scrollIntoView();
             }}
             castShadow
@@ -120,8 +93,6 @@ function DeviceModel({
                             metalness={0.65}
                             side={DoubleSide}
                             map={colorMap}
-                            emissive={"#7d7d7d"}
-                            emissiveIntensity={initialIntensity}
                         />
                     </mesh>
                 </group>
@@ -146,7 +117,7 @@ function DeviceModel({
                 geometry={(nodes.touchbar as IGeometry)["geometry"]}
                 position={[0, -0.03, 1.2]}
             />
-        </group>
+        </motion.group>
     );
 }
 

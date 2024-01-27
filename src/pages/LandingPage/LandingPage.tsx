@@ -1,4 +1,5 @@
 import { createRef, LegacyRef, Suspense, useRef } from "react";
+import { useProgress } from "@react-three/drei";
 import HeroStage3D from "../../components/layout/HeroStage3D/HeroStage3D.tsx";
 import SectionHero from "../../components/layout/sections/SectionHero.tsx";
 import SectionProjects from "../../components/layout/sections/SectionProjects.tsx";
@@ -18,13 +19,15 @@ function LandingPage() {
         refs.set(device.project, createRef());
     });
 
+    const { active: modelsAreLoading } = useProgress();
+
     return (
         <Suspense fallback={<div>provaaa</div>}>
             <SectionRefsContext.Provider value={refs}>
                 <div ref={heroRef} className='min-h-[200vh]'>
                     <Navbar links={LinksData} initialIdx={0} />
                     <HeroStage3D />
-                    <SectionHero pageIsLoaded={true} />
+                    <SectionHero pageIsLoaded={!modelsAreLoading} />
                     <SectionProjects ref={projectsRef} />
 
                     {carouselDevicesData.map(data => (

@@ -48,7 +48,7 @@ function DeviceModel({
     const { nodes, materials } = useGLTF(model);
 
     useEffect(() => {
-        console.log("Caricato modello" + device.project);
+        console.log("Loaded: " + device.project);
     }, [device.project]);
 
     return (
@@ -123,7 +123,8 @@ function DeviceModel({
     );
 }
 
-useGLTF.preload("./mac2.glb");
+useGLTF.preload(modelPath("laptop"));
+useGLTF.preload(modelPath("smartphone"));
 carouselDevicesData.map(device => {
     useTexture.preload(texturePath(device.texture));
 });

@@ -19,13 +19,11 @@ function MutableText({
 }: MutableTextProps) {
     const [wordId, setWordId] = useState(0);
 
-    const handleNextWord = () => {
-        if (!pause) {
-            setWordId(oldId => (oldId + 1) % words.length);
-        }
-    };
-
-    useInterval(handleNextWord, time);
+    useInterval(
+        () => setWordId(oldId => (oldId + 1) % words.length),
+        time,
+        !pause,
+    );
 
     return (
         <AnimatePresence initial={false} mode='wait'>
@@ -48,7 +46,7 @@ function MutableText({
                                 ease: "backOut",
                             }}>
                             {before && before(wordId, word)}
-                            <span className='fuchsia-cyan-gradient relative bg-clip-text text-transparent'>
+                            <span className='fuchsia-cyan-gradient relative bg-clip-text text-transparent '>
                                 {word}
                             </span>
                             {after && after(wordId, word)}

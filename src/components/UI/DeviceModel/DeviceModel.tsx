@@ -1,8 +1,7 @@
-import { RefObject, useRef } from "react";
+import { RefObject, useEffect } from "react";
 import {
     BufferGeometry,
     DoubleSide,
-    MeshStandardMaterial,
     NormalBufferAttributes,
     Object3D,
 } from "three";
@@ -11,13 +10,14 @@ import { ThreeEvent } from "@react-three/fiber/dist/declarations/src/core/events
 import { useGLTF, useTexture } from "@react-three/drei";
 import {
     carouselDevicesData,
-    IDevicesData,
+    DevicesData,
 } from "../../../constants/DevicesData.ts";
 import useSectionRef from "../../../hooks/useSectionRef.ts";
+import { modelPath, texturePath } from "../../../utils/ResourcesUtils.ts";
 import { motion } from "framer-motion-3d";
 
 type ModelProps = {
-    data: IDevicesData;
+    device: DevicesData;
     position?: Vector3;
     rotation?: Euler;
     scale?: Vector3;
@@ -33,20 +33,23 @@ const initialScale = 0.2;
 const hoverScale = 0.225;
 
 function DeviceModel({
-    data,
+    device,
     position,
     rotation,
     scale,
     onHover,
     onLeave,
 }: ModelProps) {
-    const colorMap = useTexture(`./${data.texture}`);
+    const colorMap = useTexture(texturePath(device.texture));
 
-    const sectionRef = useSectionRef(data.href) as RefObject<HTMLElement>;
-    const screenRef = useRef<MeshStandardMaterial>(null!);
+    const sectionRef = useSectionRef(device.project) as RefObject<HTMLElement>;
 
-    const modelPath = data.type === "laptop" ? "/mac2.glb" : "/mac2.glb";
-    const { nodes, materials } = useGLTF(modelPath);
+    const model = modelPath(device.type);
+    const { nodes, materials } = useGLTF(model);
+
+    useEffect(() => {
+        console.log("Caricato modello" + device.project);
+    }, [device.project]);
 
     return (
         <motion.group
@@ -88,9 +91,8 @@ function DeviceModel({
                             (nodes["Cube008_2"] as IGeometry)["geometry"]
                         }>
                         <meshStandardMaterial
-                            ref={screenRef}
-                            roughness={0}
-                            metalness={0.65}
+                            roughness={0.1}
+                            metalness={0.7}
                             side={DoubleSide}
                             map={colorMap}
                         />
@@ -123,7 +125,7 @@ function DeviceModel({
 
 useGLTF.preload("./mac2.glb");
 carouselDevicesData.map(device => {
-    useTexture.preload(`./${device.texture}`);
+    useTexture.preload(texturePath(device.texture));
 });
 
 export default DeviceModel;

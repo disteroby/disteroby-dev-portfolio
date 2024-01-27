@@ -1,6 +1,8 @@
-export type IDevicesData = {
+export type DeviceType = "laptop" | "smartphone";
+export type DevicesData = {
+    project: string;
     texture: string;
-    href: string;
+    type: DeviceType;
 } & (LaptopData | SmartphoneData);
 
 type LaptopData = {
@@ -12,44 +14,44 @@ type SmartphoneData = {
     deviceOrientation: "portrait" | "landscape";
 };
 
-export const carouselDevicesData: IDevicesData[] = [
+export const carouselDevicesData: DevicesData[] = [
     {
+        project: "motivapp",
+        texture: "texture_codehunter_0.jpg", //TODO
         type: "smartphone",
         deviceOrientation: "portrait",
-        texture: "texture_codehunter_0.png", //TODO
-        href: "motivapp",
     },
     {
+        project: "my-smart-opinion",
+        texture: "texture_codehunter_0.jpg", //TODO
         type: "smartphone",
         deviceOrientation: "portrait",
-        texture: "texture_codehunter_0.png", //TODO
-        href: "my-smart-opinion",
     },
     {
+        project: "slide-run",
+        texture: "texture_codehunter_0.jpg", //TODO
         type: "smartphone",
         deviceOrientation: "landscape",
-        texture: "texture_codehunter_0.png", //TODO
-        href: "slide-run",
     },
     {
+        project: "mind-blooming",
+        texture: "texture_codehunter_0.jpg", //TODO
         type: "smartphone",
         deviceOrientation: "portrait",
-        texture: "texture_codehunter_0.png", //TODO
-        href: "mind-blooming",
     },
     {
+        project: "unimiibo",
+        texture: "texture_unimiibo_0.jpg",
         type: "laptop",
-        texture: "texture_unimiibo_0.png",
-        href: "unimiibo",
     },
     {
+        project: "code-hunter",
+        texture: "texture_codehunter_0.jpg",
         type: "laptop",
-        texture: "texture_codehunter_0.png",
-        href: "code-hunter",
     },
     {
+        project: "undertale3d",
+        texture: "texture_undertale3d_0.jpg",
         type: "laptop",
-        texture: "texture_undertale3d_0.png",
-        href: "undertale3d",
     },
 ];

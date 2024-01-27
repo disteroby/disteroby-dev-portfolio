@@ -1,7 +1,11 @@
 import { MutableText } from "../../UI";
 import { motion, Variants } from "framer-motion";
 
-export default function SectionHero() {
+type SectionHeroProps = {
+    pageIsLoaded: boolean;
+};
+
+export default function SectionHero({ pageIsLoaded }: SectionHeroProps) {
     const variants: Variants = {
         enter: {
             opacity: 0,
@@ -23,8 +27,7 @@ export default function SectionHero() {
             <div className='font-bold uppercase text-center tracking-wider h-[30%] flex flex-col justify-center mt-8 md:mt-16'>
                 <motion.div
                     className='mb-4 flex justify-center'
-                    // initial='enter'
-                    animate='animate'
+                    animate={pageIsLoaded ? "animate" : "enter"}
                     variants={variants}
                     custom={0.5}>
                     <div className='flex flex-row items-center justify-center max-w-xl grow opacity-75'>
@@ -37,19 +40,18 @@ export default function SectionHero() {
                 </motion.div>
                 <motion.div
                     className='hero-text'
-                    initial='enter'
-                    animate='animate'
+                    animate={pageIsLoaded ? "animate" : "enter"}
                     variants={variants}
                     custom={1.25}>
                     <MutableText
                         words={["fullstack", "mobile", "game"]}
                         time={3000}
+                        pause={!pageIsLoaded}
                     />
                 </motion.div>
                 <motion.div
                     className='hero-text'
-                    initial='enter'
-                    animate='animate'
+                    animate={pageIsLoaded ? "animate" : "enter"}
                     variants={variants}
                     custom={1.5}>
                     developer

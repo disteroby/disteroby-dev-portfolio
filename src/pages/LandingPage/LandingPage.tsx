@@ -1,4 +1,4 @@
-import { createRef, LegacyRef, useRef } from "react";
+import { createRef, LegacyRef, Suspense, useRef } from "react";
 import HeroStage3D from "../../components/layout/HeroStage3D/HeroStage3D.tsx";
 import SectionHero from "../../components/layout/sections/SectionHero.tsx";
 import SectionProjects from "../../components/layout/sections/SectionProjects.tsx";
@@ -15,28 +15,34 @@ function LandingPage() {
     refs.set("hero", heroRef);
     refs.set("projects", projectsRef);
     carouselDevicesData.forEach(device => {
-        refs.set(device.href, createRef());
+        refs.set(device.project, createRef());
     });
 
     return (
-        <SectionRefsContext.Provider value={refs}>
-            <div ref={heroRef} className='min-h-[200vh]'>
-                <Navbar links={LinksData} initialIdx={0} />
-                <HeroStage3D />
-                <SectionHero />
-                <SectionProjects ref={projectsRef} />
+        <Suspense fallback={<div>provaaa</div>}>
+            <SectionRefsContext.Provider value={refs}>
+                <div ref={heroRef} className='min-h-[200vh]'>
+                    <Navbar links={LinksData} initialIdx={0} />
+                    <HeroStage3D />
+                    <SectionHero pageIsLoaded={true} />
+                    <SectionProjects ref={projectsRef} />
 
-                {carouselDevicesData.map(data => (
-                    <div
-                        ref={refs.get(data.href) as LegacyRef<HTMLDivElement>}
-                        key={data.href}
-                        className='min-h-screen'
-                        id={data.href}>
-                        {data.href}
-                    </div>
-                ))}
-            </div>
-        </SectionRefsContext.Provider>
+                    {carouselDevicesData.map(data => (
+                        <div
+                            ref={
+                                refs.get(
+                                    data.project,
+                                ) as LegacyRef<HTMLDivElement>
+                            }
+                            key={data.project}
+                            className='min-h-screen'
+                            id={data.project}>
+                            {data.project}
+                        </div>
+                    ))}
+                </div>
+            </SectionRefsContext.Provider>
+        </Suspense>
     );
 }
 

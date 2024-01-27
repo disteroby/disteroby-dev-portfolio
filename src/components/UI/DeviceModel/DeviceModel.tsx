@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { RefObject, useRef } from "react";
 import {
     BufferGeometry,
     DoubleSide,
@@ -8,13 +8,14 @@ import {
     Object3D,
 } from "three";
 import * as THREE from "three";
-import { Euler, useLoader, Vector3 } from "@react-three/fiber";
+import { Euler, Vector3 } from "@react-three/fiber";
 import { ThreeEvent } from "@react-three/fiber/dist/declarations/src/core/events";
 import { useGLTF, useTexture } from "@react-three/drei";
 import {
     carouselDevicesData,
     IDevicesData,
 } from "../../../constants/DevicesData.ts";
+import useSectionRef from "../../../hooks/useSectionRef.ts";
 import { useSmoothLerp } from "../../../hooks/useSmoothLerp.ts";
 import { Lerp } from "../../../utils/LerpUtils.ts";
 
@@ -39,15 +40,13 @@ function DeviceModel({
     onHover,
     onLeave,
 }: ModelProps) {
+    const sectionRef = useSectionRef(data.href) as RefObject<HTMLElement>;
+
     const colorMap = useTexture(`./${data.texture}`);
 
     const screenRef = useRef<MeshStandardMaterial>(null!);
 
     const group = useRef<Group>(null!);
-
-    const routeChange = () => {
-        window.location.href = "#" + data.href;
-    };
 
     const initialScale = 0.2;
     const hoverScale = 0.225;
@@ -88,8 +87,10 @@ function DeviceModel({
             }}
             onClick={e => {
                 e.stopPropagation();
-                console.log(data);
-                routeChange();
+                // console.log(data);
+                // routeChange();
+
+                sectionRef?.current?.scrollIntoView();
             }}
             castShadow
             receiveShadow

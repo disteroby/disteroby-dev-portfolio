@@ -1,6 +1,5 @@
-import { useEffect } from "react";
 import { MutableText } from "../../UI";
-import { AnimationProps, motion, Variants } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 
 export default function SectionHero() {
     const variants: Variants = {
@@ -9,11 +8,11 @@ export default function SectionHero() {
             y: "20%",
             transition: { duration: 0.5 },
         },
-        animate: (_delay: number) => ({
+        animate: (delay: number) => ({
             opacity: 1,
             y: "0%",
             transition: {
-                // delay: 3 + delay,
+                delay: delay,
                 duration: 0.5,
             },
         }),

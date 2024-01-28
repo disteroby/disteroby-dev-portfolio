@@ -4,13 +4,19 @@ export const SectionRefsContext = createContext<
     Map<string, LegacyRef<HTMLElement>> | undefined
 >(undefined);
 
-export default function useSectionRef(id: string) {
+export function useSectionRefs() {
     const refs = useContext(SectionRefsContext);
 
     if (refs === undefined)
         throw new Error(
             "useSectionRef must be used with a SectionRefsContext!",
         );
+
+    return refs;
+}
+
+export function useSectionRef(id: string) {
+    const refs = useSectionRefs();
 
     const ref = refs.get(id);
 

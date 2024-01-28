@@ -1,12 +1,15 @@
-import { createRef, LegacyRef, Suspense, useRef } from "react";
-import { useProgress } from "@react-three/drei";
+import { createRef, LegacyRef, useDeferredValue, useRef } from "react";
 import HeroStage3D from "../../components/layout/HeroStage3D/HeroStage3D.tsx";
-import SectionHero from "../../components/layout/sections/SectionHero.tsx";
-import SectionProjects from "../../components/layout/sections/SectionProjects.tsx";
+import SectionHero from "../../components/layout/Sections/SectionHero.tsx";
+import SectionProjects from "../../components/layout/Sections/SectionProjects.tsx";
 import Navbar from "../../components/UI/Navbar.tsx";
+import SceneLoader from "../../components/UI/SceneLoader.tsx";
 import { carouselDevicesData } from "../../constants/DevicesData.ts";
 import { LinksData } from "../../constants/LinksData.ts";
+import useSceneProgress from "../../hooks/useSceneProgress.ts";
 import { SectionRefsContext } from "../../hooks/useSectionRef.ts";
+import { opacityVariants } from "../../utils/framerMotionUtils.ts";
+import { AnimatePresence, motion } from "framer-motion";
 
 function LandingPage() {
     const heroRef = useRef(null!);
@@ -19,33 +22,36 @@ function LandingPage() {
         refs.set(device.project, createRef());
     });
 
-    const { active: modelsAreLoading } = useProgress();
+    const pageIsLoaded = useDeferredValue(useSceneProgress(2000));
 
     return (
-        <Suspense fallback={<div>provaaa</div>}>
-            <SectionRefsContext.Provider value={refs}>
-                <div ref={heroRef} className='min-h-[200vh]'>
-                    <Navbar links={LinksData} initialIdx={0} />
-                    <HeroStage3D />
-                    <SectionHero pageIsLoaded={!modelsAreLoading} />
-                    <SectionProjects ref={projectsRef} />
+        <SectionRefsContext.Provider value={refs}>
+            <div ref={heroRef} className='min-h-screen relative'>
+                {pageIsLoaded && <Navbar links={LinksData} initialIdx={0} />}
 
-                    {carouselDevicesData.map(data => (
-                        <div
-                            ref={
-                                refs.get(
-                                    data.project,
-                                ) as LegacyRef<HTMLDivElement>
-                            }
-                            key={data.project}
-                            className='min-h-screen'
-                            id={data.project}>
-                            {data.project}
-                        </div>
-                    ))}
+                <div className='relative h-screen w-full'>
+                    <HeroStage3D />
+                    <AnimatePresence>
+                        {!pageIsLoaded && (
+                            <motion.div
+                                className='inset-0 bg-dark-gray absolute flex flex-col justify-center items-center'
+                                variants={opacityVariants}
+                                transition={{ duration: 1 }}
+                                animate={"visible"}
+                                exit={"invisible"}>
+                                <SceneLoader />
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
                 </div>
-            </SectionRefsContext.Provider>
-        </Suspense>
+                <SectionHero pageIsLoaded={pageIsLoaded} />
+            </div>
+            {pageIsLoaded && (
+                <>
+                    <SectionProjects ref={projectsRef} />
+                </>
+            )}
+        </SectionRefsContext.Provider>
     );
 }
 

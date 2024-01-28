@@ -11,11 +11,11 @@
 }
 
 .hero-text {
-    @apply text-4xl md:text-5xl text-white;
+    @apply text-4xl text-white md:text-5xl;
 }
 
 :root {
-    --default-scrollbar-size: .75rem;
+    --default-scrollbar-size: 0.75rem;
     --default-scrollbar-radius: 10rem;
     --default-scrollbar-color: hsl(223, 15%, 20%);
     --default-scrollbar-bg-color: hsl(223, 15%, 10%);
@@ -43,30 +43,42 @@ html {
 ::-webkit-scrollbar-track {
     background-color: var(--default-scrollbar-bg-color);
     border-radius: var(--default-scrollbar-radius);
-    margin: .25rem;
+    margin: 0.25rem;
 }
 
-
 .grid-fade-out {
-    --_grid-section-stroke:.15vh;
-    --_grid-cell-stroke:.075vh;
-    --_grid-section-size:98.6vh;
-    --_grid-cell-size:19.7vh;
-    --_color_section:  #5b6466;
+    --_grid-section-stroke: 0.15vh;
+    --_grid-cell-stroke: 0.075vh;
+    --_grid-section-size: 98.6vh;
+    --_grid-cell-size: 19.7vh;
+    --_color_section: #5b6466;
     --_color_cell: #262727;
-    background-image:
-            linear-gradient(var(--_color_section) var(--_grid-section-stroke), transparent var(--_grid-section-stroke)),
-            linear-gradient(90deg, var(--_color_section) var(--_grid-section-stroke), transparent var(--_grid-section-stroke)),
-            linear-gradient(var(--_color_cell) var(--_grid-cell-stroke), transparent var(--_grid-cell-stroke)),
-            linear-gradient(90deg, var(--_color_cell) var(--_grid-cell-stroke), transparent var(--_grid-cell-stroke));
+    background-image: linear-gradient(
+            var(--_color_section) var(--_grid-section-stroke),
+            transparent var(--_grid-section-stroke)
+        ),
+        linear-gradient(
+            90deg,
+            var(--_color_section) var(--_grid-section-stroke),
+            transparent var(--_grid-section-stroke)
+        ),
+        linear-gradient(
+            var(--_color_cell) var(--_grid-cell-stroke),
+            transparent var(--_grid-cell-stroke)
+        ),
+        linear-gradient(
+            90deg,
+            var(--_color_cell) var(--_grid-cell-stroke),
+            transparent var(--_grid-cell-stroke)
+        );
     background-size:
-            var(--_grid-section-size) var(--_grid-section-size),
-            var(--_grid-section-size) var(--_grid-section-size),
-            var(--_grid-cell-size) var(--_grid-cell-size),
-            var(--_grid-cell-size) var(--_grid-cell-size);
-    background-position:
-            top,
-            calc(50% - (var(--_grid-section-size) + var(--_grid-section-stroke)) / 2),
-            top,
-            calc(50% - var(--_grid-cell-size) / 2);
+        var(--_grid-section-size) var(--_grid-section-size),
+        var(--_grid-section-size) var(--_grid-section-size),
+        var(--_grid-cell-size) var(--_grid-cell-size),
+        var(--_grid-cell-size) var(--_grid-cell-size);
+    background-position: top,
+        calc(
+            50% - (var(--_grid-section-size) + var(--_grid-section-stroke)) / 2
+        ),
+        top, calc(50% - var(--_grid-cell-size) / 2);
 }

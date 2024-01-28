@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
 import {
     Environment,
@@ -5,21 +6,26 @@ import {
     Preload,
     Sparkles,
     Stats,
+    useGLTF,
+    useTexture,
 } from "@react-three/drei";
+import { carouselDevicesData } from "../../../constants/DevicesData.ts";
+import { modelPath, texturePath } from "../../../utils/ResourcesUtils.ts";
 import HeroDevices from "./HeroDevices.tsx";
 import { HeroGrid } from "./HeroGrid.tsx";
 import { HeroLights } from "./HeroLights.tsx";
 
 export default function HeroStage3D() {
+    console.log("CAR");
     return (
-        <div className='absolute w-full'>
-            <Canvas
-                className='h-[100vh!important]'
-                camera={{
-                    position: [0, 0.2365, 7.15],
-                    fov: 60,
-                }}>
-                <Environment preset='studio'>
+        <Canvas
+            className='h-[100vh!important]'
+            camera={{
+                position: [0, 0.2365, 7.15],
+                fov: 60,
+            }}>
+            <Suspense fallback={null}>
+                <Environment background files='./environment/studio.hdr'>
                     <Lightformer
                         intensity={0.01}
                         rotation-x={Math.PI}
@@ -45,12 +51,19 @@ export default function HeroStage3D() {
                         color={"#baccd5"}
                     />
                 </group>
-                <Preload all />
                 <Stats
                     className='origin-top-left scale-[150%] lg:scale-[200%] p-2'
                     showPanel={0}
                 />
-            </Canvas>
-        </div>
+                <Preload all />
+            </Suspense>
+        </Canvas>
     );
 }
+
+useGLTF.preload(modelPath("laptop"));
+// useGLTF.preload(modelPath("smartphone"));
+// useTexture.preload("./environment/studio.hdr");
+carouselDevicesData.map(device => {
+    useTexture.preload(texturePath(device.texture));
+});

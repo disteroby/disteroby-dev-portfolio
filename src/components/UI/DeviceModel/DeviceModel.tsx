@@ -1,4 +1,4 @@
-import { RefObject, useEffect } from "react";
+import { RefObject } from "react";
 import {
     BufferGeometry,
     DoubleSide,
@@ -8,11 +8,8 @@ import {
 import { Euler, Vector3 } from "@react-three/fiber";
 import { ThreeEvent } from "@react-three/fiber/dist/declarations/src/core/events";
 import { useGLTF, useTexture } from "@react-three/drei";
-import {
-    carouselDevicesData,
-    DevicesData,
-} from "../../../constants/DevicesData.ts";
-import useSectionRef from "../../../hooks/useSectionRef.ts";
+import { DevicesData } from "../../../constants/DevicesData.ts";
+import { useSectionRef } from "../../../hooks/useSectionRef.ts";
 import { modelPath, texturePath } from "../../../utils/ResourcesUtils.ts";
 import { motion } from "framer-motion-3d";
 
@@ -41,15 +38,11 @@ function DeviceModel({
     onLeave,
 }: ModelProps) {
     const colorMap = useTexture(texturePath(device.texture));
+    // const colorMap = useVideoTexture("./video/test.mp4");
 
     const sectionRef = useSectionRef(device.project) as RefObject<HTMLElement>;
 
-    const model = modelPath(device.type);
-    const { nodes, materials } = useGLTF(model);
-
-    useEffect(() => {
-        console.log("Loaded: " + device.project);
-    }, [device.project]);
+    const { nodes, materials } = useGLTF(modelPath(device.type), true);
 
     return (
         <motion.group
@@ -92,7 +85,7 @@ function DeviceModel({
                         }>
                         <meshStandardMaterial
                             roughness={0.1}
-                            metalness={0.7}
+                            metalness={0.6}
                             side={DoubleSide}
                             map={colorMap}
                         />
@@ -122,11 +115,5 @@ function DeviceModel({
         </motion.group>
     );
 }
-
-useGLTF.preload(modelPath("laptop"));
-useGLTF.preload(modelPath("smartphone"));
-carouselDevicesData.map(device => {
-    useTexture.preload(texturePath(device.texture));
-});
 
 export default DeviceModel;

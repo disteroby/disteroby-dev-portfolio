@@ -11,7 +11,7 @@ export function HeroLights() {
                 anglePower={12}
                 intensity={10}
                 opacity={1.25}
-                color={"#00a2ff"}
+                color={"#0095ff"}
                 position={[8, 0, 0]}
             />
             <SpotLight
@@ -33,7 +33,7 @@ export function HeroLights() {
                 anglePower={12}
                 intensity={3}
                 opacity={1.25}
-                color={"#ff15f7"}
+                color={"#b915ff"}
                 position={[-8, 0, 0]}
             />
         </group>

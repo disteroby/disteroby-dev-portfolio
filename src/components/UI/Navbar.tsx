@@ -34,7 +34,7 @@ export default function Navbar({ links, initialIdx }: NavbarProps) {
             <motion.ul
                 className='flex flex-col md:flex-row justify-center items-stretch bg-white/5 text-white/70 p-6 md:p-2 backdrop-blur shadow-xl rounded-br-xl md:rounded-full gap-6 md:gap-4'
                 variants={variants}
-                initial='visible'
+                initial='close'
                 custom={-1}
                 animate={isShow ? "visible" : "close"}>
                 {links.map((link, idx) => (
@@ -50,7 +50,6 @@ export default function Navbar({ links, initialIdx }: NavbarProps) {
                             href={link.href}
                             onClick={() => {
                                 setActiveIndex(idx);
-                                // setIsShow(false);
                             }}>
                             {activeIndex === idx ? (
                                 <link.icons.active />

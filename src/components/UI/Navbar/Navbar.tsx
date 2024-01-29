@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { NavbarLink } from "../../constants/LinksData.ts";
+import { NavbarLink } from "../../../constants/LinksData.ts";
 import NavbarButton from "./NavbarButton.tsx";
-import { motion, Variants } from "framer-motion";
+import { AnimatePresence, motion, Variants } from "framer-motion";
 
 type NavbarProps = {
     links: NavbarLink[];
@@ -14,10 +14,10 @@ export default function Navbar({ links, initialIdx }: NavbarProps) {
     const [isShow, setIsShow] = useState(false);
 
     const variants: Variants = {
-        visible: i => ({
+        visible: delay => ({
             opacity: 1,
             transition: {
-                delay: (i + 1) * 0.15,
+                delay,
             },
         }),
         close: {
@@ -25,15 +25,15 @@ export default function Navbar({ links, initialIdx }: NavbarProps) {
         },
     };
 
-    function renderLinks(isShow: boolean) {
+    function renderLinks() {
         return links.map((link, idx) => (
             <motion.li
                 variants={variants}
-                initial='visible'
-                animate={isShow ? "visible" : "close"}
-                custom={idx}
+                animate='visible'
+                exit='close'
+                custom={(idx + 1) * 0.15}
                 key={link.href}
-                className={`w-full rounded-full px-4 py-1 md:w-fit md:px-4 ${activeIndex === idx ? " bg-white/15" : ""}`}>
+                className={`w-full rounded-full px-4 py-1 opacity-0 md:w-fit md:px-4 ${activeIndex === idx ? " bg-white/15" : ""}`}>
                 <a
                     className={`${activeIndex !== idx ? link.textColor : "text-white"} group flex items-center gap-2 align-bottom transition-colors duration-200 ease-in-out`}
                     href={link.href}
@@ -58,21 +58,25 @@ export default function Navbar({ links, initialIdx }: NavbarProps) {
                     isOpen={isShow}
                     onClick={() => setIsShow(current => !current)}
                 />
-                <motion.ul
-                    className='flex flex-col items-stretch justify-center gap-6 rounded-br-xl bg-white/5 p-6 text-white/70 shadow-xl backdrop-blur'
-                    variants={variants}
-                    initial='close'
-                    custom={-1}
-                    animate={isShow ? "visible" : "close"}>
-                    {renderLinks(isShow)}
-                </motion.ul>
+                <AnimatePresence>
+                    {isShow && (
+                        <motion.ul
+                            className='flex flex-col items-stretch justify-center gap-6 rounded-br-xl bg-white/5 p-6 text-white/70 opacity-0 shadow-xl backdrop-blur'
+                            variants={variants}
+                            animate='visible'
+                            exit='close'>
+                            {renderLinks()}
+                        </motion.ul>
+                    )}
+                </AnimatePresence>
             </div>
             <div className='max-lg:hidden'>
                 <motion.ul
                     className='flex flex-row items-stretch justify-center gap-4 rounded-full bg-white/5 p-2 text-white/70 shadow-xl backdrop-blur'
                     variants={variants}
-                    initial='visible'>
-                    {renderLinks(true)}
+                    custom={10}
+                    animate='visible'>
+                    {renderLinks()}
                 </motion.ul>
             </div>
         </nav>

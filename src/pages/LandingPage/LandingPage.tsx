@@ -2,13 +2,13 @@ import { createRef, LegacyRef, useRef } from "react";
 import HeroStage3D from "../../components/layout/HeroStage3D/HeroStage3D.tsx";
 import SectionHeroOverlay from "../../components/layout/Sections/SectionHeroOverlay.tsx";
 import SectionProjects from "../../components/layout/Sections/SectionProjects.tsx";
-import Navbar from "../../components/UI/Navbar.tsx";
+import Navbar from "../../components/UI/Navbar/Navbar.tsx";
 import SceneLoader from "../../components/UI/SceneLoader.tsx";
 import { carouselDevicesData } from "../../constants/DevicesData.ts";
 import { LinksData } from "../../constants/LinksData.ts";
 import useSceneProgress from "../../hooks/useSceneProgress.ts";
 import { SectionRefsContext } from "../../hooks/useSectionRef.ts";
-import { opacityVariants } from "../../utils/framerMotionUtils.ts";
+import { opacityVariants } from "../../utils/FramerMotionUtils.ts";
 import { AnimatePresence, motion } from "framer-motion";
 
 function LandingPage() {
@@ -34,11 +34,11 @@ function LandingPage() {
                     <AnimatePresence>
                         {!pageIsLoaded && (
                             <motion.div
-                                className='absolute inset-0 flex flex-col items-center justify-center bg-dark-gray'
+                                className='absolute inset-0 z-[999] flex flex-col items-center justify-center bg-dark-gray'
                                 variants={opacityVariants}
                                 transition={{ duration: 1 }}
-                                animate={"visible"}
-                                exit={"invisible"}>
+                                animate='visible'
+                                exit='invisible'>
                                 <SceneLoader />
                             </motion.div>
                         )}

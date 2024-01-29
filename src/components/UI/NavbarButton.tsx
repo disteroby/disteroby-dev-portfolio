@@ -8,7 +8,7 @@ type NavbarButtonProps = {
 export default function NavbarButton({ isOpen, onClick }: NavbarButtonProps) {
     return (
         <button
-            className='fixed m-6 right-0 z-50 text-white flex flex-col justify-center items-end gap-2 opacity-85 md:hidden scale-90'
+            className='fixed right-0 z-50 m-6 flex scale-90 flex-col items-end justify-center gap-2 text-white opacity-85'
             onClick={() => onClick()}>
             <motion.div
                 variants={{
@@ -24,7 +24,7 @@ export default function NavbarButton({ isOpen, onClick }: NavbarButtonProps) {
                     duration: 0.2,
                 }}
                 animate={isOpen ? "open" : "close"}
-                className='w-8 h-[0.2rem] bg-white rounded-full'
+                className='h-[0.2rem] w-8 rounded-full bg-white'
             />
             <motion.div
                 variants={{
@@ -41,7 +41,7 @@ export default function NavbarButton({ isOpen, onClick }: NavbarButtonProps) {
                     duration: 0.1,
                 }}
                 animate={isOpen ? "open" : "close"}
-                className='w-8 h-[0.2rem] bg-white rounded-full'
+                className='h-[0.2rem] w-8 rounded-full bg-white'
             />
             <motion.div
                 variants={{
@@ -59,7 +59,7 @@ export default function NavbarButton({ isOpen, onClick }: NavbarButtonProps) {
                     duration: 0.2,
                 }}
                 animate={isOpen ? "open" : "close"}
-                className='w-4 h-[0.2rem] bg-white rounded-full'
+                className='h-[0.2rem] w-4 rounded-full bg-white'
             />
         </button>
     );

@@ -2,10 +2,10 @@ export default function SceneLoader() {
     return (
         <div
             role='status'
-            className='flex flex-col justify-center items-center gap-8 text-xl'>
+            className='flex flex-col items-center justify-center gap-8 text-xl'>
             <svg
                 aria-hidden='true'
-                className='inline size-16 text-gray-200 animate-spin dark:text-gray-600 fill-gray-600 dark:fill-gray-300'
+                className='inline size-16 animate-spin fill-gray-600 text-gray-200 dark:fill-gray-300 dark:text-gray-600'
                 viewBox='0 0 100 101'
                 fill='none'
                 xmlns='http://www.w3.org/2000/svg'>

@@ -33,9 +33,9 @@ export default function Navbar({ links, initialIdx }: NavbarProps) {
                 animate={isShow ? "visible" : "close"}
                 custom={idx}
                 key={link.href}
-                className={`px-4 md:px-4 py-1 w-full rounded-full md:w-fit ${activeIndex === idx ? " bg-white/15" : ""}`}>
+                className={`w-full rounded-full px-4 py-1 md:w-fit md:px-4 ${activeIndex === idx ? " bg-white/15" : ""}`}>
                 <a
-                    className={`${activeIndex !== idx ? link.textColor : "text-white"} items-center group transition-colors duration-200 ease-in-out flex align-bottom gap-2`}
+                    className={`${activeIndex !== idx ? link.textColor : "text-white"} group flex items-center gap-2 align-bottom transition-colors duration-200 ease-in-out`}
                     href={link.href}
                     onClick={() => {
                         setActiveIndex(idx);
@@ -52,14 +52,14 @@ export default function Navbar({ links, initialIdx }: NavbarProps) {
     }
 
     return (
-        <nav className='fixed z-40 w-full flex md:justify-center md:mt-4'>
-            <div className='md:hidden'>
+        <nav className='fixed z-50 flex w-full lg:mt-4 lg:justify-center'>
+            <div className='lg:hidden'>
                 <NavbarButton
                     isOpen={isShow}
                     onClick={() => setIsShow(current => !current)}
                 />
                 <motion.ul
-                    className='flex flex-col justify-center items-stretch bg-white/5 text-white/70 p-6 backdrop-blur shadow-xl rounded-br-xl gap-6'
+                    className='flex flex-col items-stretch justify-center gap-6 rounded-br-xl bg-white/5 p-6 text-white/70 shadow-xl backdrop-blur'
                     variants={variants}
                     initial='close'
                     custom={-1}
@@ -67,9 +67,9 @@ export default function Navbar({ links, initialIdx }: NavbarProps) {
                     {renderLinks(isShow)}
                 </motion.ul>
             </div>
-            <div className='max-md:hidden'>
+            <div className='max-lg:hidden'>
                 <motion.ul
-                    className='flex flex-row justify-center items-stretch bg-white/5 text-white/70 md:p-2 backdrop-blur shadow-xl rounded-full gap-4'
+                    className='flex flex-row items-stretch justify-center gap-4 rounded-full bg-white/5 p-2 text-white/70 shadow-xl backdrop-blur'
                     variants={variants}
                     initial='visible'>
                     {renderLinks(true)}

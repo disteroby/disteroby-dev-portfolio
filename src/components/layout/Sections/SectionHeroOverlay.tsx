@@ -25,20 +25,20 @@ export default function SectionHeroOverlay({ pageIsLoaded }: SectionHeroProps) {
     };
 
     return (
-        <section className='h-screen inset-0 absolute overflow-x-hidden main-section-container pointer-events-none'>
-            <div className='font-bold uppercase text-center tracking-wider h-[30%] flex flex-col justify-center mt-8 md:mt-16'>
+        <section className='main-section-container pointer-events-none absolute inset-0 h-screen overflow-x-hidden'>
+            <div className='mt-8 flex h-[30%] flex-col justify-center text-center font-bold uppercase tracking-wider md:mt-16'>
                 <motion.div
-                    className='mb-4 flex justify-center opacity-0'
+                    className='mx-4 mb-4 flex justify-center opacity-0'
                     initial='enter'
                     animate={pageIsLoaded ? "animate" : "enter"}
                     variants={variants}
                     custom={0.5}>
-                    <div className='flex flex-row items-center justify-center max-w-xl grow opacity-75'>
-                        <div className='grow bg-gradient-to-l from-white/70 h-[0.05rem] md:h-[0.1rem] pointer-events-none' />
-                        <div className='grow-0 text-md font-light capitalize text-white/80 md:text-xl px-2 md:px-4'>
+                    <div className='flex max-w-xl grow flex-row items-center justify-center opacity-75'>
+                        <div className='pointer-events-none h-[0.05rem] grow bg-gradient-to-l from-white/70 md:h-[0.1rem]' />
+                        <div className='text-md grow-0 px-2 font-light capitalize text-white/80 md:px-4 md:text-xl'>
                             Roberto Di Stefano
                         </div>
-                        <div className='grow bg-gradient-to-r from-white/70 h-[0.05rem] md:h-[0.1rem] pointer-events-none' />
+                        <div className='pointer-events-none h-[0.05rem] grow bg-gradient-to-r from-white/70 md:h-[0.1rem]' />
                     </div>
                 </motion.div>
                 <motion.div

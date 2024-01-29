@@ -26,7 +26,7 @@ function LandingPage() {
 
     return (
         <SectionRefsContext.Provider value={refs}>
-            <div ref={heroRef} className='min-h-screen relative'>
+            <div ref={heroRef} className='relative min-h-screen'>
                 {pageIsLoaded && <Navbar links={LinksData} initialIdx={0} />}
 
                 <div className='relative h-screen w-full'>
@@ -34,7 +34,7 @@ function LandingPage() {
                     <AnimatePresence>
                         {!pageIsLoaded && (
                             <motion.div
-                                className='inset-0 bg-dark-gray absolute flex flex-col justify-center items-center'
+                                className='absolute inset-0 flex flex-col items-center justify-center bg-dark-gray'
                                 variants={opacityVariants}
                                 transition={{ duration: 1 }}
                                 animate={"visible"}

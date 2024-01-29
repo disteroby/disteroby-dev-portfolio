@@ -5,7 +5,6 @@ import {
     Lightformer,
     Preload,
     Sparkles,
-    Stats,
     useGLTF,
     useTexture,
 } from "@react-three/drei";
@@ -50,10 +49,10 @@ const HeroStage3D = memo(() => {
                         color={"#baccd5"}
                     />
                 </group>
-                <Stats
-                    className='origin-top-left scale-[150%] lg:scale-[200%] p-2'
-                    showPanel={2}
-                />
+                {/*<Stats*/}
+                {/*    className='origin-top-left scale-[150%] lg:scale-[200%] p-2'*/}
+                {/*    showPanel={0}*/}
+                {/*/>*/}
                 <Preload all />
             </Suspense>
         </Canvas>
@@ -62,7 +61,6 @@ const HeroStage3D = memo(() => {
 
 useGLTF.preload(modelPath("laptop"));
 // useGLTF.preload(modelPath("smartphone"));
-// useTexture.preload("./environment/studio.hdr");
 carouselDevicesData.map(device => {
     useTexture.preload(texturePath(device.texture));
 });

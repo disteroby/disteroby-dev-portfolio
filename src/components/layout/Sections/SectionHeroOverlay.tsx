@@ -1,4 +1,4 @@
-import { MutableText } from "../../UI";
+import MutableText from "../../UI/MutableText.tsx";
 import { motion, Variants } from "framer-motion";
 
 type SectionHeroProps = {

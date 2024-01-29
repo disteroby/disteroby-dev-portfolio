@@ -4,7 +4,7 @@ import "./App.css";
 function App() {
     return (
         <main className='min-h-screen w-full overflow-x-hidden bg-dark-gray'>
-            {<LandingPage />}
+            <LandingPage />
         </main>
     );
 }

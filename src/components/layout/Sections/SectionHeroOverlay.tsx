@@ -7,7 +7,7 @@ type SectionHeroProps = {
 
 const minDefaultDelay = 1;
 
-export default function SectionHero({ pageIsLoaded }: SectionHeroProps) {
+export default function SectionHeroOverlay({ pageIsLoaded }: SectionHeroProps) {
     const variants: Variants = {
         enter: {
             opacity: 0,

@@ -84,8 +84,8 @@ function DeviceModel({
                             (nodes["Cube008_2"] as IGeometry)["geometry"]
                         }>
                         <meshStandardMaterial
-                            roughness={0.1}
-                            metalness={0.6}
+                            roughness={0}
+                            metalness={0.5}
                             side={DoubleSide}
                             map={colorMap}
                         />

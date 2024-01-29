@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useDeferredValue, useEffect, useState } from "react";
 import { useProgress } from "@react-three/drei";
 
 export default function useSceneProgress(minTimer: number) {
@@ -14,7 +14,7 @@ export default function useSceneProgress(minTimer: number) {
         };
     }, [minTimer]);
 
-    const { active: isSceneLoading } = useProgress();
+    const { active: isSceneLoading } = useDeferredValue(useProgress());
 
     return minTimerCompleted && !isSceneLoading;
 }

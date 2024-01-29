@@ -1,4 +1,4 @@
-import { Suspense } from "react";
+import { memo, Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
 import {
     Environment,
@@ -15,8 +15,7 @@ import HeroDevices from "./HeroDevices.tsx";
 import { HeroGrid } from "./HeroGrid.tsx";
 import { HeroLights } from "./HeroLights.tsx";
 
-export default function HeroStage3D() {
-    console.log("CAR");
+const HeroStage3D = memo(() => {
     return (
         <Canvas
             className='h-[100vh!important]'
@@ -25,7 +24,7 @@ export default function HeroStage3D() {
                 fov: 60,
             }}>
             <Suspense fallback={null}>
-                <Environment background files='./environment/studio.hdr'>
+                <Environment files='studio2.hdr' path='./environment/'>
                     <Lightformer
                         intensity={0.01}
                         rotation-x={Math.PI}
@@ -43,23 +42,23 @@ export default function HeroStage3D() {
                 </mesh>
                 <group>
                     <Sparkles
-                        count={100}
-                        scale={20}
-                        size={10}
-                        speed={0.25}
+                        count={50}
+                        scale={15}
+                        size={20}
+                        speed={0.15}
                         opacity={0.2}
                         color={"#baccd5"}
                     />
                 </group>
                 <Stats
                     className='origin-top-left scale-[150%] lg:scale-[200%] p-2'
-                    showPanel={0}
+                    showPanel={2}
                 />
                 <Preload all />
             </Suspense>
         </Canvas>
     );
-}
+});
 
 useGLTF.preload(modelPath("laptop"));
 // useGLTF.preload(modelPath("smartphone"));
@@ -67,3 +66,5 @@ useGLTF.preload(modelPath("laptop"));
 carouselDevicesData.map(device => {
     useTexture.preload(texturePath(device.texture));
 });
+
+export default HeroStage3D;

@@ -1,6 +1,6 @@
-import { createRef, LegacyRef, useDeferredValue, useRef } from "react";
+import { createRef, LegacyRef, useRef } from "react";
 import HeroStage3D from "../../components/layout/HeroStage3D/HeroStage3D.tsx";
-import SectionHero from "../../components/layout/Sections/SectionHero.tsx";
+import SectionHeroOverlay from "../../components/layout/Sections/SectionHeroOverlay.tsx";
 import SectionProjects from "../../components/layout/Sections/SectionProjects.tsx";
 import Navbar from "../../components/UI/Navbar.tsx";
 import SceneLoader from "../../components/UI/SceneLoader.tsx";
@@ -22,7 +22,7 @@ function LandingPage() {
         refs.set(device.project, createRef());
     });
 
-    const pageIsLoaded = useDeferredValue(useSceneProgress(2000));
+    const pageIsLoaded = useSceneProgress(2000);
 
     return (
         <SectionRefsContext.Provider value={refs}>
@@ -44,7 +44,7 @@ function LandingPage() {
                         )}
                     </AnimatePresence>
                 </div>
-                <SectionHero pageIsLoaded={pageIsLoaded} />
+                <SectionHeroOverlay pageIsLoaded={pageIsLoaded} />
             </div>
             {pageIsLoaded && (
                 <>

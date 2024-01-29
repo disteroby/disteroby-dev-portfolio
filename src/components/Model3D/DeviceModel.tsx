@@ -8,9 +8,9 @@ import {
 import { Euler, Vector3 } from "@react-three/fiber";
 import { ThreeEvent } from "@react-three/fiber/dist/declarations/src/core/events";
 import { useGLTF, useTexture } from "@react-three/drei";
-import { DevicesData } from "../../../constants/DevicesData.ts";
-import { useSectionRef } from "../../../hooks/useSectionRef.ts";
-import { modelPath, texturePath } from "../../../utils/ResourcesUtils.ts";
+import { DevicesData } from "../../constants/DevicesData.ts";
+import { useSectionRef } from "../../hooks/useSectionRef.ts";
+import { modelPath, texturePath } from "../../utils/ResourcesUtils.ts";
 import { motion } from "framer-motion-3d";
 
 type ModelProps = {

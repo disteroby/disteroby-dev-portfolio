@@ -10,7 +10,7 @@ import {
     itemsPolarTransform,
     MeshTransform,
 } from "../../../utils/MeshManipulationUtils.ts";
-import DeviceModel from "../../UI/DeviceModel/DeviceModel.tsx";
+import DeviceModel from "../../Model3D/DeviceModel.tsx";
 
 type device = {
     data: DevicesData;

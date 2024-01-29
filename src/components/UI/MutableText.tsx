@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import useInterval from "../../../hooks/useInterval.ts";
+import useInterval from "../../hooks/useInterval.ts";
 import { AnimatePresence, motion } from "framer-motion";
 
 type MutableTextProps = {

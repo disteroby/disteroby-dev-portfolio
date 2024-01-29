@@ -1,3 +1,3 @@
-import MutableText from "./MutableText/MutableText.tsx";
+import MutableText from "./MutableText.tsx";
 
 export { MutableText };

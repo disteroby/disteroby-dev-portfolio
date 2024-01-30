@@ -18,6 +18,7 @@ export default function Navbar({ links, initialIdx }: NavbarProps) {
             opacity: 1,
             transition: {
                 delay,
+                duration: 0.5,
             },
         }),
         close: {
@@ -25,13 +26,13 @@ export default function Navbar({ links, initialIdx }: NavbarProps) {
         },
     };
 
-    function renderLinks() {
+    function renderLinks(baseDelay = 0) {
         return links.map((link, idx) => (
             <motion.li
                 variants={variants}
                 animate='visible'
                 exit='close'
-                custom={(idx + 1) * 0.15}
+                custom={baseDelay + (idx + 1) * 0.2}
                 key={link.href}
                 className={`w-full rounded-full px-4 py-1 opacity-0 md:w-fit md:px-4 ${activeIndex === idx ? " bg-white/15" : ""}`}>
                 <a
@@ -72,11 +73,11 @@ export default function Navbar({ links, initialIdx }: NavbarProps) {
             </div>
             <div className='max-lg:hidden'>
                 <motion.ul
-                    className='flex flex-row items-stretch justify-center gap-4 rounded-full bg-white/5 p-2 text-white/70 shadow-xl backdrop-blur'
+                    className='flex flex-row items-stretch justify-center gap-4 rounded-full bg-white/5 p-2 text-white/70 opacity-0 shadow-xl backdrop-blur'
                     variants={variants}
-                    custom={10}
+                    custom={1}
                     animate='visible'>
-                    {renderLinks()}
+                    {renderLinks(1.25)}
                 </motion.ul>
             </div>
         </nav>

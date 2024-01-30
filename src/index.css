@@ -48,7 +48,7 @@ html {
 
 .grid-fade-out {
     --_grid-section-stroke: 0.15vh;
-    --_grid-cell-stroke: 0.075vh;
+    --_grid-cell-stroke: max(1px, 0.075vh);
     --_grid-section-size: 98.6vh;
     --_grid-cell-size: 19.7vh;
     --_color_section: #5b6466;

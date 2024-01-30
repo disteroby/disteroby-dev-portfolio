@@ -17,7 +17,6 @@ import { HeroLights } from "./HeroLights.tsx";
 const HeroStage3D = memo(() => {
     return (
         <Canvas
-            className='h-[100vh!important]'
             camera={{
                 position: [0, 0.2365, 7.15],
                 fov: 60,

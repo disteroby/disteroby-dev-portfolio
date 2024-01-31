@@ -1,5 +1,4 @@
-import LandingPage from "../LandingPage/LandingPage.tsx";
-import "./App.css";
+import LandingPage from "./LandingPage.tsx";
 
 function App() {
     return (

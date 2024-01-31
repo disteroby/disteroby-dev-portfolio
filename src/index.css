@@ -14,6 +14,10 @@
     @apply text-4xl text-white md:text-5xl;
 }
 
+.hero-text2 {
+    @apply hero-text;
+}
+
 :root {
     --default-scrollbar-size: 0.75rem;
     --default-scrollbar-radius: 10rem;

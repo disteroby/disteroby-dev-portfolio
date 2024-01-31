@@ -2,7 +2,7 @@ import { forwardRef, LegacyRef, useState } from "react";
 import { HardSkills, SkillType } from "../../../constants/HardSkills.ts";
 import { opacityVariants } from "../../../utils/FramerMotionUtils.ts";
 import HardSkill from "../../UI/HardSkill.tsx";
-import UnderHero from "../HeroStage3D/UnderHero.tsx";
+import FragmentUnderHero from "../Fragment/FragmentUnderHero.tsx";
 import { motion } from "framer-motion";
 
 const SectionProjects = forwardRef(
@@ -16,34 +16,15 @@ const SectionProjects = forwardRef(
             "tools",
         ]);
 
-        // const skills = useMemo(
-        //     () =>
-        //         [...HardSkills].sort(
-        //             (skillA, skillB) =>
-        //                 hexToHSL(skillA.color as string)[0] -
-        //                 hexToHSL(skillB.color as string)[0],
-        //         ),
-        //     [],
-        // );
-
         const skills = [...HardSkills];
 
         return (
             <div className='relative'>
-                <UnderHero />
+                <FragmentUnderHero />
                 <section
                     ref={ref}
                     className='main-section-container z-1 relative'>
-                    {/*{carouselDevicesData.map(data => (*/}
-                    <div
-                        // key={data.project}
-                        // ref={
-                        //     refs.get(
-                        //         data.project,
-                        //     ) as LegacyRef<HTMLDivElement>
-                        // }
-                        // id={data.project}
-                        className='min-h-screen'>
+                    <div className='min-h-screen'>
                         <div>"data.project"</div>
                         <button
                             className='m-16'
@@ -58,7 +39,6 @@ const SectionProjects = forwardRef(
                                           ]
                                         : ["tools"],
                                 );
-                                console.log("EEE");
                             }}>
                             Change Filter Type
                         </button>
@@ -82,7 +62,6 @@ const SectionProjects = forwardRef(
                             ))}
                         </motion.div>
                     </div>
-                    {/*))}*/}
                 </section>
             </div>
         );

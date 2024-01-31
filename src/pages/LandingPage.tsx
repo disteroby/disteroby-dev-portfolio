@@ -1,14 +1,14 @@
 import { createRef, LegacyRef, useRef } from "react";
-import HeroStage3D from "../../components/layout/HeroStage3D/HeroStage3D.tsx";
-import SectionHeroOverlay from "../../components/layout/Sections/SectionHeroOverlay.tsx";
-import SectionProjects from "../../components/layout/Sections/SectionProjects.tsx";
-import Navbar from "../../components/UI/Navbar/Navbar.tsx";
-import SceneLoader from "../../components/UI/SceneLoader.tsx";
-import { carouselDevicesData } from "../../constants/DevicesData.ts";
-import { LinksData } from "../../constants/LinksData.ts";
-import useSceneProgress from "../../hooks/useSceneProgress.ts";
-import { SectionRefsContext } from "../../hooks/useSectionRef.ts";
-import { opacityVariants } from "../../utils/FramerMotionUtils.ts";
+import HeroStage3D from "../components/layout/HeroStage3D/HeroStage3D.tsx";
+import SectionHeroOverlay from "../components/layout/Section/SectionHeroOverlay.tsx";
+import SectionProjects from "../components/layout/Section/SectionProjects.tsx";
+import Navbar from "../components/UI/Navbar/Navbar.tsx";
+import SceneLoader from "../components/UI/SceneLoader.tsx";
+import { carouselDevicesData } from "../constants/DevicesData.ts";
+import { LinksData } from "../constants/LinksData.ts";
+import useSceneProgress from "../hooks/useSceneProgress.ts";
+import { SectionRefsContext } from "../hooks/useSectionRef.ts";
+import { opacityVariants } from "../utils/FramerMotionUtils.ts";
 import { AnimatePresence, motion } from "framer-motion";
 
 function LandingPage() {

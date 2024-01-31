@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .main-section-container {
-    @apply mx-auto w-full max-w-[72rem];
+    @apply mx-auto w-full max-w-[72rem] border-0 overflow-x-hidden;
 }
 
 .fuchsia-cyan-gradient {

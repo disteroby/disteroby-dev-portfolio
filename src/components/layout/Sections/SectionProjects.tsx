@@ -1,56 +1,90 @@
-import { forwardRef, LegacyRef, useMemo } from "react";
-import { carouselDevicesData } from "../../../constants/DevicesData.ts";
+import { forwardRef, LegacyRef, useState } from "react";
 import { HardSkills, SkillType } from "../../../constants/HardSkills.ts";
-import { useSectionRefs } from "../../../hooks/useSectionRef.ts";
+import { opacityVariants } from "../../../utils/FramerMotionUtils.ts";
 import HardSkill from "../../UI/HardSkill.tsx";
 import UnderHero from "../HeroStage3D/UnderHero.tsx";
+import { motion } from "framer-motion";
 
 const SectionProjects = forwardRef(
     (_props: unknown, ref: LegacyRef<HTMLElement>) => {
-        const refs = useSectionRefs();
+        // const refs = useSectionRefs();
 
-        const Skills = useMemo(
-            () =>
-                [...HardSkills].sort((skillA, skillB) =>
-                    skillA.name.localeCompare(skillB.name),
-                ),
-            [],
-        );
+        const [filterType, setFilterType] = useState<SkillType[]>([
+            "fullstack",
+            "mobile",
+            "game",
+            "tools",
+        ]);
 
-        const filterType: SkillType = "fullstack";
+        // const skills = useMemo(
+        //     () =>
+        //         [...HardSkills].sort(
+        //             (skillA, skillB) =>
+        //                 hexToHSL(skillA.color as string)[0] -
+        //                 hexToHSL(skillB.color as string)[0],
+        //         ),
+        //     [],
+        // );
+
+        const skills = [...HardSkills];
 
         return (
-            <section ref={ref}>
+            <div className='relative'>
                 <UnderHero />
-
-                {carouselDevicesData.map(data => (
+                <section
+                    ref={ref}
+                    className='main-section-container z-1 relative'>
+                    {/*{carouselDevicesData.map(data => (*/}
                     <div
-                        ref={
-                            refs.get(data.project) as LegacyRef<HTMLDivElement>
-                        }
-                        key={data.project}
-                        className='min-h-screen'
-                        id={data.project}>
-                        {data.project}
-                        <div className='flex min-h-screen w-full flex-wrap items-center justify-center gap-8'>
-                            {Skills.filter(
-                                skill =>
-                                    skill.type === filterType ||
-                                    (skill.type as SkillType[]).includes(
-                                        filterType,
-                                    ),
-                            ).map(skill => (
-                                <HardSkill
+                        // key={data.project}
+                        // ref={
+                        //     refs.get(
+                        //         data.project,
+                        //     ) as LegacyRef<HTMLDivElement>
+                        // }
+                        // id={data.project}
+                        className='min-h-screen'>
+                        <div>"data.project"</div>
+                        <button
+                            className='m-16'
+                            onClick={() => {
+                                setFilterType(old =>
+                                    old.length === 1
+                                        ? [
+                                              "fullstack",
+                                              "mobile",
+                                              "game",
+                                              "tools",
+                                          ]
+                                        : ["tools"],
+                                );
+                                console.log("EEE");
+                            }}>
+                            Change Filter Type
+                        </button>
+                        <motion.div
+                            variants={opacityVariants}
+                            initial='invisible'
+                            custom={0.075}
+                            viewport={{ once: true }}
+                            whileInView='visibleWithDelay'
+                            className='flex flex-wrap items-center justify-center gap-6 px-4 md:gap-8'>
+                            {skills.map(skill => (
+                                <motion.div
                                     key={skill.name}
-                                    skill={skill}
-                                    className='size-16'>
-                                    <skill.logo />
-                                </HardSkill>
+                                    variants={opacityVariants}>
+                                    <HardSkill
+                                        skill={skill}
+                                        className='size-12'
+                                        filters={filterType}
+                                    />
+                                </motion.div>
                             ))}
-                        </div>
+                        </motion.div>
                     </div>
-                ))}
-            </section>
+                    {/*))}*/}
+                </section>
+            </div>
         );
     },
 );

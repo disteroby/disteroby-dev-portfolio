@@ -17,6 +17,7 @@ import { HeroLights } from "./HeroLights.tsx";
 const HeroStage3D = memo(() => {
     return (
         <Canvas
+            className='hover:select-none'
             camera={{
                 position: [0, 0.2365, 7.15],
                 fov: 60,
@@ -48,12 +49,12 @@ const HeroStage3D = memo(() => {
                         color={"#baccd5"}
                     />
                 </group>
-                {/*<Stats*/}
-                {/*    className='origin-top-left scale-[150%] lg:scale-[200%] p-2'*/}
-                {/*    showPanel={0}*/}
-                {/*/>*/}
                 <Preload all />
             </Suspense>
+            {/*<Stats*/}
+            {/*    className='origin-top-left scale-[150%] p-2 lg:scale-[200%]'*/}
+            {/*    showPanel={0}*/}
+            {/*/>*/}
         </Canvas>
     );
 });

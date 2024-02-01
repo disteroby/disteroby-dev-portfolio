@@ -34,7 +34,7 @@ function LandingPage() {
                     <AnimatePresence>
                         {!pageIsLoaded && (
                             <motion.div
-                                className='absolute inset-0 z-[999] flex flex-col items-center justify-center bg-dark-gray'
+                                className='scrollbar-gutter absolute left-0 top-0 z-[999] flex h-screen w-screen flex-col items-center justify-center bg-dark-gray'
                                 variants={opacityVariants}
                                 transition={{ duration: 1 }}
                                 animate='visible'

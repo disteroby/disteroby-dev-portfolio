@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .main-section-container {
-    @apply mx-auto w-full max-w-[72rem] border-0 overflow-x-hidden;
+    @apply mx-auto w-full max-w-[72rem] overflow-x-hidden;
 }
 
 .fuchsia-cyan-gradient {
@@ -14,8 +14,8 @@
     @apply text-4xl text-white md:text-5xl;
 }
 
-.hero-text2 {
-    @apply hero-text;
+.main-title {
+    @apply font-bold hero-text relative before:absolute before:left-0 before:right-0 before:h-0.5 before:top-full before:bg-gradient-to-r before:from-fuchsia-500 before:via-purple-500 before:via-40% before:to-cyan-500;
 }
 
 :root {
@@ -48,6 +48,10 @@ html {
     background-color: var(--default-scrollbar-bg-color);
     border-radius: var(--default-scrollbar-radius);
     margin: 0.25rem;
+}
+
+.scrollbar-gutter {
+    scrollbar-gutter: stable both-edges;
 }
 
 .grid-fade-out {

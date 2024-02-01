@@ -36,31 +36,31 @@ export type Skill = {
     color: CSSProperties["color"];
 };
 
-export const HardSkills: Skill[] = [
+export const skills: Skill[] = [
     {
         name: "Figma",
-        color: "#a158fd",
+        color: "#7f3bf1",
         type: "tools",
         logo: BiLogoFigma,
         level: 2,
     },
     {
         name: "Bootstrap",
-        color: "#9535fa",
+        color: "#a339db",
         type: "fullstack",
         logo: BiLogoBootstrap,
         level: 4.5,
     },
     {
         name: "Java",
-        color: "#e93435",
+        color: "#e9344c",
         type: ["mobile", "fullstack"],
         logo: BiLogoJava,
         level: 5,
     },
     {
         name: "HTML5",
-        color: "#e2542d",
+        color: "#e2452d",
         type: "fullstack",
         logo: BiLogoHtml5,
         level: 4,
@@ -88,7 +88,7 @@ export const HardSkills: Skill[] = [
     },
     {
         name: "JavaScript",
-        color: "#eeda54",
+        color: "#ddd541",
         type: "fullstack",
         logo: BiLogoJavascript,
         level: 4,
@@ -115,13 +115,6 @@ export const HardSkills: Skill[] = [
         level: 2.5,
     },
     {
-        name: "Unity",
-        color: "#29333d",
-        type: "game",
-        logo: BiLogoUnity,
-        level: 2.5,
-    },
-    {
         name: "Unreal Engine",
         color: "#222325",
         type: "game",
@@ -136,8 +129,15 @@ export const HardSkills: Skill[] = [
         level: 3.5,
     },
     {
+        name: "Unity",
+        color: "#29333d",
+        type: "game",
+        logo: BiLogoUnity,
+        level: 2.5,
+    },
+    {
         name: "Cypress",
-        color: "#6dd2a9",
+        color: "#60bf99",
         type: "fullstack",
         logo: SiCypress,
         level: 1.5,
@@ -151,7 +151,7 @@ export const HardSkills: Skill[] = [
     },
     {
         name: "Arduino",
-        color: "#219ba2",
+        color: "#1ba3a7",
         type: "tools",
         logo: SiArduino,
         level: 1.5,
@@ -164,18 +164,18 @@ export const HardSkills: Skill[] = [
         level: 4,
     },
     {
-        name: "MySQL",
-        color: "#09658d",
-        type: ["mobile", "fullstack", "game"],
-        logo: GrMysql,
-        level: 4,
-    },
-    {
         name: "Flutter",
-        color: "#5cc6f6",
+        color: "#4bb3e2",
         type: "mobile",
         logo: BiLogoFlutter,
         level: 3,
+    },
+    {
+        name: "MySQL",
+        color: "#128fc5",
+        type: ["mobile", "fullstack", "game"],
+        logo: GrMysql,
+        level: 4,
     },
     {
         name: "Docker",
@@ -193,14 +193,14 @@ export const HardSkills: Skill[] = [
     },
     {
         name: "C++",
-        color: "#1173be",
+        color: "#046dc3",
         type: "game",
         logo: BiLogoCPlusPlus,
         level: 3.5,
     },
     {
         name: "Trello",
-        color: "#0563de",
+        color: "#0669ea",
         type: "tools",
         logo: BiLogoTrello,
         level: 4.5,

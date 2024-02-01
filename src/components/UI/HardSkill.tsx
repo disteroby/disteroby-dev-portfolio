@@ -1,4 +1,4 @@
-import { Skill, SkillType } from "../../constants/HardSkills.ts";
+import { Skill, SkillType } from "../../constants/Skills.ts";
 import SkillPopup from "./SkillPopup.tsx";
 import { motion } from "framer-motion";
 import { twMerge } from "tailwind-merge";

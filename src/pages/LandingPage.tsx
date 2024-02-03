@@ -2,7 +2,7 @@ import { createRef, LegacyRef, useRef } from "react";
 import HeroStage3D from "../components/layout/HeroStage3D/HeroStage3D.tsx";
 import SectionHeroOverlay from "../components/layout/Section/SectionHeroOverlay.tsx";
 import SectionProjects from "../components/layout/Section/SectionProjects.tsx";
-import Navbar from "../components/UI/Navbar/Navbar.tsx";
+import Navbar from "../components/UI/Navbar.tsx";
 import SceneLoader from "../components/UI/SceneLoader.tsx";
 import { carouselDevicesData } from "../constants/DevicesData.ts";
 import { LinksData } from "../constants/LinksData.ts";
@@ -34,7 +34,10 @@ function LandingPage() {
                     <AnimatePresence>
                         {!pageIsLoaded && (
                             <motion.div
-                                className='scrollbar-gutter absolute left-0 top-0 z-[999] flex h-screen w-screen flex-col items-center justify-center bg-dark-gray'
+                                style={{
+                                    scrollbarGutter: "stable both-edges",
+                                }}
+                                className='absolute left-0 top-0 z-[999] flex h-screen w-screen flex-col items-center justify-center bg-dark-gray'
                                 variants={opacityVariants}
                                 transition={{ duration: 1 }}
                                 animate='visible'

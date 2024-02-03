@@ -50,10 +50,6 @@ html {
     margin: 0.25rem;
 }
 
-.scrollbar-gutter {
-    scrollbar-gutter: stable both-edges;
-}
-
 .grid-fade-out {
     --_grid-section-stroke: 0.15vh;
     --_grid-cell-stroke: max(1px, 0.075vh);

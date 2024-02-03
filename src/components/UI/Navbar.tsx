@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { NavbarLink } from "../../../constants/LinksData.ts";
+import { NavbarLink } from "../../constants/LinksData.ts";
 import NavbarButton from "./NavbarButton.tsx";
 import { AnimatePresence, motion, Variants } from "framer-motion";
 

@@ -1,4 +1,4 @@
-import { memo, Suspense } from "react";
+import { memo, Suspense, useRef } from "react";
 import { Canvas } from "@react-three/fiber";
 import {
     Environment,
@@ -13,10 +13,16 @@ import { modelPath, texturePath } from "../../../utils/ResourcesUtils.ts";
 import HeroDevices from "./HeroDevices.tsx";
 import { HeroGrid } from "./HeroGrid.tsx";
 import { HeroLights } from "./HeroLights.tsx";
+import { useInView } from "framer-motion";
 
 const HeroStage3D = memo(() => {
+    const ref = useRef(null!);
+    const isInView = useInView(ref);
+
     return (
         <Canvas
+            frameloop={isInView ? "always" : "never"}
+            ref={ref}
             className='hover:select-none'
             camera={{
                 position: [0, 0.2365, 7.15],

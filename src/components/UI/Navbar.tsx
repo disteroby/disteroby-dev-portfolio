@@ -2,6 +2,7 @@ import { useState } from "react";
 import { NavbarLink } from "../../constants/LinksData.ts";
 import NavbarButton from "./NavbarButton.tsx";
 import { AnimatePresence, motion, Variants } from "framer-motion";
+import { twJoin } from "tailwind-merge";
 
 type NavbarProps = {
     links: NavbarLink[];
@@ -14,11 +15,11 @@ export default function Navbar({ links, initialIdx }: NavbarProps) {
     const [isShow, setIsShow] = useState(false);
 
     const variants: Variants = {
-        visible: delay => ({
+        visible: ([delay = 0.25, duration = 0.75] = []) => ({
             opacity: 1,
             transition: {
                 delay,
-                duration: 0.5,
+                duration: duration,
             },
         }),
         close: {
@@ -32,11 +33,16 @@ export default function Navbar({ links, initialIdx }: NavbarProps) {
                 variants={variants}
                 animate='visible'
                 exit='close'
-                custom={baseDelay + (idx + 1) * 0.2}
+                custom={[baseDelay + (idx + 1) * 0.2]}
                 key={link.href}
-                className={`w-full rounded-full px-4 py-1 opacity-0 md:w-fit md:px-4 ${activeIndex === idx ? " bg-white/15" : ""}`}>
+                className='opacity-0'>
                 <a
-                    className={`${activeIndex !== idx ? link.textColor : "text-white"} group flex items-center gap-2 align-bottom transition-colors duration-200 ease-in-out`}
+                    className={twJoin(
+                        "flex items-center gap-2 rounded-full px-4 py-1 align-bottom transition-colors duration-200 ease-in-out md:w-full md:px-4",
+                        activeIndex !== idx
+                            ? [link.textColor, "hover:bg-white/5"]
+                            : ["text-white", "bg-white/15"],
+                    )}
                     href={link.href}
                     onClick={() => {
                         setActiveIndex(idx);
@@ -75,9 +81,9 @@ export default function Navbar({ links, initialIdx }: NavbarProps) {
                 <motion.ul
                     className='flex flex-row items-stretch justify-center gap-4 rounded-full bg-white/5 p-2 text-white/70 opacity-0 shadow-xl backdrop-blur'
                     variants={variants}
-                    custom={1}
+                    custom={[3.25, 1]}
                     animate='visible'>
-                    {renderLinks(1.25)}
+                    {renderLinks(4)}
                 </motion.ul>
             </div>
         </nav>

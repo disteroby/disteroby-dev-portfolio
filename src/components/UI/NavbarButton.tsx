@@ -1,4 +1,5 @@
 import { CSSProperties } from "react";
+import { twMerge } from "tailwind-merge";
 
 const lineStyle = {
     fill: "none",
@@ -19,10 +20,10 @@ export default function NavbarButton({ isOpen, onClick }: NavbarButtonProps) {
     return (
         <div className='fixed right-0 z-50 m-6 opacity-85' onClick={onClick}>
             <svg
-                style={{
-                    transform: isOpen ? "rotate(-45deg)" : "rotate(0deg)",
-                }}
-                className='h-12 cursor-pointer bg-red-500 transition duration-[600ms]'
+                className={twMerge(
+                    "h-12 cursor-pointer transition duration-[600ms]",
+                    isOpen && "-rotate-45",
+                )}
                 viewBox='0 0 32 32'>
                 <path
                     style={{

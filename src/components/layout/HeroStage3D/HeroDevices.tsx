@@ -9,7 +9,7 @@ import {
 import {
     itemsPolarTransform,
     MeshTransform,
-} from "../../../utils/MeshManipulationUtils.ts";
+} from "../../../utils/TransformUtils.ts";
 import DeviceModel from "../../Model3D/DeviceModel.tsx";
 
 type device = {

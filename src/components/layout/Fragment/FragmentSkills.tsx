@@ -2,11 +2,12 @@ import { useState } from "react";
 import { skills, SkillType } from "../../../constants/Skills.ts";
 import { opacityVariants } from "../../../utils/FramerMotionUtils.ts";
 import HardSkill from "../../UI/HardSkill.tsx";
+import SkillFilterButton from "../../UI/SkillFilterButton.tsx";
 import { motion } from "framer-motion";
 
 export default function FragmentSkills() {
     const [filterType, setFilterType] = useState<SkillType[]>([
-        "fullstack",
+        "web",
         "mobile",
         "game",
         "tools",
@@ -15,17 +16,12 @@ export default function FragmentSkills() {
     const selectedSkills = [...skills];
     return (
         <div>
-            <button
-                className='m-16'
-                onClick={() => {
-                    setFilterType(old =>
-                        old.length === 1
-                            ? ["fullstack", "mobile", "game", "tools"]
-                            : ["tools"],
-                    );
-                }}>
-                Change Filter Type
-            </button>
+            <div className='my-16 flex justify-center'>
+                <SkillFilterButton
+                    filters={filterType}
+                    onClick={filter => setFilterType(filter)}
+                />
+            </div>
             <motion.div
                 variants={opacityVariants}
                 initial='invisible'

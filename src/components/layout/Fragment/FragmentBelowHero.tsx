@@ -1,4 +1,4 @@
-export default function FragmentUnderHero() {
+export default function FragmentBelowHero() {
     return (
         <div className='absolute h-[80vh] w-full'>
             <div className='absolute inset-0 overflow-hidden bg-gradient-to-b from-black/80 to-dark-gray' />

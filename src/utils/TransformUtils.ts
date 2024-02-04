@@ -10,8 +10,14 @@ export function itemsPolarTransform(
     theta: number,
     radius: number,
 ): MeshTransform {
+    const xz = polarToCartesian(theta, radius);
+
     return {
-        position: [Math.sin(theta) * radius, 0.5, Math.cos(theta) * radius],
+        position: [xz[0], 0.5, xz[1]],
         rotation: [0, theta, 0],
     };
+}
+
+export function polarToCartesian(theta: number, radius = 1) {
+    return [Math.sin(theta) * radius, Math.cos(theta) * radius];
 }

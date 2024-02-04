@@ -47,7 +47,7 @@ export default function SectionHeroOverlay({ pageIsLoaded }: SectionHeroProps) {
                     variants={variants}
                     custom={1.25}>
                     <MutableText
-                        words={["fullstack", "mobile", "game"]}
+                        words={["web", "mobile", "game"]}
                         time={3500}
                         pause={!pageIsLoaded}
                     />

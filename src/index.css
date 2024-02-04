@@ -15,7 +15,7 @@
 }
 
 .main-title {
-    @apply font-bold hero-text relative before:absolute before:left-0 before:right-0 before:h-0.5 before:top-full before:bg-gradient-to-r before:from-fuchsia-500 before:via-purple-500 before:via-40% before:to-cyan-500;
+    @apply hero-text relative font-bold before:absolute before:left-0 before:right-0 before:top-full before:h-0.5 before:bg-gradient-to-r before:from-fuchsia-500 before:via-purple-500 before:via-40% before:to-cyan-500;
 }
 
 :root {

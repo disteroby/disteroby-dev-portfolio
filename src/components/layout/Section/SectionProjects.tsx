@@ -1,12 +1,12 @@
 import { forwardRef, LegacyRef } from "react";
+import FragmentBelowHero from "../Fragment/FragmentBelowHero.tsx";
 import FragmentSkills from "../Fragment/FragmentSkills.tsx";
-import FragmentUnderHero from "../Fragment/FragmentUnderHero.tsx";
 
 const SectionProjects = forwardRef(
     (_props: unknown, ref: LegacyRef<HTMLElement>) => {
         return (
             <div className='relative'>
-                <FragmentUnderHero />
+                <FragmentBelowHero />
                 <section
                     ref={ref}
                     className='main-section-container z-1 relative'>

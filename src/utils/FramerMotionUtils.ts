@@ -1,4 +1,6 @@
-export const opacityVariants = {
+import { Variants } from "framer-motion";
+
+export const opacityVariants: Variants = {
     invisible: {
         opacity: 0,
     },

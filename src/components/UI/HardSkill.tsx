@@ -14,15 +14,11 @@ export default function HardSkill({
     className,
     filters = [],
 }: HardSkillProps) {
-    function opacityStatusAnimation() {
-        const isSelected = filters.some(
-            filter =>
-                skill.type === filter ||
-                (skill.type as SkillType[]).includes(filter),
-        );
-
-        return isSelected ? "selected" : "unselected";
-    }
+    const isSelected = filters.some(
+        filter =>
+            skill.type === filter ||
+            (skill.type as SkillType[]).includes(filter),
+    );
 
     return (
         <motion.div
@@ -35,17 +31,16 @@ export default function HardSkill({
                     opacity: 0.25,
                 },
             }}
-            animate={opacityStatusAnimation()}>
+            animate={isSelected ? "selected" : "unselected"}>
             <motion.div
-                onClick={() => console.log(skill)}
                 variants={{
                     init: { transition: {} },
                     onHover: {},
                 }}
                 className='relative select-none'
                 animate='init'
-                whileHover='onHover'
-                whileTap='onHover'>
+                whileHover={isSelected ? "onHover" : ""}
+                whileTap={isSelected ? "onHover" : ""}>
                 <motion.div
                     variants={{
                         init: {

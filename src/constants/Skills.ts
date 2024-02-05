@@ -24,10 +24,9 @@ import {
 } from "react-icons/bi";
 import { FaGitlab } from "react-icons/fa";
 import { GrMysql } from "react-icons/gr";
-import { SiArduino, SiCypress, SiUnrealengine } from "react-icons/si";
+import { SiCypress, SiJest, SiUnrealengine } from "react-icons/si";
 
-export type SkillType = "web" | "mobile" | "game" | "tools";
-export type PureSkillType = Exclude<SkillType, "tools">;
+export type SkillType = "web" | "mobile" | "game";
 
 export type Skill = {
     name: string;
@@ -41,7 +40,7 @@ export const skills: Skill[] = [
     {
         name: "Figma",
         color: "#7f3bf1",
-        type: "tools",
+        type: ["web", "mobile"],
         logo: BiLogoFigma,
         level: 2,
     },
@@ -51,6 +50,13 @@ export const skills: Skill[] = [
         type: "web",
         logo: BiLogoBootstrap,
         level: 4.5,
+    },
+    {
+        name: "Jest",
+        color: "#db3972",
+        type: "web",
+        logo: SiJest,
+        level: 3.5,
     },
     {
         name: "Java",
@@ -69,7 +75,7 @@ export const skills: Skill[] = [
     {
         name: "GitLab",
         color: "#e26220",
-        type: "tools",
+        type: ["web", "mobile", "game"],
         logo: FaGitlab,
         level: 4.5,
     },
@@ -109,13 +115,6 @@ export const skills: Skill[] = [
         level: 3,
     },
     {
-        name: "MongoDb",
-        color: "#14b361",
-        type: ["mobile", "web", "game"],
-        logo: BiLogoMongodb,
-        level: 2.5,
-    },
-    {
         name: "Unreal Engine",
         color: "#222325",
         type: "game",
@@ -125,7 +124,7 @@ export const skills: Skill[] = [
     {
         name: "GitHub",
         color: "#282b2c",
-        type: "tools",
+        type: ["web", "mobile", "game"],
         logo: BiLogoGithub,
         level: 3.5,
     },
@@ -137,11 +136,18 @@ export const skills: Skill[] = [
         level: 2.5,
     },
     {
+        name: "MongoDb",
+        color: "#14b361",
+        type: ["mobile", "web", "game"],
+        logo: BiLogoMongodb,
+        level: 2.5,
+    },
+    {
         name: "Cypress",
         color: "#60bf99",
         type: "web",
         logo: SiCypress,
-        level: 1.5,
+        level: 2,
     },
     {
         name: "Tailwind CSS",
@@ -149,13 +155,6 @@ export const skills: Skill[] = [
         type: "web",
         logo: BiLogoTailwindCss,
         level: 3.5,
-    },
-    {
-        name: "Arduino",
-        color: "#1ba3a7",
-        type: "tools",
-        logo: SiArduino,
-        level: 1.5,
     },
     {
         name: "React",
@@ -181,7 +180,7 @@ export const skills: Skill[] = [
     {
         name: "Docker",
         color: "#0894e5",
-        type: "web",
+        type: ["web", "mobile"],
         logo: BiLogoDocker,
         level: 2.5,
     },
@@ -202,7 +201,7 @@ export const skills: Skill[] = [
     {
         name: "Trello",
         color: "#0669ea",
-        type: "tools",
+        type: ["mobile", "web", "game"],
         logo: BiLogoTrello,
         level: 4.5,
     },

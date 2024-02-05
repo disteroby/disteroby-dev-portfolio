@@ -6,20 +6,23 @@ import SkillFilterButton from "../../UI/SkillFilterButton.tsx";
 import { motion } from "framer-motion";
 
 export default function FragmentSkills() {
-    const [filterType, setFilterType] = useState<SkillType[]>([
-        "web",
-        "mobile",
-        "game",
-        "tools",
-    ]);
+    const [filters, setFilters] = useState<SkillType[]>([]);
+
+    function handleOnFilterSelect(selectedFilter: SkillType) {
+        setFilters(oldFilters =>
+            oldFilters.includes(selectedFilter)
+                ? oldFilters.filter(f => f !== selectedFilter)
+                : oldFilters.concat(selectedFilter),
+        );
+    }
 
     const selectedSkills = [...skills];
     return (
         <div>
             <div className='my-16 flex justify-center'>
                 <SkillFilterButton
-                    filters={filterType}
-                    onClick={filter => setFilterType(filter)}
+                    currentFilters={filters}
+                    onClick={handleOnFilterSelect}
                 />
             </div>
             <motion.div
@@ -34,7 +37,7 @@ export default function FragmentSkills() {
                         <HardSkill
                             skill={skill}
                             className='size-12'
-                            filters={filterType}
+                            filters={filters}
                         />
                     </motion.div>
                 ))}

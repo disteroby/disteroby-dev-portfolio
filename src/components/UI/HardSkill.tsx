@@ -1,4 +1,5 @@
 import { Skill, SkillType } from "../../constants/Skills.ts";
+import { hasFilterOrNoFilter } from "../../utils/SkillUtils.ts";
 import SkillPopup from "./SkillPopup.tsx";
 import { motion } from "framer-motion";
 import { twMerge } from "tailwind-merge";
@@ -14,11 +15,7 @@ export default function HardSkill({
     className,
     filters = [],
 }: HardSkillProps) {
-    const isSelected = filters.some(
-        filter =>
-            skill.type === filter ||
-            (skill.type as SkillType[]).includes(filter),
-    );
+    const isSelected = hasFilterOrNoFilter(skill.type, filters);
 
     return (
         <motion.div

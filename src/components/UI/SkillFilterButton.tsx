@@ -36,7 +36,11 @@ export default function SkillFilterButton({
         game: <IoLogoGameControllerB />,
     };
 
-    const bgColors = ["bg-indigo-500", "bg-cyan-500", "bg-fuchsia-500"];
+    const bgColors = [
+        "bg-indigo-500/70",
+        "bg-cyan-500/70",
+        "bg-fuchsia-500/70",
+    ];
     const textColors = ["text-indigo-500", "text-cyan-500", "text-fuchsia-500"];
 
     return (
@@ -53,7 +57,7 @@ export default function SkillFilterButton({
                             top: `${coords[idx][1]}rem`,
                         }}
                         className={twMerge(
-                            "absolute size-[7rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/60 transition duration-300 ease-in-out",
+                            "absolute size-[7rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/40 transition duration-300 ease-in-out",
                             isFilterSelected[idx] && bgColors[idx],
                         )}
                     />
@@ -68,8 +72,10 @@ export default function SkillFilterButton({
                             top: `${coords[idx][1]}rem`,
                         }}
                         className={twMerge(
-                            "group absolute grid size-[5.5rem] -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-white text-dark-gray/60 hover:cursor-pointer",
-                            isFilterSelected[idx] && textColors[idx],
+                            "group absolute grid size-[5.5rem] -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-white text-dark-gray/40 hover:cursor-pointer",
+                            isFilterSelected[idx]
+                                ? textColors[idx]
+                                : "hover:text-dark-gray/60",
                         )}
                         onClick={() => onClick(type)}>
                         <div className='absolute text-3xl transition duration-300 ease-in-out group-hover:scale-125'>

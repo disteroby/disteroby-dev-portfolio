@@ -8,6 +8,15 @@ import { twMerge } from "tailwind-merge";
 
 const types: SkillType[] = ["web", "mobile", "game"];
 
+const icons: { [key in SkillType]: JSX.Element } = {
+    web: <IoDesktop />,
+    mobile: <FaMobile />,
+    game: <IoLogoGameControllerB />,
+};
+
+const bgColors = ["bg-indigo-500/70", "bg-cyan-500/70", "bg-fuchsia-500/70"];
+const textColors = ["text-indigo-500", "text-cyan-500", "text-fuchsia-500"];
+
 type SkillFilterButtonProps = {
     currentFilters: SkillType[];
     onClick: (filter: SkillType) => void;
@@ -29,19 +38,6 @@ export default function SkillFilterButton({
     const isFilterSelected = types.map(skill =>
         hasFilter(skill, currentFilters),
     );
-
-    const icons: { [key in SkillType]: JSX.Element } = {
-        web: <IoDesktop />,
-        mobile: <FaMobile />,
-        game: <IoLogoGameControllerB />,
-    };
-
-    const bgColors = [
-        "bg-indigo-500/70",
-        "bg-cyan-500/70",
-        "bg-fuchsia-500/70",
-    ];
-    const textColors = ["text-indigo-500", "text-cyan-500", "text-fuchsia-500"];
 
     return (
         <div

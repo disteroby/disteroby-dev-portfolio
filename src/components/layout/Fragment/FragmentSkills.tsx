@@ -18,7 +18,7 @@ export default function FragmentSkills() {
 
     const selectedSkills = [...skills];
     return (
-        <div>
+        <>
             <div className='my-16 flex justify-center'>
                 <SkillFilterButton
                     currentFilters={filters}
@@ -42,6 +42,6 @@ export default function FragmentSkills() {
                     </motion.div>
                 ))}
             </motion.div>
-        </div>
+        </>
     );
 }

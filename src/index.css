@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .main-section-container {
-    @apply mx-auto w-full max-w-[72rem] overflow-x-hidden;
+    @apply mx-auto w-full max-w-[72rem];
 }
 
 .fuchsia-cyan-gradient {
@@ -14,7 +14,7 @@
     @apply text-4xl text-white md:text-5xl;
 }
 
-.main-title {
+.section-title {
     @apply hero-text relative font-bold before:absolute before:left-0 before:right-0 before:top-full before:h-0.5 before:bg-gradient-to-r before:from-fuchsia-500 before:via-purple-500 before:via-40% before:to-cyan-500;
 }
 

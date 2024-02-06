@@ -11,7 +11,7 @@ const SectionProjects = forwardRef(
                     ref={ref}
                     className='main-section-container z-1 relative'>
                     <div className='flex min-h-screen flex-col items-center p-4'>
-                        <span className='main-title'>ABOUT ME</span>
+                        <span className='section-title'>ABOUT ME</span>
                         <FragmentSkills />
                     </div>
                 </section>

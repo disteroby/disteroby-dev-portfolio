@@ -182,7 +182,7 @@ export const skills: Skill[] = [
         color: "#0894e5",
         type: ["web", "mobile"],
         logo: BiLogoDocker,
-        level: 2.5,
+        level: 1.5,
     },
     {
         name: "TypeScript",

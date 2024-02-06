@@ -12,7 +12,7 @@ import {
 } from "../../../utils/TransformUtils.ts";
 import DeviceModel from "../../Model3D/DeviceModel.tsx";
 
-type device = {
+type Device = {
     data: DevicesData;
     transform: MeshTransform;
 };
@@ -23,7 +23,7 @@ function HeroDevices() {
     const interpolationSpeed = 0.05;
     const minSpeedMultiplier = 0.15;
 
-    const devices: device[] = carouselDevicesData.map((data, i, devices) => {
+    const devices: Device[] = carouselDevicesData.map((data, i, devices) => {
         const theta = (i * Math.PI * 2) / devices.length;
         const transform: MeshTransform = {
             ...itemsPolarTransform(theta, itemsPositionRadius),
@@ -65,6 +65,7 @@ function HeroDevices() {
                         <DeviceModel
                             device={data}
                             scale={transform.scale}
+                            hoverAnimation={true}
                             onHover={() => {
                                 targetVelocity.current = minSpeedMultiplier;
                             }}

@@ -1,5 +1,6 @@
 import { createRef, LegacyRef, useRef } from "react";
 import HeroStage3D from "../components/layout/HeroStage3D/HeroStage3D.tsx";
+import SectionAbout from "../components/layout/Section/SectionAbout.tsx";
 import SectionHeroOverlay from "../components/layout/Section/SectionHeroOverlay.tsx";
 import SectionProjects from "../components/layout/Section/SectionProjects.tsx";
 import Navbar from "../components/UI/Navbar.tsx";
@@ -14,10 +15,12 @@ import { AnimatePresence, motion } from "framer-motion";
 function LandingPage() {
     const heroRef = useRef(null!);
     const projectsRef = useRef(null!);
+    const aboutRef = useRef(null!);
 
     const refs = new Map<string, LegacyRef<HTMLElement>>();
     refs.set("hero", heroRef);
     refs.set("projects", projectsRef);
+    refs.set("about", aboutRef);
     carouselDevicesData.forEach(device => {
         refs.set(device.project, createRef());
     });
@@ -52,6 +55,7 @@ function LandingPage() {
             {pageIsLoaded && (
                 <>
                     <SectionProjects ref={projectsRef} />
+                    <SectionAbout ref={aboutRef} />
                 </>
             )}
         </SectionRefsContext.Provider>

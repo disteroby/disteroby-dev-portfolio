@@ -13,11 +13,12 @@ import { useSectionRef } from "../../hooks/useSectionRef.ts";
 import { modelPath, texturePath } from "../../utils/ResourcesUtils.ts";
 import { motion } from "framer-motion-3d";
 
-type ModelProps = {
+type DeviceModelProps = {
     device: DevicesData;
     position?: Vector3;
     rotation?: Euler;
     scale?: Vector3;
+    hoverAnimation?: boolean;
     onHover?: (event: ThreeEvent<PointerEvent>) => void;
     onLeave?: (event: ThreeEvent<PointerEvent>) => void;
 };
@@ -34,9 +35,10 @@ function DeviceModel({
     position,
     rotation,
     scale,
+    hoverAnimation = false,
     onHover,
     onLeave,
-}: ModelProps) {
+}: DeviceModelProps) {
     const colorMap = useTexture(texturePath(device.texture));
     // const colorMap = useVideoTexture("./video/test.mp4");
 
@@ -47,7 +49,7 @@ function DeviceModel({
     return (
         <motion.group
             initial={{ scale: initialScale }}
-            whileHover={{ scale: hoverScale }}
+            whileHover={hoverAnimation ? { scale: hoverScale } : {}}
             transition={{ easings: "easeInOut", duration: 0.4 }}
             onPointerEnter={e => {
                 e.stopPropagation();

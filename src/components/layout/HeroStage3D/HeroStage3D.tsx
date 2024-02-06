@@ -1,5 +1,4 @@
-import { memo, Suspense, useRef } from "react";
-import { Canvas } from "@react-three/fiber";
+import { memo, Suspense } from "react";
 import {
     Environment,
     Lightformer,
@@ -10,19 +9,14 @@ import {
 } from "@react-three/drei";
 import { carouselDevicesData } from "../../../constants/DevicesData.ts";
 import { modelPath, texturePath } from "../../../utils/ResourcesUtils.ts";
+import PerformanceCanvas from "../../Model3D/PerformanceCanvas.tsx";
 import HeroDevices from "./HeroDevices.tsx";
-import { HeroGrid } from "./HeroGrid.tsx";
-import { HeroLights } from "./HeroLights.tsx";
-import { useInView } from "framer-motion";
+import HeroGrid from "./HeroGrid.tsx";
+import HeroLights from "./HeroLights.tsx";
 
 const HeroStage3D = memo(() => {
-    const ref = useRef(null!);
-    const isInView = useInView(ref);
-
     return (
-        <Canvas
-            frameloop={isInView ? "always" : "never"}
-            ref={ref}
+        <PerformanceCanvas
             className='hover:select-none'
             camera={{
                 position: [0, 0.2365, 7.15],
@@ -61,7 +55,7 @@ const HeroStage3D = memo(() => {
             {/*    className='origin-top-left scale-[150%] p-2 lg:scale-[200%]'*/}
             {/*    showPanel={0}*/}
             {/*/>*/}
-        </Canvas>
+        </PerformanceCanvas>
     );
 });
 

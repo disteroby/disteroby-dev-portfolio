@@ -1,6 +1,6 @@
 import { SpotLight } from "@react-three/drei";
 
-export function HeroLights() {
+export default function HeroLights() {
     return (
         <group position={[0, 5, 0]}>
             <SpotLight

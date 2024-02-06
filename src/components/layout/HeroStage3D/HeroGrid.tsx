@@ -1,6 +1,6 @@
 import { Grid } from "@react-three/drei";
 
-export function HeroGrid() {
+export default function HeroGrid() {
     return (
         <>
             <Grid

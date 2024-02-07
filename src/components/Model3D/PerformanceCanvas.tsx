@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import { Canvas } from "@react-three/fiber";
 import { CanvasProps } from "@react-three/fiber/dist/declarations/src/web/Canvas";
 import { useInView } from "framer-motion";

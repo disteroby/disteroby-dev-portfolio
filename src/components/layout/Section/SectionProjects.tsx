@@ -1,5 +1,5 @@
 import { forwardRef, LegacyRef } from "react";
-import ProjectModel from "../DeviceWithSkills/ProjectModel.tsx";
+import ProjectModelContainer from "../DeviceWithSkills/ProjectModelContainer.tsx";
 import FragmentBelowHero from "../Fragment/FragmentBelowHero.tsx";
 
 const SectionProjects = forwardRef(
@@ -12,7 +12,7 @@ const SectionProjects = forwardRef(
                     className='main-section-container z-1 relative'>
                     <div className='flex min-h-screen flex-col items-center p-4'>
                         <span className='section-title'>MY PROJECTS</span>
-                        <ProjectModel />
+                        <ProjectModelContainer />
                     </div>
                 </section>
             </div>

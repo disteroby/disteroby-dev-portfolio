@@ -9,9 +9,16 @@ export default function Skill3DBox({ position }: Skill3DBoxProps) {
     return (
         <group position={position}>
             <Float>
-                <mesh position={[0, -1.7, 0]} rotation-x={-Math.PI / 2}>
-                    <boxGeometry args={[0.5, 0.5, 0.5]} />
-                    <meshStandardMaterial color='blue' />
+                <mesh
+                    scale={0.5}
+                    position={[0, 0, 0]}
+                    rotation-x={-Math.PI / 2}>
+                    <boxGeometry />
+                    <meshStandardMaterial
+                        color='blue'
+                        roughness={1}
+                        metalness={0.23}
+                    />
                 </mesh>
             </Float>
         </group>

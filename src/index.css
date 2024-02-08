@@ -2,10 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-.main-section-container {
-    @apply mx-auto w-full max-w-[72rem];
-}
-
 .fuchsia-cyan-gradient {
     @apply bg-gradient-to-r from-fuchsia-500 via-purple-500 via-40% to-cyan-500;
 }

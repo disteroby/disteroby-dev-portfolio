@@ -1,7 +1,9 @@
 import { createContext, LegacyRef, useContext } from "react";
 
+export type SectionTag = "overview" | "projects" | "about" | "contact";
+
 export const SectionRefsContext = createContext<
-    Map<string, LegacyRef<HTMLElement>> | undefined
+    Map<SectionTag | string, LegacyRef<HTMLElement>> | undefined
 >(undefined);
 
 export function useSectionRefs() {
@@ -15,7 +17,7 @@ export function useSectionRefs() {
     return refs;
 }
 
-export function useSectionRef(id: string) {
+export function useSectionRef(id: SectionTag | string) {
     const refs = useSectionRefs();
 
     const ref = refs.get(id);

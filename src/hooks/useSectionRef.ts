@@ -1,9 +1,9 @@
 import { createContext, LegacyRef, useContext } from "react";
-import { ProjectId } from "../constants/ProjectsData.ts";
+import { ProjectTag } from "../constants/ProjectsData.ts";
 
 export type MainSectionTag = "overview" | "projects" | "about-me" | "contact";
 
-export type SectionTag = MainSectionTag | ProjectId;
+export type SectionTag = MainSectionTag | ProjectTag;
 
 export const SectionRefsContext = createContext<
     Map<SectionTag, LegacyRef<HTMLElement>> | undefined

@@ -1,8 +1,13 @@
-import { useRef } from "react";
+import { LegacyRef, RefObject, useRef } from "react";
 import { Group, MathUtils } from "three";
 import { useFrame } from "@react-three/fiber";
 import { Float, Shadow } from "@react-three/drei";
-import { DeviceData, PROJECTS } from "../../../constants/ProjectsData.ts";
+import {
+    DeviceData,
+    PROJECTS,
+    ProjectTag,
+} from "../../../constants/ProjectsData.ts";
+import { SectionTag, useSectionRefs } from "../../../hooks/useSectionRef.ts";
 import {
     itemsPolarTransform,
     MeshTransform,
@@ -11,6 +16,7 @@ import DeviceModel from "../../Model3D/DeviceModel.tsx";
 
 type Device = DeviceData & {
     transform: MeshTransform;
+    ref: ProjectTag;
 };
 
 const itemsPositionRadius = 4;
@@ -19,7 +25,9 @@ const interpolationSpeed = 0.05;
 const minSpeedMultiplier = 0.15;
 
 function HeroDevices() {
-    const devices: Device[] = PROJECTS.map(({ device }, i) => {
+    const projectsRef = useSectionRefs();
+
+    const devices: Device[] = PROJECTS.map((project, i) => {
         const theta = (i * Math.PI * 2) / PROJECTS.length;
         const transform: MeshTransform = {
             ...itemsPolarTransform(theta, itemsPositionRadius),
@@ -27,8 +35,9 @@ function HeroDevices() {
         };
 
         return {
-            ...device,
+            ...project.device,
             transform,
+            ref: project.refName as ProjectTag,
         };
     });
 
@@ -68,7 +77,11 @@ function HeroDevices() {
                             onLeave={() => {
                                 targetVelocity.current = 1;
                             }}
-                            onClick={() => {}}
+                            onClick={() => {
+                                document
+                                    .getElementById(device.ref)
+                                    ?.scrollIntoView();
+                            }}
                         />
                     </Float>
                     <Shadow

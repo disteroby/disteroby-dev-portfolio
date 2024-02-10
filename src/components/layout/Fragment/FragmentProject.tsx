@@ -1,12 +1,17 @@
-import { forwardRef } from "react";
+import { forwardRef, LegacyRef, useEffect } from "react";
+import { ProjectData } from "../../../constants/ProjectsData.ts";
+import { useSectionRef } from "../../../hooks/useSectionRef.ts";
+import ProjectModelContainer from "../DeviceWithSkills/ProjectModelContainer.tsx";
 
 type FragmentProjectProps = {
     index: number;
-    project: undefined;
+    project: ProjectData;
 };
 
-const FragmentProject = forwardRef(({ index }: FragmentProjectProps) => {
-    return <>GG</>;
-});
-
-export default FragmentProject;
+export default function FragmentProject({ project }: FragmentProjectProps) {
+    return (
+        <section id={project.refName}>
+            <ProjectModelContainer project={project} />
+        </section>
+    );
+}

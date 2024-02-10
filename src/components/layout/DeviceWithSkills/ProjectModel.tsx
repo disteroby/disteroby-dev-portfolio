@@ -1,10 +1,14 @@
 import { useThree } from "@react-three/fiber";
 import { Float } from "@react-three/drei";
-import { PROJECTS } from "../../../constants/ProjectsData.ts";
+import { DeviceData } from "../../../constants/ProjectsData.ts";
 import DeviceModel from "../../Model3D/DeviceModel.tsx";
 import Skill3DBox from "./Skill3DBox.tsx";
 
-export default function ProjectModel() {
+type ProjectModelProps = {
+    device: DeviceData;
+};
+
+export default function ProjectModel({ device }: ProjectModelProps) {
     const { viewport } = useThree();
 
     return (
@@ -17,7 +21,7 @@ export default function ProjectModel() {
                 speed={3}
                 rotation-x={-Math.PI * 1.94}
                 rotationIntensity={0.25}>
-                <DeviceModel device={PROJECTS[1].device} />
+                <DeviceModel device={device} />
             </Float>
         </group>
     );

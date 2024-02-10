@@ -1,4 +1,4 @@
-export type ProjectId =
+export type ProjectTag =
     | "motivapp"
     | "my-smart-opinion"
     | "slide-run"
@@ -33,7 +33,7 @@ export type DeviceData = {
 } & (LaptopData | SmartphoneData);
 
 export type ProjectData = {
-    refName: ProjectId;
+    refName: ProjectTag;
     title: string;
     isTeam: boolean;
     description: string[];

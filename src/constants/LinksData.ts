@@ -21,8 +21,8 @@ export type NavbarLink = {
 
 export const LinksData: NavbarLink[] = [
     {
-        text: "Introduction",
-        href: "#intro",
+        text: "Overview",
+        href: "#overview",
         textColor: "hover:text-fuchsia-500",
         icons: {
             default: RiSparkling2Line,

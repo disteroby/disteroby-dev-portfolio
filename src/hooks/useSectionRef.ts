@@ -1,9 +1,12 @@
 import { createContext, LegacyRef, useContext } from "react";
+import { ProjectId } from "../constants/ProjectsData.ts";
 
-export type SectionTag = "overview" | "projects" | "about" | "contact";
+export type MainSectionTag = "overview" | "projects" | "about-me" | "contact";
+
+export type SectionTag = MainSectionTag | ProjectId;
 
 export const SectionRefsContext = createContext<
-    Map<SectionTag | string, LegacyRef<HTMLElement>> | undefined
+    Map<SectionTag, LegacyRef<HTMLElement>> | undefined
 >(undefined);
 
 export function useSectionRefs() {
@@ -17,10 +20,10 @@ export function useSectionRefs() {
     return refs;
 }
 
-export function useSectionRef(id: SectionTag | string) {
+export function useSectionRef(tag: SectionTag) {
     const refs = useSectionRefs();
 
-    const ref = refs.get(id);
+    const ref = refs.get(tag);
 
     if (ref === undefined) throw new Error("Ref not found!");
 

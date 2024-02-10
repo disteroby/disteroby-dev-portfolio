@@ -1,11 +1,10 @@
-import { memo } from "react";
 import { useThree } from "@react-three/fiber";
 import { Float } from "@react-three/drei";
-import { carouselDevicesData } from "../../../constants/DevicesData.ts";
+import { PROJECTS } from "../../../constants/ProjectsData.ts";
 import DeviceModel from "../../Model3D/DeviceModel.tsx";
 import Skill3DBox from "./Skill3DBox.tsx";
 
-const ProjectModel = memo(() => {
+export default function ProjectModel() {
     const { viewport } = useThree();
 
     return (
@@ -18,10 +17,8 @@ const ProjectModel = memo(() => {
                 speed={3}
                 rotation-x={-Math.PI * 1.94}
                 rotationIntensity={0.25}>
-                <DeviceModel device={carouselDevicesData[6]} />
+                <DeviceModel device={PROJECTS[1].device} />
             </Float>
         </group>
     );
-});
-
-export default ProjectModel;
+}

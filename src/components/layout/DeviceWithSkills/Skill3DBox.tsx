@@ -8,12 +8,12 @@ type Skill3DBoxProps = {
 export default function Skill3DBox({ position }: Skill3DBoxProps) {
     return (
         <group position={position}>
-            <Float>
+            <Float rotationIntensity={5}>
                 <mesh
                     scale={0.5}
                     position={[0, 0, 0]}
                     rotation-x={-Math.PI / 2}>
-                    <boxGeometry />
+                    <icosahedronGeometry args={[0.75, 0]} />
                     <meshStandardMaterial
                         color='blue'
                         roughness={1}

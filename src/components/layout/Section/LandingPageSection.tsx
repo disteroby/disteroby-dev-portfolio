@@ -6,7 +6,7 @@ type SectionProps = {
     className?: string;
 };
 
-const Section = forwardRef(
+const LandingPageSection = forwardRef(
     ({ children, className }: SectionProps, ref: LegacyRef<HTMLElement>) => {
         return (
             <section
@@ -21,4 +21,4 @@ const Section = forwardRef(
     },
 );
 
-export default Section;
+export default LandingPageSection;

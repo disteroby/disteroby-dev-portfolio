@@ -7,7 +7,7 @@ import {
     useGLTF,
     useTexture,
 } from "@react-three/drei";
-import { carouselDevicesData } from "../../../constants/DevicesData.ts";
+import { PROJECTS } from "../../../constants/ProjectsData.ts";
 import { modelPath, texturePath } from "../../../utils/ResourcesUtils.ts";
 import PerformanceCanvas from "../../Model3D/PerformanceCanvas.tsx";
 import HeroDevices from "./HeroDevices.tsx";
@@ -60,9 +60,11 @@ const HeroStage3D = memo(() => {
 });
 
 useGLTF.preload(modelPath("laptop"));
-// useGLTF.preload(modelPath("smartphone"));
-carouselDevicesData.map(device => {
-    useTexture.preload(texturePath(device.texture));
+useGLTF.preload(modelPath("smartphone"));
+PROJECTS.forEach(({ device }) => {
+    device.textures.forEach(texture => {
+        useTexture.preload(texturePath(texture));
+    });
 });
 
 export default HeroStage3D;

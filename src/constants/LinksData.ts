@@ -48,8 +48,8 @@ export const LinksData: NavbarLink[] = [
         },
     },
     {
-        text: "Contact Me",
-        href: "#contact-me",
+        text: "Contacts",
+        href: "#contacts",
         textColor: "hover:text-cyan-500",
         icons: {
             default: PiChatCircleTextDuotone,

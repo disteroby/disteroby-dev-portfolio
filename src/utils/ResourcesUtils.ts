@@ -1,4 +1,4 @@
-import { DeviceType } from "../constants/DevicesData.ts";
+import { DeviceType } from "../constants/ProjectsData.ts";
 
 export const MODEL_DIR = "./models/";
 export const TEXTURE_DIR = "./textures/";

@@ -1,4 +1,3 @@
-import { RefObject } from "react";
 import {
     BufferGeometry,
     DoubleSide,
@@ -8,19 +7,19 @@ import {
 import { Euler, Vector3 } from "@react-three/fiber";
 import { ThreeEvent } from "@react-three/fiber/dist/declarations/src/core/events";
 import { useGLTF, useTexture } from "@react-three/drei";
-import { DevicesData } from "../../constants/DevicesData.ts";
-import { useSectionRef } from "../../hooks/useSectionRef.ts";
+import { DeviceData } from "../../constants/ProjectsData.ts";
 import { modelPath, texturePath } from "../../utils/ResourcesUtils.ts";
 import { motion } from "framer-motion-3d";
 
 type DeviceModelProps = {
-    device: DevicesData;
+    device: DeviceData;
     position?: Vector3;
     rotation?: Euler;
     scale?: Vector3;
     hoverAnimation?: boolean;
     onHover?: (event: ThreeEvent<PointerEvent>) => void;
     onLeave?: (event: ThreeEvent<PointerEvent>) => void;
+    onClick?: (event: ThreeEvent<MouseEvent>) => void;
 };
 
 type IGeometry = Object3D & {
@@ -38,11 +37,12 @@ function DeviceModel({
     hoverAnimation = false,
     onHover,
     onLeave,
+    onClick,
 }: DeviceModelProps) {
-    const colorMap = useTexture(texturePath(device.texture));
-    // const colorMap = useVideoTexture("./video/test.mp4");
+    const texture = device.textures[device.mainTextureIndex];
 
-    const sectionRef = useSectionRef(device.project) as RefObject<HTMLElement>;
+    const colorMap = useTexture(texturePath(texture));
+    // const colorMap = useVideoTexture("./video/test.mp4");
 
     const { nodes, materials } = useGLTF(modelPath(device.type), true);
 
@@ -61,7 +61,7 @@ function DeviceModel({
             }}
             onClick={e => {
                 e.stopPropagation();
-                sectionRef?.current?.scrollIntoView();
+                onClick?.(e);
             }}
             castShadow
             receiveShadow

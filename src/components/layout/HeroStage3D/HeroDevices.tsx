@@ -2,36 +2,32 @@ import { useRef } from "react";
 import { Group, MathUtils } from "three";
 import { useFrame } from "@react-three/fiber";
 import { Float, Shadow } from "@react-three/drei";
-import {
-    carouselDevicesData,
-    DevicesData,
-} from "../../../constants/DevicesData.ts";
+import { DeviceData, PROJECTS } from "../../../constants/ProjectsData.ts";
 import {
     itemsPolarTransform,
     MeshTransform,
 } from "../../../utils/TransformUtils.ts";
 import DeviceModel from "../../Model3D/DeviceModel.tsx";
 
-type Device = {
-    data: DevicesData;
+type Device = DeviceData & {
     transform: MeshTransform;
 };
 
-function HeroDevices() {
-    const itemsPositionRadius = 4;
-    const rotationSpeed = 0.15;
-    const interpolationSpeed = 0.05;
-    const minSpeedMultiplier = 0.15;
+const itemsPositionRadius = 4;
+const rotationSpeed = 0.15;
+const interpolationSpeed = 0.05;
+const minSpeedMultiplier = 0.15;
 
-    const devices: Device[] = carouselDevicesData.map((data, i, devices) => {
-        const theta = (i * Math.PI * 2) / devices.length;
+function HeroDevices() {
+    const devices: Device[] = PROJECTS.map(({ device }, i) => {
+        const theta = (i * Math.PI * 2) / PROJECTS.length;
         const transform: MeshTransform = {
             ...itemsPolarTransform(theta, itemsPositionRadius),
             scale: [0.2, 0.2, 0.2],
         };
 
         return {
-            data,
+            ...device,
             transform,
         };
     });
@@ -52,19 +48,19 @@ function HeroDevices() {
 
     return (
         <group position={[0, -3, 0]} ref={devicesRef}>
-            {devices.map(({ data, transform }, idx) => (
+            {devices.map((device, idx) => (
                 <group
                     key={idx}
-                    position={transform.position}
-                    rotation={transform.rotation}>
+                    position={device.transform.position}
+                    rotation={device.transform.rotation}>
                     <Float
                         floatIntensity={0.25}
                         speed={10}
                         position={[0, 2, 0]}
                         rotationIntensity={0}>
                         <DeviceModel
-                            device={data}
-                            scale={transform.scale}
+                            device={device}
+                            scale={device.transform.scale}
                             hoverAnimation={true}
                             onHover={() => {
                                 targetVelocity.current = minSpeedMultiplier;
@@ -72,6 +68,7 @@ function HeroDevices() {
                             onLeave={() => {
                                 targetVelocity.current = 1;
                             }}
+                            onClick={() => {}}
                         />
                     </Float>
                     <Shadow

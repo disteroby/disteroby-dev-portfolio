@@ -1,5 +1,11 @@
 import { memo, Suspense } from "react";
-import { PerspectiveCamera, Preload, Stats } from "@react-three/drei";
+import {
+    Environment,
+    Lightformer,
+    PerspectiveCamera,
+    Preload,
+    Stats,
+} from "@react-three/drei";
 import PerformanceCanvas from "../../Model3D/PerformanceCanvas.tsx";
 import ProjectModel from "./ProjectModel.tsx";
 
@@ -14,8 +20,14 @@ const ProjectModelContainer = memo(() => {
                     zoom={3}
                 />
                 <Suspense fallback={null}>
-                    <ambientLight intensity={3} />
-                    <directionalLight intensity={1.75} />
+                    <Environment files='studio2.hdr' path='./environment/'>
+                        <Lightformer
+                            intensity={0.01}
+                            rotation-x={Math.PI}
+                            position={[0, 5, -9]}
+                            scale={[50, 50, 1]}
+                        />
+                    </Environment>
                     <ProjectModel />
                     <Preload all />
                     <Stats />

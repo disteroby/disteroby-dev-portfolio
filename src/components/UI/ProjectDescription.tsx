@@ -84,7 +84,7 @@ export default function ProjectDescription({
             </div>
             <div
                 className={twJoin(
-                    "relative flex flex-col items-stretch gap-6 pl-4 before:absolute before:bottom-0 before:left-0 before:top-0 before:w-0.5",
+                    "relative flex flex-col items-stretch gap-6 pl-4 text-justify before:absolute before:bottom-0 before:left-0 before:top-0 before:w-0.5 lg:text-left",
                     isOnTheRight
                         ? "before:bg-fuchsia-500"
                         : "before:bg-cyan-500",

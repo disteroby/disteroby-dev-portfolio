@@ -1,4 +1,3 @@
-import { Suspense } from "react";
 import {
     BufferGeometry,
     DoubleSide,
@@ -7,7 +6,7 @@ import {
 } from "three";
 import { Euler, Vector3 } from "@react-three/fiber";
 import { ThreeEvent } from "@react-three/fiber/dist/declarations/src/core/events";
-import { useGLTF, useTexture, useVideoTexture } from "@react-three/drei";
+import { useGLTF, useTexture } from "@react-three/drei";
 import { DeviceData } from "../../constants/ProjectsData.ts";
 import { modelPath, texturePath } from "../../utils/ResourcesUtils.ts";
 import { motion } from "framer-motion-3d";

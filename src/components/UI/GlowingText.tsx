@@ -1,23 +1,32 @@
-import { twMerge } from "tailwind-merge";
+import { twJoin, twMerge } from "tailwind-merge";
 
 type SectionTitleProps = {
     text: string;
     className?: string;
+    blurs?: string[];
 };
 
-export default function GlowingText({ text, className }: SectionTitleProps) {
+export default function GlowingText({
+    text,
+    className,
+    blurs = ["blur-sm", "blur-lg", "blur-2xl"],
+}: SectionTitleProps) {
     return (
         <div
             className={twMerge(
-                "relative text-center text-4xl font-bold lg:text-6xl",
+                "relative w-fit text-center text-4xl font-bold lg:text-6xl",
                 className,
             )}>
-            <div className='text-fuchsia-cyan-gradient absolute inset-0 bg-red-500 blur-2xl'>
-                {text}
-            </div>
-            <div className='text-fuchsia-cyan-gradient absolute inset-0 bg-blue-700 blur-md'>
-                {text}
-            </div>
+            {blurs.map(blur => (
+                <div
+                    key={blur}
+                    className={twJoin(
+                        "text-fuchsia-cyan-gradient absolute inset-0",
+                        blur,
+                    )}>
+                    {text}
+                </div>
+            ))}
             <div className='relative text-white/90'>{text}</div>
         </div>
     );

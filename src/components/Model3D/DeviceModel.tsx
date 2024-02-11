@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import {
     BufferGeometry,
     DoubleSide,
@@ -6,7 +7,7 @@ import {
 } from "three";
 import { Euler, Vector3 } from "@react-three/fiber";
 import { ThreeEvent } from "@react-three/fiber/dist/declarations/src/core/events";
-import { useGLTF, useTexture } from "@react-three/drei";
+import { useGLTF, useTexture, useVideoTexture } from "@react-three/drei";
 import { DeviceData } from "../../constants/ProjectsData.ts";
 import { modelPath, texturePath } from "../../utils/ResourcesUtils.ts";
 import { motion } from "framer-motion-3d";
@@ -39,10 +40,12 @@ function DeviceModel({
     onLeave,
     onClick,
 }: DeviceModelProps) {
-    const texture = device.textures[device.mainTextureIndex];
+    const screens = useTexture(
+        device.textures.map(texture => texturePath(texture)),
+    );
+    const currentTexture = screens[device.mainTextureIndex];
 
-    const colorMap = useTexture(texturePath(texture));
-    // const colorMap = useVideoTexture("./video/test.mp4");
+    // const screens = useVideoTexture("./video/test.mp4");
 
     const { nodes, materials } = useGLTF(modelPath(device.type), true);
 
@@ -52,20 +55,23 @@ function DeviceModel({
             whileHover={hoverAnimation ? { scale: hoverScale } : {}}
             transition={{ easings: "easeInOut", duration: 0.4 }}
             onPointerEnter={e => {
-                e.stopPropagation();
-                onHover?.(e);
+                if (onHover) {
+                    e.stopPropagation();
+                    onHover?.(e);
+                }
             }}
             onPointerLeave={e => {
-                e.stopPropagation();
-                onLeave?.(e);
+                if (onLeave) {
+                    e.stopPropagation();
+                    onLeave?.(e);
+                }
             }}
             onClick={e => {
-                e.stopPropagation();
-                onClick?.(e);
+                if (onClick) {
+                    e.stopPropagation();
+                    onClick?.(e);
+                }
             }}
-            castShadow
-            receiveShadow
-            dispose={null}
             scale={scale}
             position={position}
             rotation={rotation}>
@@ -89,7 +95,7 @@ function DeviceModel({
                             roughness={0}
                             metalness={0.5}
                             side={DoubleSide}
-                            map={colorMap}
+                            map={currentTexture}
                         />
                     </mesh>
                 </group>

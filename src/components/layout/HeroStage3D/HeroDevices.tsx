@@ -1,4 +1,4 @@
-import { LegacyRef, RefObject, useRef } from "react";
+import { useRef } from "react";
 import { Group, MathUtils } from "three";
 import { useFrame } from "@react-three/fiber";
 import { Float, Shadow } from "@react-three/drei";
@@ -7,7 +7,6 @@ import {
     PROJECTS,
     ProjectTag,
 } from "../../../constants/ProjectsData.ts";
-import { SectionTag, useSectionRefs } from "../../../hooks/useSectionRef.ts";
 import {
     itemsPolarTransform,
     MeshTransform,
@@ -25,8 +24,6 @@ const interpolationSpeed = 0.05;
 const minSpeedMultiplier = 0.15;
 
 function HeroDevices() {
-    const projectsRef = useSectionRefs();
-
     const devices: Device[] = PROJECTS.map((project, i) => {
         const theta = (i * Math.PI * 2) / PROJECTS.length;
         const transform: MeshTransform = {

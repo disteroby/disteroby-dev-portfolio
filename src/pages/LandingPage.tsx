@@ -1,4 +1,5 @@
 import { createRef, LegacyRef, useRef } from "react";
+import { useGLTF, useTexture } from "@react-three/drei";
 import FragmentBelowHero from "../components/layout/Fragment/FragmentBelowHero.tsx";
 import HeroStage3D from "../components/layout/HeroStage3D/HeroStage3D.tsx";
 import LandingPageSection from "../components/layout/Section/LandingPageSection.tsx";
@@ -11,6 +12,7 @@ import { LinksData } from "../constants/LinksData.ts";
 import { PROJECTS } from "../constants/ProjectsData.ts";
 import useSceneProgress from "../hooks/useSceneProgress.ts";
 import { SectionRefsContext, SectionTag } from "../hooks/useSectionRef.ts";
+import { modelPath, texturePath } from "../utils/ResourcesUtils.ts";
 import { AnimatePresence } from "framer-motion";
 import { twJoin } from "tailwind-merge";
 
@@ -29,7 +31,12 @@ function LandingPage() {
         refs.set(project.refName, createRef());
     });
 
-    const pageIsLoaded = useSceneProgress(2000, 1000) === 100;
+    const minTimeout = 500;
+    const extraTimeout = 500;
+
+    const totalMinTimeout = minTimeout + extraTimeout;
+
+    const pageIsLoaded = useSceneProgress(minTimeout, extraTimeout) === 100;
 
     return (
         <SectionRefsContext.Provider value={refs}>
@@ -39,7 +46,6 @@ function LandingPage() {
                     pageIsLoaded ? "h-auto" : "h-screen overflow-hidden",
                 )}>
                 {pageIsLoaded && <Navbar links={LinksData} initialIdx={0} />}
-
                 <div className='relative h-screen w-full'>
                     <LandingPageSection
                         ref={heroRef}
@@ -68,5 +74,13 @@ function LandingPage() {
         </SectionRefsContext.Provider>
     );
 }
+
+useGLTF.preload(modelPath("laptop"));
+useGLTF.preload(modelPath("smartphone"));
+PROJECTS.forEach(({ device }) => {
+    device.textures.forEach(texture => {
+        useTexture.preload(texturePath(texture));
+    });
+});
 
 export default LandingPage;

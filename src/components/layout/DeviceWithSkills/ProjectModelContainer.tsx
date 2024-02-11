@@ -23,7 +23,7 @@ const ProjectModelContainer = memo(
                 <PerspectiveCamera
                     makeDefault
                     fov={90}
-                    position={[0, 0.25, 5]}
+                    position={[0, 0.35, 5]}
                     zoom={4}
                 />
                 <Environment files='studio2.hdr' path='./environment/'>
@@ -35,11 +35,12 @@ const ProjectModelContainer = memo(
                     />
                 </Environment>
                 <Sparkles
-                    count={20}
-                    scale={4}
-                    size={3}
+                    position={[0, 0.25, 0]}
+                    count={10}
+                    scale={2}
+                    size={10}
                     speed={0.15}
-                    opacity={0.4}
+                    opacity={0.3}
                     color={color}
                 />
                 <ProjectModel device={project.device} />

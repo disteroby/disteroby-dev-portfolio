@@ -16,16 +16,16 @@ export default function FragmentProject({
         <section
             id={project.refName}
             className={twMerge(
-                "flex w-full items-stretch max-md:flex-col md:min-h-[60rem]",
-                index % 2 ? "flex-row-reverse" : "flex-row",
+                "flex w-full flex-col items-stretch gap-[5%] md:min-h-[60rem]",
+                index % 2 ? "lg:flex-row-reverse" : "lg:flex-row",
             )}>
-            <div className='h-auto w-full max-md:aspect-square md:w-1/2'>
+            <div className='aspect-square h-auto w-full overflow-hidden lg:w-[50%]'>
                 <ProjectModelContainer
                     project={project}
-                    color={index % 2 ? "#00d0ff" : "#e100ff"}
+                    color={index % 2 ? "#029ccf" : "#ff34d8"}
                 />
             </div>
-            <div className='w-full bg-black md:w-1/2'>
+            <div className='w-full lg:w-[45%]'>
                 <ProjectDescription project={project} index={index + 1} />
             </div>
         </section>

@@ -12,7 +12,7 @@ const LandingPageSection = forwardRef(
             <section
                 ref={ref}
                 className={twMerge(
-                    "mx-auto min-h-screen w-full max-w-[72rem]",
+                    "mx-auto min-h-screen w-full max-w-[92rem]",
                     className,
                 )}>
                 {children}

@@ -41,7 +41,7 @@ export default function SectionHeroOverlay({ pageIsLoaded }: SectionHeroProps) {
                 </div>
             </motion.div>
             <motion.div
-                className='hero-text opacity-0'
+                className='main-gradient-text opacity-0'
                 animate={pageIsLoaded ? "animate" : "enter"}
                 variants={variants}
                 custom={1.25}>
@@ -52,7 +52,7 @@ export default function SectionHeroOverlay({ pageIsLoaded }: SectionHeroProps) {
                 />
             </motion.div>
             <motion.div
-                className='hero-text opacity-0'
+                className='main-gradient-text opacity-0'
                 animate={pageIsLoaded ? "animate" : "enter"}
                 variants={variants}
                 custom={1.75}>

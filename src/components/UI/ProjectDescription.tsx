@@ -62,7 +62,7 @@ export default function ProjectDescription({
                 href={href}
                 target='_blank'
                 className={twJoin(
-                    "group relative flex gap-2 transition before:absolute before:left-0 before:right-0 before:top-full before:h-0.5 before:opacity-0 before:transition before:duration-300 before:hover:opacity-100",
+                    "group relative flex gap-2 font-bold transition before:absolute before:left-0 before:right-0 before:top-full before:h-0.5 before:opacity-0 before:transition before:duration-300 before:hover:opacity-100",
                     isOnTheRight
                         ? "before:bg-fuchsia-500 hover:text-fuchsia-500"
                         : "before:bg-cyan-500 hover:text-cyan-500",
@@ -96,7 +96,7 @@ export default function ProjectDescription({
                 ))}
             </div>
             <div className='flex flex-wrap gap-4'>{renderTags()}</div>
-            <div className='mt-8 flex flex-wrap justify-end gap-8'>
+            <div className='mt-8 flex flex-wrap justify-center gap-4 md:gap-8 lg:justify-end'>
                 {renderCta()}
             </div>
         </div>

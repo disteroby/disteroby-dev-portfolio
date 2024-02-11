@@ -37,10 +37,10 @@ const ProjectModelContainer = memo(
                 <Sparkles
                     position={[0, 0.25, 0]}
                     count={10}
-                    scale={2}
-                    size={10}
+                    scale={1.5}
+                    size={15}
                     speed={0.15}
-                    opacity={0.3}
+                    opacity={0.2}
                     color={color}
                 />
                 <ProjectModel device={project.device} />

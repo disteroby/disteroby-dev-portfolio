@@ -1,6 +1,5 @@
 export type ProjectTag =
     | "motivapp"
-    | "my-smart-opinion"
     | "slide-run"
     | "mind-blooming"
     | "unimiibo"
@@ -42,15 +41,15 @@ export type ProjectData = {
     device: DeviceData;
 };
 
-const lorem50 =
-    "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque esse est in, nulla provident ullam!";
+const lorem =
+    "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque esse est in, nulla provident ullam!, consectetur adipisicing elit. Atque esse est in, nulla provident ullam!";
 
 export const PROJECTS: ProjectData[] = [
     {
         refName: "motivapp",
         title: "MotivApp",
         isTeam: false,
-        description: [lorem50, lorem50, lorem50],
+        description: [lorem, lorem, lorem, lorem],
         tags: ["android", "first-project"],
         cta: [
             {
@@ -72,23 +71,10 @@ export const PROJECTS: ProjectData[] = [
         },
     },
     {
-        refName: "my-smart-opinion",
-        title: "My Smart Opinion",
-        isTeam: true,
-        description: [lorem50, lorem50, lorem50],
-        tags: ["android", "real-world-project"],
-        device: {
-            type: "smartphone",
-            deviceOrientation: "portrait",
-            mainTextureIndex: 0,
-            textures: ["texture_codehunter_0.webp"],
-        },
-    },
-    {
         refName: "slide-run",
         title: "Slide Run",
         isTeam: false,
-        description: [lorem50, lorem50, lorem50],
+        description: [lorem, lorem, lorem, lorem],
         tags: ["unity"],
         device: {
             type: "smartphone",
@@ -101,7 +87,7 @@ export const PROJECTS: ProjectData[] = [
         refName: "mind-blooming",
         title: "Mind Blooming",
         isTeam: false,
-        description: [lorem50, lorem50, lorem50],
+        description: [lorem, lorem, lorem, lorem],
         tags: ["flutter", "university-project", "bachelor-thesis"],
         device: {
             type: "smartphone",
@@ -114,7 +100,7 @@ export const PROJECTS: ProjectData[] = [
         refName: "unimiibo",
         title: "Unimiibo",
         isTeam: false,
-        description: [lorem50, lorem50, lorem50],
+        description: [lorem, lorem, lorem, lorem],
         tags: ["react", "university-project"],
         cta: [
             {
@@ -138,7 +124,7 @@ export const PROJECTS: ProjectData[] = [
         refName: "code-hunter",
         title: "Code:Hunter",
         isTeam: true,
-        description: [lorem50, lorem50, lorem50],
+        description: [lorem, lorem, lorem, lorem],
         tags: ["react", "spring-boot", "university-project"],
         device: {
             type: "laptop",
@@ -150,7 +136,7 @@ export const PROJECTS: ProjectData[] = [
         refName: "undertale-3d",
         title: "Undertale 3D",
         isTeam: false,
-        description: [lorem50, lorem50, lorem50],
+        description: [lorem, lorem, lorem, lorem],
         tags: ["unreal-engine-5"],
         cta: [
             {

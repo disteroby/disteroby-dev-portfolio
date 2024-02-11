@@ -31,7 +31,7 @@ function MutableText({
                 (word, id) =>
                     id === wordId && (
                         <motion.div
-                            className='w-full text-5xl md:text-7xl'
+                            className='w-full'
                             key={`modal-${id}`}
                             initial={{ x: "-5rem", opacity: 0 }}
                             animate={{ x: "0", opacity: 1 }}
@@ -46,7 +46,7 @@ function MutableText({
                                 ease: "backOut",
                             }}>
                             {before && before(wordId, word)}
-                            <span className='fuchsia-cyan-gradient relative bg-clip-text text-transparent'>
+                            <span className='bg-fuchsia-cyan-gradient relative bg-clip-text text-transparent'>
                                 {word}
                             </span>
                             {after && after(wordId, word)}

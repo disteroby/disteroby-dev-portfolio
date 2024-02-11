@@ -32,9 +32,9 @@ function LandingPage() {
     });
 
     const minTimeout = 500;
-    const extraTimeout = 500;
+    const extraTimeout = 4500;
 
-    const totalMinTimeout = minTimeout + extraTimeout;
+    // const totalMinTimeout = minTimeout + extraTimeout;
 
     const pageIsLoaded = useSceneProgress(minTimeout, extraTimeout) === 100;
 

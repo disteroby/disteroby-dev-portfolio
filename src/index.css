@@ -2,8 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
-.fuchsia-cyan-gradient {
+.bg-fuchsia-cyan-gradient {
     @apply bg-gradient-to-r from-fuchsia-500 via-purple-500 via-40% to-cyan-500;
+}
+
+.text-fuchsia-cyan-gradient {
+    @apply bg-fuchsia-cyan-gradient text-transparent bg-clip-text;
+}
+
+.before-text-fuchsia-cyan-gradient {
+    @apply before:bg-gradient-to-r before:from-fuchsia-500 before:via-purple-500 before:via-40% before:to-cyan-500 before:text-transparent before:bg-clip-text;
+}
+
+.after-text-fuchsia-cyan-gradient {
+    @apply after:bg-gradient-to-r after:from-fuchsia-500 after:via-purple-500 after:via-40% after:to-cyan-500 after:text-transparent after:bg-clip-text;
 }
 
 .hero-text {
@@ -11,7 +23,11 @@
 }
 
 .section-title {
-    @apply hero-text relative font-bold before:absolute before:left-0 before:right-0 before:top-full before:h-0.5 before:bg-gradient-to-r before:from-fuchsia-500 before:via-purple-500 before:via-40% before:to-cyan-500;
+    @apply hero-text relative font-bold;
+}
+
+.section-title-glow {
+    @apply section-title before:absolute before:blur-lg before-text-fuchsia-cyan-gradient after:absolute after:blur-lg after-text-fuchsia-cyan-gradient;
 }
 
 :root {

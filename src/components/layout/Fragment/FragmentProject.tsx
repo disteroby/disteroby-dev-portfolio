@@ -22,7 +22,7 @@ export default function FragmentProject({
             <div className='aspect-square h-auto w-full overflow-hidden lg:w-[50%]'>
                 <ProjectModelContainer
                     project={project}
-                    color={index % 2 ? "#64d3f3" : "#e594ff"}
+                    color={index % 2 ? "#51dbfd" : "#e07cff"}
                 />
             </div>
             <div className='w-full lg:w-[45%]'>

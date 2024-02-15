@@ -1,4 +1,4 @@
-import { Suspense, useEffect, useRef } from "react";
+import { Suspense, useRef } from "react";
 import { Canvas } from "@react-three/fiber";
 import { CanvasProps } from "@react-three/fiber/dist/declarations/src/web/Canvas";
 import { AdaptiveDpr, Preload } from "@react-three/drei";
@@ -8,14 +8,12 @@ export default function PerformanceCanvas({ children, ...props }: CanvasProps) {
     const ref = useRef<HTMLCanvasElement>(null!);
     const isInView = useInView(ref);
 
-    const id = props.id;
-
-    useEffect(() => {
-        console.log(isInView ? "✅" : "☑️", id);
-    }, [id, isInView]);
-
     return (
-        <Canvas frameloop={isInView ? "always" : "never"} ref={ref} {...props}>
+        <Canvas
+            style={{ contain: "paint" }}
+            frameloop={isInView ? "always" : "never"}
+            ref={ref}
+            {...props}>
             <Suspense fallback={null}>
                 {children}
                 <AdaptiveDpr pixelated />

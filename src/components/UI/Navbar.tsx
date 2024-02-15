@@ -81,9 +81,9 @@ export default function Navbar({ links, initialIdx }: NavbarProps) {
                 <motion.ul
                     className='flex flex-row items-stretch justify-center gap-4 rounded-full bg-white/5 p-2 text-white/70 opacity-0 shadow-xl backdrop-blur'
                     variants={variants}
-                    custom={[3.25, 1]}
+                    custom={[0.5, 1]}
                     animate='visible'>
-                    {renderLinks(4)}
+                    {renderLinks(1)}
                 </motion.ul>
             </div>
         </nav>

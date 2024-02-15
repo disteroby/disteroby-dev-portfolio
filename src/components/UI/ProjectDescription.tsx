@@ -103,22 +103,42 @@ export default function ProjectDescription({
                 variants={{
                     inView: {
                         transition: {
-                            staggerChildren: 0.3,
+                            staggerChildren: 0.25,
                             delayChildren: descriptionAnimDelay,
                         },
                     },
                 }}
-                viewport={{ once: true, amount: 0.5 }}
+                viewport={{ once: true, amount: 0.35 }}
                 whileInView='inView'>
-                <motion.div className='-mb-4 flex gap-1 align-bottom opacity-60'>
-                    {renderTeamLabel()}
+                <motion.div
+                    className='origin-left'
+                    variants={{
+                        inView: {
+                            opacity: 1,
+                            translateX: 0,
+                        },
+                    }}
+                    transition={{
+                        duration: 1,
+                        easings: ["ease"],
+                    }}
+                    viewport={{ once: true }}
+                    whileInView='inView'
+                    style={{
+                        opacity: 0,
+                        translateX: "4rem",
+                    }}>
+                    <div className='flex gap-1 align-bottom opacity-60'>
+                        {renderTeamLabel()}
+                    </div>
+                    <div className='w-fit text-3xl font-light lg:text-5xl'>
+                        <span>0{index}. </span>
+                        <span className='text-fuchsia-cyan-gradient font-medium'>
+                            {title}
+                        </span>
+                    </div>
                 </motion.div>
-                <div className='w-fit text-3xl font-light lg:text-5xl'>
-                    <span>0{index}. </span>
-                    <span className='text-fuchsia-cyan-gradient font-medium'>
-                        {title}
-                    </span>
-                </div>
+
                 <motion.div
                     variants={{
                         inView: {
@@ -127,7 +147,8 @@ export default function ProjectDescription({
                             transition: {
                                 staggerChildren: descriptionAnimDelay,
                                 delayChildren: 1,
-                                duration: 1,
+                                duration: 1.25,
+                                ease: [0.08, 0.565, 0.34, 0.875],
                             },
                         },
                     }}

@@ -32,7 +32,7 @@ function LandingPage() {
     });
 
     const minTimeout = 500;
-    const extraTimeout = 4500;
+    const extraTimeout = 2000; //TODO 4500
 
     // const totalMinTimeout = minTimeout + extraTimeout;
 

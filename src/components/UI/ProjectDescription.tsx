@@ -133,7 +133,13 @@ export default function ProjectDescription({
                     </div>
                     <div className='w-fit text-3xl font-light lg:text-5xl'>
                         <span>0{index}. </span>
-                        <span className='text-fuchsia-cyan-gradient font-medium'>
+                        <span
+                            className={twJoin(
+                                "bg-gradient-to-r bg-clip-text font-medium text-transparent",
+                                isOnTheRight
+                                    ? "from-fuchsia-500 to-indigo-500"
+                                    : "from-indigo-500 to-cyan-500",
+                            )}>
                             {title}
                         </span>
                     </div>

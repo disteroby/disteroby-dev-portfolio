@@ -32,7 +32,7 @@ function LandingPage() {
     });
 
     const minTimeout = 500;
-    const extraTimeout = 2000; //TODO 4500
+    const extraTimeout = 2000;
 
     // const totalMinTimeout = minTimeout + extraTimeout;
 
@@ -40,36 +40,41 @@ function LandingPage() {
 
     return (
         <SectionRefsContext.Provider value={refs}>
-            <div
-                className={twJoin(
-                    "relative",
-                    pageIsLoaded ? "h-auto" : "h-screen overflow-hidden",
-                )}>
-                {pageIsLoaded && <Navbar links={LinksData} initialIdx={0} />}
-                <div className='relative h-screen w-full'>
-                    <LandingPageSection
-                        ref={heroRef}
-                        className='pointer-events-none absolute inset-0 z-10 select-none'>
-                        <SectionHeroOverlay pageIsLoaded={pageIsLoaded} />
-                    </LandingPageSection>
-                    <HeroStage3D />
-                    <FragmentBelowHero />
-                    <AnimatePresence>
-                        {!pageIsLoaded && <SceneLoader />}
-                    </AnimatePresence>
+            <div className='relative'>
+                {/*<div className='absolute inset-0 top-[180vh] bg-blurry bg-cover bg-[100%]' />*/}
+                <div
+                    className={twJoin(
+                        "relative",
+                        pageIsLoaded ? "h-auto" : "h-screen overflow-hidden",
+                    )}>
+                    {pageIsLoaded && (
+                        <Navbar links={LinksData} initialIdx={0} />
+                    )}
+                    <div className='relative h-screen w-full'>
+                        <LandingPageSection
+                            ref={heroRef}
+                            className='pointer-events-none absolute inset-0 z-10 select-none'>
+                            <SectionHeroOverlay pageIsLoaded={pageIsLoaded} />
+                        </LandingPageSection>
+                        <HeroStage3D />
+                        <FragmentBelowHero />
+                        <AnimatePresence>
+                            {!pageIsLoaded && <SceneLoader />}
+                        </AnimatePresence>
+                    </div>
                 </div>
-            </div>
-            <div
-                className={twJoin(
-                    "relative overflow-hidden",
-                    pageIsLoaded ? "h-auto" : "h-0",
-                )}>
-                <LandingPageSection ref={projectsRef}>
-                    <SectionProjects />
-                </LandingPageSection>
-                <LandingPageSection ref={aboutRef}>
-                    <SectionAbout />
-                </LandingPageSection>
+                <div
+                    className={twJoin(
+                        "relative overflow-hidden",
+                        pageIsLoaded ? "h-auto" : "h-0",
+                    )}>
+                    <LandingPageSection ref={projectsRef}>
+                        <SectionProjects />
+                    </LandingPageSection>
+                    <LandingPageSection ref={aboutRef}>
+                        <SectionAbout />
+                    </LandingPageSection>
+                </div>
             </div>
         </SectionRefsContext.Provider>
     );

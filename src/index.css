@@ -82,19 +82,26 @@ html {
             var(--_color_cell) var(--_grid-cell-stroke),
             transparent var(--_grid-cell-stroke)
         ),
-        linear-gradient(
+    linear-gradient(
             90deg,
             var(--_color_cell) var(--_grid-cell-stroke),
             transparent var(--_grid-cell-stroke)
-        );
+    ),
+    linear-gradient(
+            180deg,
+            #040404 0%,
+            transparent 50%
+    );
     background-size:
         var(--_grid-section-size) var(--_grid-section-size),
         var(--_grid-section-size) var(--_grid-section-size),
         var(--_grid-cell-size) var(--_grid-cell-size),
-        var(--_grid-cell-size) var(--_grid-cell-size);
+        var(--_grid-cell-size) var(--_grid-cell-size),
+        cover;
     background-position: top,
         calc(
             50% - (var(--_grid-section-size) + var(--_grid-section-stroke)) / 2
         ),
-        top, calc(50% - var(--_grid-cell-size) / 2);
+        top, calc(50% - var(--_grid-cell-size) / 2),
+    center;
 }

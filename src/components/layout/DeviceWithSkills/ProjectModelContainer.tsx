@@ -36,9 +36,9 @@ const ProjectModelContainer = memo(
                 </Environment>
                 <Sparkles
                     position={[0, 0.25, 0]}
-                    count={10}
+                    count={15}
                     scale={1.5}
-                    size={15}
+                    size={10}
                     speed={0.15}
                     opacity={0.2}
                     color={color}

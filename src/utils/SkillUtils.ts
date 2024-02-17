@@ -1,4 +1,4 @@
-import { SkillType } from "../constants/Skills.ts";
+import { SkillType } from "../constants/SkillsData.ts";
 
 export function hasFilter(
     skills: SkillType | SkillType[],

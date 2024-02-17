@@ -34,8 +34,6 @@ function LandingPage() {
     const minTimeout = 500;
     const extraTimeout = 2000;
 
-    // const totalMinTimeout = minTimeout + extraTimeout;
-
     const pageIsLoaded = useSceneProgress(minTimeout, extraTimeout) === 100;
 
     return (
@@ -45,12 +43,12 @@ function LandingPage() {
                 <div
                     className={twJoin(
                         "relative",
-                        pageIsLoaded ? "h-auto" : "h-screen overflow-hidden",
+                        pageIsLoaded ? "h-auto" : "h-full overflow-hidden",
                     )}>
                     {pageIsLoaded && (
                         <Navbar links={LinksData} initialIdx={0} />
                     )}
-                    <div className='relative h-screen w-full'>
+                    <div className='relative h-[100svh] w-full'>
                         <LandingPageSection
                             ref={heroRef}
                             className='pointer-events-none absolute inset-0 z-10 select-none'>

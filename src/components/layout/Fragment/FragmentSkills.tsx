@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { skills, SkillType } from "../../../constants/Skills.ts";
+import { skillsData, SkillType } from "../../../constants/SkillsData.ts";
 import { opacityVariants } from "../../../utils/FramerMotionUtils.ts";
 import HardSkill from "../../UI/HardSkill.tsx";
 import SkillFilterButton from "../../UI/SkillFilterButton.tsx";
@@ -16,7 +16,7 @@ export default function FragmentSkills() {
         );
     }
 
-    const selectedSkills = [...skills];
+    const selectedSkills = [...skillsData];
     return (
         <>
             <div className='my-16 flex justify-center'>

@@ -36,7 +36,7 @@ export type Skill = {
     color: CSSProperties["color"];
 };
 
-export const skills: Skill[] = [
+export const skillsData: Skill[] = [
     {
         name: "Figma",
         color: "#7f3bf1",

@@ -1,4 +1,4 @@
-import { Skill, SkillType } from "../../constants/Skills.ts";
+import { Skill, SkillType } from "../../constants/SkillsData.ts";
 import { hasFilterOrNoFilter } from "../../utils/SkillUtils.ts";
 import SkillPopup from "./SkillPopup.tsx";
 import { motion } from "framer-motion";

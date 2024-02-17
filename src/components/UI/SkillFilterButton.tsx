@@ -1,4 +1,4 @@
-import { SkillType } from "../../constants/Skills.ts";
+import { SkillType } from "../../constants/SkillsData.ts";
 import { hasFilter } from "../../utils/SkillUtils.ts";
 import { polarToCartesian } from "../../utils/TransformUtils.ts";
 import { FaMobile } from "react-icons/fa6";

@@ -1,5 +1,5 @@
 import { Key } from "react";
-import { Skill } from "../../constants/Skills.ts";
+import { Skill } from "../../constants/SkillsData.ts";
 import { BsBook, BsBookFill, BsBookHalf } from "react-icons/bs";
 
 type LevelType = "full" | "half" | "empty";

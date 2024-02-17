@@ -7,7 +7,7 @@ export default function SceneLoader() {
             style={{
                 scrollbarGutter: "stable both-edges",
             }}
-            className='absolute left-0 top-0 z-[999] flex h-screen w-screen flex-col items-center justify-center bg-dark-gray'
+            className='absolute left-0 top-0 z-[999] flex h-[100svh] w-screen flex-col items-center justify-center bg-dark-gray'
             variants={opacityVariants}
             transition={{ duration: 1, easings: ["easeIn"] }}
             animate='visible'

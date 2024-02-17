@@ -5,8 +5,8 @@ export default {
         extend: {
             backgroundImage: {
                 hero: "url('/src/assets/backgrounds/hero-bg.jpg')",
-                blurry: "url('/src/assets/backgrounds/bg-blurry.jpg')",
-                "g-blurry": "url('/src/assets/backgrounds/bg-g-blurry.jpg')",
+                blurry: "url('/src/assets/backgrounds/bg-blurry-2.jpg')",
+                blurrytmp: "url('/src/assets/backgrounds/bg-blurry-tmp.jpg')",
             },
             colors: {
                 "dark-gray": "#0C0C0F",

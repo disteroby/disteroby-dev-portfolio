@@ -41,7 +41,7 @@ function LandingPage() {
     return (
         <SectionRefsContext.Provider value={refs}>
             <div className='relative'>
-                {/*<div className='absolute inset-0 top-[180vh] bg-blurry bg-cover bg-[100%]' />*/}
+                <div className='absolute inset-0 top-[170vh] bg-blurry bg-[length:100%_200rem] bg-repeat-y' />
                 <div
                     className={twJoin(
                         "relative",

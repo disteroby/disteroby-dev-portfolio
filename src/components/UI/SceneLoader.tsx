@@ -9,7 +9,7 @@ export default function SceneLoader() {
             }}
             className='absolute left-0 top-0 z-[999] flex h-screen w-screen flex-col items-center justify-center bg-dark-gray'
             variants={opacityVariants}
-            transition={{ duration: 1 }}
+            transition={{ duration: 1, easings: ["easeIn"] }}
             animate='visible'
             exit='invisible'>
             <motion.div

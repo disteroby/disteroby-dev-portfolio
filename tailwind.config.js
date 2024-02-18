@@ -47,8 +47,5 @@ export default {
         },
     },
     // eslint-disable-next-line no-undef
-    plugins: [
-        require("tailwindcss-bg-patterns"),
-        require("@tailwindcss/aspect-ratio"),
-    ],
+    plugins: [require("tailwindcss-bg-patterns")],
 };

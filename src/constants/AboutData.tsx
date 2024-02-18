@@ -24,7 +24,7 @@ export const aboutTopics: AboutTopic[] = [
             </>,
             <>
                 What kind of developer am I? Well,{" "}
-                <span className={boldStyle}>the one you need</span>! I love all
+                <span className={boldStyle}>the one you need</span>! I love many
                 aspects of computer science and have solid foundational skills
                 in <span className={boldStyle}>web</span>,{" "}
                 <span className={boldStyle}>mobile app</span> and{" "}
@@ -47,7 +47,7 @@ export const aboutTopics: AboutTopic[] = [
                     University of Milano-Bicocca
                 </a>
                 , both awarded with top honors of{" "}
-                <span className={boldStyle}>110 cum laude</span>
+                <span className={boldStyle}>110 cum laude</span>.
             </>,
             <>
                 My academic journey has equipped me with a profound
@@ -57,7 +57,7 @@ export const aboutTopics: AboutTopic[] = [
         icon: IoIosSchool,
     },
     {
-        title: "Professional Careers",
+        title: "Professional Career",
         content: [
             <>
                 After years of dedicated study, I've embarked on my first
@@ -95,9 +95,14 @@ export const aboutTopics: AboutTopic[] = [
             </>,
             <>
                 I also follow <span className={boldStyle}>soccer</span>{" "}
-                passionately, cheering for Juventus. I also have a passion for{" "}
-                <span className={boldStyle}>tennis</span>, a sport I enjoy
+                passionately, cheering for Juventus. I have a passion for{" "}
+                <span className={boldStyle}>tennis too</span>, a sport I enjoy
                 playing a lot.
+            </>,
+            <>
+                And yes... I'm truly passionate about{" "}
+                <span className={boldStyle}>coding</span> as well, no doubt
+                about it!
             </>,
         ],
         icon: IoGameController,

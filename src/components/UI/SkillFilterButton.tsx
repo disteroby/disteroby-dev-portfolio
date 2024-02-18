@@ -1,7 +1,10 @@
 import { SkillType } from "../../constants/SkillsData.ts";
+import { opacityVariants } from "../../utils/FramerMotionUtils.ts";
 import { hasFilter } from "../../utils/SkillUtils.ts";
 import { polarToCartesian } from "../../utils/TransformUtils.ts";
+import { motion } from "framer-motion";
 import { FaMobile } from "react-icons/fa6";
+import { ImFilter } from "react-icons/im";
 import { IoLogoGameControllerB } from "react-icons/io";
 import { IoDesktop } from "react-icons/io5";
 import { twMerge } from "tailwind-merge";
@@ -14,7 +17,7 @@ const icons: { [key in SkillType]: JSX.Element } = {
     game: <IoLogoGameControllerB />,
 };
 
-const bgColors = ["bg-indigo-500/70", "bg-cyan-500/70", "bg-fuchsia-500/70"];
+const bgColors = ["bg-indigo-500/90", "bg-cyan-500/90", "bg-fuchsia-500/90"];
 const textColors = ["text-indigo-500", "text-cyan-500", "text-fuchsia-500"];
 
 type SkillFilterButtonProps = {
@@ -26,7 +29,7 @@ export default function SkillFilterButton({
     currentFilters,
     onClick,
 }: SkillFilterButtonProps) {
-    const radius = 6;
+    const radius = 10;
     const coords = types.map((_, i) =>
         polarToCartesian(((Math.PI * 2) / types.length) * i, radius).map(
             (coord, dim) => {
@@ -40,11 +43,28 @@ export default function SkillFilterButton({
     );
 
     return (
-        <div
+        <motion.div
+            variants={opacityVariants}
+            whileInView='visible'
+            initial='invisible'
+            transition={{
+                duration: 1.5,
+            }}
+            viewport={{ amount: "all", once: true }}
             style={{ height: `${radius * 2}rem`, width: `${radius * 2}rem` }}
-            className='relative max-md:scale-75'>
+            className='relative max-md:scale-75 '>
+            <div
+                style={{
+                    maskImage:
+                        "radial-gradient(100% 100% at center, black 0%,transparent 50%)",
+                }}
+                className='pattern-dots pattern-white pattern-bg-dark-gray pattern-size-4 pattern-opacity-10 absolute inset-0 rounded-full border-4 border-dashed'
+            />
+            <div className='absolute inset-0 flex flex-col items-center justify-center gap-2 rounded-full border-2 pt-4 text-center text-4xl uppercase tracking-widest text-white/5'>
+                <div>Filter</div>
+                <ImFilter />
+            </div>
             <div className='absolute inset-0 overflow-hidden rounded-full'>
-                <div className='border- absolute inset-0 animate-[spin_60s_linear_infinite] rounded-full border-4 border-dashed' />
                 {types.map((type, idx) => (
                     <div
                         key={`border-${type}`}
@@ -80,6 +100,6 @@ export default function SkillFilterButton({
                     </div>
                 ))}
             </div>
-        </div>
+        </motion.div>
     );
 }

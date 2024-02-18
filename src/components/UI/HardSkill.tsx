@@ -114,7 +114,7 @@ export default function HardSkill({
                         style={{ backgroundColor: skill.color }}
                         className='absolute inset-0 rounded-2xl bg-gradient-to-bl from-white/40 to-black/20 '
                     />
-                    <div className='absolute inset-0 grid place-items-center text-[2rem]'>
+                    <div className='absolute inset-0 grid place-items-center text-[1.75rem] md:text-[2rem]'>
                         {<skill.logo />}
                     </div>
                 </motion.div>

@@ -4,7 +4,7 @@ import FragmentProject from "../Fragment/FragmentProject.tsx";
 
 export default function SectionProjects() {
     return (
-        <div className='flex min-h-screen flex-col items-center p-4 pt-24 lg:pt-32'>
+        <div className='flex min-h-screen flex-col items-center px-2'>
             <GlowingText text='MY PROJECTS' className='mb-16 lg:mb-24' />
             {PROJECTS.map((project, idx) => (
                 <FragmentProject

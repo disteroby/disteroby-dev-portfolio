@@ -25,9 +25,9 @@ export default function SectionHeroOverlay({ pageIsLoaded }: SectionHeroProps) {
     };
 
     return (
-        <div className='mt-16 flex h-[30%] flex-col justify-center text-center font-bold uppercase tracking-wider'>
+        <div className='mt-4 flex h-[37%] flex-col justify-center text-center font-bold uppercase tracking-wider lg:-mt-16'>
             <motion.div
-                className='text-5xl opacity-0 md:text-7xl'
+                className='text-5xl opacity-0 lg:text-6xl'
                 animate={pageIsLoaded ? "animate" : "enter"}
                 variants={variants}
                 custom={0.5}>
@@ -38,7 +38,7 @@ export default function SectionHeroOverlay({ pageIsLoaded }: SectionHeroProps) {
                 />
             </motion.div>
             <motion.div
-                className='text-3xl opacity-0 md:text-5xl'
+                className='text-3xl opacity-0 lg:text-5xl'
                 animate={pageIsLoaded ? "animate" : "enter"}
                 variants={variants}
                 custom={1.25}>

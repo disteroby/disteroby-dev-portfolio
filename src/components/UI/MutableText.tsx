@@ -27,7 +27,7 @@ function MutableText({ words, time, pause = false }: MutableTextProps) {
     }
 
     return (
-        <div className='relative flex w-full justify-center'>
+        <div className='relative flex w-full justify-center text-5xl lg:text-6xl'>
             {words.map((word, id) => (
                 <div
                     className={twMerge(
@@ -37,10 +37,10 @@ function MutableText({ words, time, pause = false }: MutableTextProps) {
                         isFollowing(id) && "translate-x-[15rem]",
                     )}
                     key={word}>
-                    <GlowingText text={word} className='text-5xl' />
+                    <GlowingText text={word} className='text-5xl lg:text-6xl' />
                 </div>
             ))}
-            <div className='pointer-events-none relative w-fit text-center text-5xl opacity-0 md:text-6xl '>
+            <div className='pointer-events-none relative w-fit text-center opacity-0'>
                 .
             </div>
         </div>

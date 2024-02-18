@@ -5,12 +5,11 @@ import { AnimatePresence, motion, Variants } from "framer-motion";
 import { twJoin } from "tailwind-merge";
 
 type NavbarProps = {
-    initialIdx: number;
+    activeIdx: number;
+    onItemClick: (idx: number) => void;
 };
 
-export default function Navbar({ initialIdx }: NavbarProps) {
-    const [activeIndex, setActiveIndex] = useState(initialIdx);
-
+export default function Navbar({ activeIdx, onItemClick }: NavbarProps) {
     const [isShow, setIsShow] = useState(false);
 
     const variants: Variants = {
@@ -37,15 +36,16 @@ export default function Navbar({ initialIdx }: NavbarProps) {
                 className='cursor-pointer opacity-0'>
                 <span
                     className={twJoin(
-                        "flex items-center gap-2 rounded-full px-4 py-1 align-bottom transition-colors duration-200 ease-in-out md:w-full md:px-4",
-                        activeIndex !== idx
+                        "flex select-none items-center gap-2 rounded-full px-4 py-1 align-bottom transition-colors duration-200 ease-in-out md:w-full md:px-4",
+                        activeIdx !== idx
                             ? [link.textColor, "hover:bg-white/5"]
                             : ["text-white", "bg-white/15"],
                     )}
                     onClick={() => {
-                        setActiveIndex(idx);
+                        setIsShow(false);
+                        onItemClick(idx);
                     }}>
-                    {activeIndex === idx ? (
+                    {activeIdx === idx ? (
                         <link.icons.active />
                     ) : (
                         <link.icons.default />

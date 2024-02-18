@@ -1,4 +1,4 @@
-import { createRef, LegacyRef, useRef } from "react";
+import { createRef, LegacyRef, RefObject, useRef, useState } from "react";
 import { useGLTF, useTexture } from "@react-three/drei";
 import FragmentBelowHero from "../components/layout/Fragment/FragmentBelowHero.tsx";
 import HeroStage3D from "../components/layout/HeroStage3D/HeroStage3D.tsx";
@@ -23,6 +23,16 @@ function LandingPage() {
     const skillsRef = useRef(null!);
     const contactRef = useRef(null!);
 
+    const tags: SectionTag[] = [
+        "overview",
+        "projects",
+        "about-me",
+        "skills",
+        "contact",
+    ];
+
+    const [activeIdxs, setActiveIdxs] = useState(tags.map(() => false));
+
     const refs = new Map<SectionTag, LegacyRef<HTMLElement>>();
     refs.set("overview", heroRef);
     refs.set("projects", projectsRef);
@@ -33,10 +43,26 @@ function LandingPage() {
         refs.set(project.refName, createRef());
     });
 
+    function onItemClick(idx: number) {
+        const selectedRef = refs.get(tags[idx]) as RefObject<HTMLElement>;
+        selectedRef.current?.scrollIntoView({ inline: "start" });
+    }
+
+    function onView(tag: SectionTag, isInView: boolean) {
+        const idx = tags.indexOf(tag);
+        setActiveIdxs(oldArray => {
+            const newArray = [...oldArray];
+            newArray[idx] = isInView;
+            return newArray;
+        });
+    }
+
     const minTimeout = 500;
     const extraTimeout = 2000;
 
     const pageIsLoaded = useSceneProgress(minTimeout, extraTimeout) === 100;
+
+    const activeIdx = activeIdxs.findIndex(visible => visible);
 
     return (
         <SectionRefsContext.Provider value={refs}>
@@ -47,10 +73,17 @@ function LandingPage() {
                         "relative",
                         pageIsLoaded ? "h-auto" : "h-full overflow-hidden",
                     )}>
-                    {pageIsLoaded && <Navbar initialIdx={0} />}
+                    {pageIsLoaded && (
+                        <Navbar
+                            activeIdx={activeIdx}
+                            onItemClick={onItemClick}
+                        />
+                    )}
                     <div className='relative h-[100svh] w-full'>
                         <LandingPageSection
                             ref={heroRef}
+                            tag='overview'
+                            onInView={onView}
                             className='pointer-events-none absolute inset-0 z-10 select-none'>
                             <SectionHeroOverlay pageIsLoaded={pageIsLoaded} />
                         </LandingPageSection>
@@ -66,13 +99,22 @@ function LandingPage() {
                         "relative overflow-hidden",
                         pageIsLoaded ? "h-auto" : "h-0",
                     )}>
-                    <LandingPageSection ref={projectsRef}>
+                    <LandingPageSection
+                        ref={projectsRef}
+                        tag='projects'
+                        onInView={onView}>
                         <SectionProjects />
                     </LandingPageSection>
-                    <LandingPageSection ref={aboutRef}>
+                    <LandingPageSection
+                        ref={aboutRef}
+                        tag='about-me'
+                        onInView={onView}>
                         <SectionAbout />
                     </LandingPageSection>
-                    <LandingPageSection ref={skillsRef}>
+                    <LandingPageSection
+                        ref={skillsRef}
+                        tag='skills'
+                        onInView={onView}>
                         <SectionSkills />
                     </LandingPageSection>
                 </div>

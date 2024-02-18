@@ -13,7 +13,7 @@ export default function FragmentProject({
     index,
 }: FragmentProjectProps) {
     return (
-        <section
+        <div
             id={project.refName}
             className={twMerge(
                 "flex w-full flex-col items-stretch gap-[5%] md:min-h-[50rem]",
@@ -28,6 +28,6 @@ export default function FragmentProject({
             <div className='w-full lg:w-[45%]'>
                 <ProjectDescription project={project} index={index + 1} />
             </div>
-        </section>
+        </div>
     );
 }

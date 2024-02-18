@@ -13,6 +13,11 @@ export default function GlowingText({
 }: SectionTitleProps) {
     return (
         <div
+            style={{
+                transform: "translateZ(0)",
+                perspective: "1000",
+                backfaceVisibility: "hidden",
+            }}
             className={twMerge(
                 "relative w-fit overflow-visible text-center text-4xl font-bold lg:text-6xl",
                 className,

@@ -6,9 +6,9 @@ import LandingPageSection from "../components/layout/Section/LandingPageSection.
 import SectionAbout from "../components/layout/Section/SectionAbout.tsx";
 import SectionHeroOverlay from "../components/layout/Section/SectionHeroOverlay.tsx";
 import SectionProjects from "../components/layout/Section/SectionProjects.tsx";
+import SectionSkills from "../components/layout/Section/SectionSkills.tsx";
 import Navbar from "../components/UI/Navbar.tsx";
 import SceneLoader from "../components/UI/SceneLoader.tsx";
-import { LinksData } from "../constants/LinksData.ts";
 import { PROJECTS } from "../constants/ProjectsData.ts";
 import useSceneProgress from "../hooks/useSceneProgress.ts";
 import { SectionRefsContext, SectionTag } from "../hooks/useSectionRef.ts";
@@ -20,12 +20,14 @@ function LandingPage() {
     const heroRef = useRef(null!);
     const projectsRef = useRef(null!);
     const aboutRef = useRef(null!);
+    const skillsRef = useRef(null!);
     const contactRef = useRef(null!);
 
     const refs = new Map<SectionTag, LegacyRef<HTMLElement>>();
     refs.set("overview", heroRef);
     refs.set("projects", projectsRef);
     refs.set("about-me", aboutRef);
+    refs.set("skills", skillsRef);
     refs.set("contact", contactRef);
     PROJECTS.forEach(project => {
         refs.set(project.refName, createRef());
@@ -45,9 +47,7 @@ function LandingPage() {
                         "relative",
                         pageIsLoaded ? "h-auto" : "h-full overflow-hidden",
                     )}>
-                    {pageIsLoaded && (
-                        <Navbar links={LinksData} initialIdx={0} />
-                    )}
+                    {pageIsLoaded && <Navbar initialIdx={0} />}
                     <div className='relative h-[100svh] w-full'>
                         <LandingPageSection
                             ref={heroRef}
@@ -71,6 +71,9 @@ function LandingPage() {
                     </LandingPageSection>
                     <LandingPageSection ref={aboutRef}>
                         <SectionAbout />
+                    </LandingPageSection>
+                    <LandingPageSection ref={skillsRef}>
+                        <SectionSkills />
                     </LandingPageSection>
                 </div>
             </div>

@@ -14,14 +14,14 @@ export default function GlowingText({
     return (
         <div
             className={twMerge(
-                "relative w-fit text-center text-4xl font-bold lg:text-6xl",
+                "relative w-fit overflow-visible text-center text-4xl font-bold lg:text-6xl",
                 className,
             )}>
             {blurs.map(blur => (
                 <div
                     key={blur}
                     className={twJoin(
-                        "text-fuchsia-cyan-gradient absolute inset-0",
+                        "text-fuchsia-cyan-gradient pointer-events-none absolute inset-0",
                         blur,
                     )}>
                     {text}

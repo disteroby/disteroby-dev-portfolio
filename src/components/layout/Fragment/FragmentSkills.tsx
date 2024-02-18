@@ -31,7 +31,7 @@ export default function FragmentSkills() {
                 custom={0.075}
                 viewport={{ once: true }}
                 whileInView='visibleWithDelay'
-                className='flex flex-wrap items-center justify-center gap-6 md:gap-8'>
+                className='flex max-w-[66rem] flex-wrap items-center justify-center gap-6 md:gap-8'>
                 {selectedSkills.map(skill => (
                     <motion.div key={skill.name} variants={opacityVariants}>
                         <HardSkill

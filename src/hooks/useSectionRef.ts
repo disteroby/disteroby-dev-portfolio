@@ -1,7 +1,12 @@
 import { createContext, LegacyRef, useContext } from "react";
 import { ProjectTag } from "../constants/ProjectsData.ts";
 
-export type MainSectionTag = "overview" | "projects" | "about-me" | "contact";
+export type MainSectionTag =
+    | "overview"
+    | "projects"
+    | "about-me"
+    | "skills"
+    | "contact";
 
 export type SectionTag = MainSectionTag | ProjectTag;
 

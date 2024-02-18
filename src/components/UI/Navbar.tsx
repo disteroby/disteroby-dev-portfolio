@@ -1,15 +1,14 @@
 import { useState } from "react";
-import { NavbarLink } from "../../constants/LinksData.ts";
+import { navbarLinks } from "../../constants/NavbarLinks.ts";
 import NavbarButton from "./NavbarButton.tsx";
 import { AnimatePresence, motion, Variants } from "framer-motion";
 import { twJoin } from "tailwind-merge";
 
 type NavbarProps = {
-    links: NavbarLink[];
     initialIdx: number;
 };
 
-export default function Navbar({ links, initialIdx }: NavbarProps) {
+export default function Navbar({ initialIdx }: NavbarProps) {
     const [activeIndex, setActiveIndex] = useState(initialIdx);
 
     const [isShow, setIsShow] = useState(false);
@@ -28,22 +27,21 @@ export default function Navbar({ links, initialIdx }: NavbarProps) {
     };
 
     function renderLinks(baseDelay = 0) {
-        return links.map((link, idx) => (
+        return navbarLinks.map((link, idx) => (
             <motion.li
                 variants={variants}
                 animate='visible'
                 exit='close'
                 custom={[baseDelay + (idx + 1) * 0.2]}
                 key={link.href}
-                className='opacity-0'>
-                <a
+                className='cursor-pointer opacity-0'>
+                <span
                     className={twJoin(
                         "flex items-center gap-2 rounded-full px-4 py-1 align-bottom transition-colors duration-200 ease-in-out md:w-full md:px-4",
                         activeIndex !== idx
                             ? [link.textColor, "hover:bg-white/5"]
                             : ["text-white", "bg-white/15"],
                     )}
-                    href={link.href}
                     onClick={() => {
                         setActiveIndex(idx);
                     }}>
@@ -53,7 +51,7 @@ export default function Navbar({ links, initialIdx }: NavbarProps) {
                         <link.icons.default />
                     )}
                     {link.text}
-                </a>
+                </span>
             </motion.li>
         ));
     }

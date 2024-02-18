@@ -11,7 +11,7 @@ export type AboutTopic = {
 
 const boldStyle = "font-bold text-white/90";
 const aStyle =
-    "underline text-white/90 hover:text-white duration-300 decoration-[unset] underline-offset-2 transition hover:decoration-[inherit]";
+    "underline text-white/90 hover:text-white duration-300 decoration-[unset] underline-offset-2 transition hover:decoration-[inherit] font-semibold";
 
 export const aboutTopics: AboutTopic[] = [
     {
@@ -96,7 +96,7 @@ export const aboutTopics: AboutTopic[] = [
             <>
                 I also follow <span className={boldStyle}>soccer</span>{" "}
                 passionately, cheering for Juventus. I have a passion for{" "}
-                <span className={boldStyle}>tennis too</span>, a sport I enjoy
+                <span className={boldStyle}>tennis</span> too, a sport I enjoy
                 playing a lot.
             </>,
             <>

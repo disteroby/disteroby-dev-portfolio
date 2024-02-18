@@ -58,9 +58,9 @@ export default function SkillFilterButton({
                     maskImage:
                         "radial-gradient(100% 100% at center, black 0%,transparent 50%)",
                 }}
-                className='pattern-dots pattern-white pattern-bg-dark-gray pattern-size-4 pattern-opacity-10 absolute inset-0 rounded-full border-4 border-dashed'
+                className='pattern-cross pattern-white pattern-bg-dark-gray pattern-size-6 pattern-opacity-10 absolute inset-0 rounded-full border-4 border-dashed'
             />
-            <div className='absolute inset-0 flex flex-col items-center justify-center gap-2 rounded-full border-2 pt-4 text-center text-4xl uppercase tracking-widest text-white/5'>
+            <div className='absolute inset-0 flex flex-col items-center justify-center gap-2 rounded-full border-2 pt-4 text-center text-4xl uppercase tracking-widest text-white/10'>
                 <div>Filter</div>
                 <ImFilter />
             </div>

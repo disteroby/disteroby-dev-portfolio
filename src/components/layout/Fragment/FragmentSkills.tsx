@@ -18,14 +18,14 @@ export default function FragmentSkills() {
 
     const selectedSkills = [...skillsData];
     return (
-        <div className='flex w-full flex-col items-stretch gap-8 lg:flex-row lg:justify-between lg:gap-0'>
-            <div className='flex flex-1 justify-center pt-8 lg:py-16'>
+        <div className='flex w-full flex-col items-stretch gap-8 lg:flex-row lg:justify-evenly lg:gap-0'>
+            <div className='flex justify-center pt-8 md:py-16'>
                 <SkillFilterButton
                     currentFilters={filters}
                     onClick={handleOnFilterSelect}
                 />
             </div>
-            <div className='flex flex-1 items-center justify-center'>
+            <div className='flex items-center justify-center'>
                 <motion.div
                     variants={opacityVariants}
                     initial='invisible'

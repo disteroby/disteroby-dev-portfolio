@@ -4,7 +4,9 @@ import FragmentSkills from "../Fragment/FragmentSkills.tsx";
 export default function SectionSkills() {
     return (
         <div className='flex min-h-screen flex-col items-center'>
-            <GlowingText className='lg:mb-16' text='WHAT AM I BEST AT?' />
+            <div className='max-md:max-w-[18rem]'>
+                <GlowingText className='md:mb-16' text='WHAT AM I BEST AT?' />
+            </div>
             <FragmentSkills />
         </div>
     );

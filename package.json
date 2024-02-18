@@ -27,6 +27,8 @@
         "three": "^0.160.1"
     },
     "devDependencies": {
+        "@tailwindcss/aspect-ratio": "^0.4.2",
+        "@tailwindcss/typography": "^0.5.10",
         "@trivago/prettier-plugin-sort-imports": "^4.3.0",
         "@types/react": "^18.2.43",
         "@types/react-dom": "^18.2.17",

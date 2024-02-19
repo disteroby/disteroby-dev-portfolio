@@ -25,7 +25,7 @@ export default function SectionHeroOverlay({ pageIsLoaded }: SectionHeroProps) {
     };
 
     return (
-        <div className='mt-4 flex h-[37%] flex-col justify-center text-center font-bold uppercase tracking-wider lg:-mt-16'>
+        <div className='-mt-8 flex h-[37%] flex-col justify-center text-center font-bold uppercase tracking-wider lg:-mt-16'>
             <motion.div
                 className='text-5xl opacity-0 lg:text-6xl'
                 animate={pageIsLoaded ? "animate" : "enter"}

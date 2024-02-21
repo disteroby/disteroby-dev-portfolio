@@ -2,7 +2,7 @@ import { Skill, SkillType } from "../../constants/SkillsData.ts";
 import { hasFilterOrNoFilter } from "../../utils/SkillUtils.ts";
 import SkillPopup from "./SkillPopup.tsx";
 import { motion } from "framer-motion";
-import { twMerge } from "tailwind-merge";
+import { twJoin, twMerge } from "tailwind-merge";
 
 type HardSkillProps = {
     skill: Skill;
@@ -64,8 +64,8 @@ export default function HardSkill({
                     variants={{
                         init: { transition: {} },
                         onHover: {
-                            rotate: "-35deg",
-                            skewX: "20deg",
+                            rotate: "-37.5deg",
+                            skewX: "15deg",
                             transition: {
                                 staggerChildren: 0.05,
                             },
@@ -102,17 +102,17 @@ export default function HardSkill({
                                     type: "tween",
                                 }}
                                 custom={idx + 1}
-                                style={{ borderColor: skill.color }}
-                                className={twMerge(
-                                    "absolute inset-0 rounded-2xl border-2 border-white",
+                                // style={{ borderColor: skill.color }}
+                                className={twJoin(
+                                    "absolute inset-0 rounded-full border-2",
                                     opacity,
                                 )}
                             />
                         ),
                     )}
                     <div
-                        style={{ backgroundColor: skill.color }}
-                        className='absolute inset-0 rounded-2xl bg-gradient-to-bl from-white/40 to-black/20 '
+                        // style={{ backgroundColor: skill.color }}
+                        className='absolute inset-0 rounded-full border-2 bg-dark-gray bg-gradient-to-bl from-white/40 to-black/20 '
                     />
                     <div className='absolute inset-0 grid place-items-center text-[1.75rem] md:text-[2rem]'>
                         {<skill.logo />}

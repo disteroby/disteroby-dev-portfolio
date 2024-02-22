@@ -18,6 +18,6 @@ export function itemsPolarTransform(
     };
 }
 
-export function polarToCartesian(theta: number, radius = 1) {
+export function polarToCartesian(theta: number, radius = 1): [number, number] {
     return [Math.sin(theta) * radius, Math.cos(theta) * radius];
 }

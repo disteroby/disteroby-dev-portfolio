@@ -76,7 +76,7 @@ export default function HardSkill({
                         duration: 0.25,
                     }}
                     className={twMerge(
-                        "relative size-[4rem] hover:select-none",
+                        "animation-[60s] relative size-[4rem] hover:select-none",
                         className,
                     )}>
                     {["opacity-80", "opacity-50", "opacity-20"].map(

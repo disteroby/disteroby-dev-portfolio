@@ -1,11 +1,11 @@
 import { PROJECTS } from "../../../constants/ProjectsData.ts";
-import GlowingText from "../../UI/GlowingText.tsx";
+import SectionTitle from "../../UI/SectionTitle.tsx";
 import FragmentProject from "../Fragment/FragmentProject.tsx";
 
 export default function SectionProjects() {
     return (
-        <div className='flex flex-col items-center'>
-            <GlowingText text='MY PROJECTS' className='mb-16 lg:mb-24' />
+        <div className='flex flex-col items-center gap-16 pt-2 lg:gap-24 lg:pt-0'>
+            <SectionTitle title='My Projects' />
             {PROJECTS.map((project, idx) => (
                 <FragmentProject
                     key={project.refName}

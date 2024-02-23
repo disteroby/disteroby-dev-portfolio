@@ -1,9 +1,9 @@
-import GlowingText from "../../UI/GlowingText.tsx";
+import SectionTitle from "../../UI/SectionTitle.tsx";
 
 export default function SectionContacts() {
     return (
         <div className='flex min-h-screen flex-col items-center'>
-            <GlowingText text='CONTACTS ME' />
+            <SectionTitle title='Contacts Me' />
         </div>
     );
 }

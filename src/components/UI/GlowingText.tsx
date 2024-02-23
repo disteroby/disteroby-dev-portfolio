@@ -19,7 +19,7 @@ export default function GlowingText({
                 backfaceVisibility: "hidden",
             }}
             className={twMerge(
-                "relative w-fit overflow-visible text-center text-4xl font-bold lg:text-6xl",
+                "relative w-fit overflow-visible text-center text-4xl font-bold tracking-wider lg:text-6xl",
                 className,
             )}>
             {blurs.map(blur => (

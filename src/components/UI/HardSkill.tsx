@@ -7,12 +7,14 @@ import { twJoin, twMerge } from "tailwind-merge";
 type HardSkillProps = {
     skill: Skill;
     className?: string;
+    color?: string;
     filters?: SkillType[];
 };
 
 export default function HardSkill({
     skill,
     className,
+    color,
     filters = [],
 }: HardSkillProps) {
     const isSelected = hasFilterOrNoFilter(skill.type, filters);
@@ -57,7 +59,7 @@ export default function HardSkill({
                             },
                         },
                     }}
-                    className='absolute left-1/2 z-50'>
+                    className='absolute left-1/2 z-[999]'>
                     <SkillPopup skill={skill} />
                 </motion.div>
                 <motion.div
@@ -76,7 +78,7 @@ export default function HardSkill({
                         duration: 0.25,
                     }}
                     className={twMerge(
-                        "animation-[60s] relative size-[4rem] hover:select-none",
+                        "animation-[60s] relative -z-10 size-[4rem] hover:select-none",
                         className,
                     )}>
                     {["opacity-80", "opacity-50", "opacity-20"].map(
@@ -102,9 +104,8 @@ export default function HardSkill({
                                     type: "tween",
                                 }}
                                 custom={idx + 1}
-                                // style={{ borderColor: skill.color }}
                                 className={twJoin(
-                                    "absolute inset-0 rounded-full border-2",
+                                    "absolute inset-0 rounded-full border",
                                     opacity,
                                 )}
                             />
@@ -112,9 +113,11 @@ export default function HardSkill({
                     )}
                     <div
                         // style={{ backgroundColor: skill.color }}
-                        className='absolute inset-0 rounded-full border-2 bg-dark-gray bg-gradient-to-bl from-white/40 to-black/20 '
+                        style={{ backgroundColor: `#${color}` }}
+                        // className='absolute inset-0 rounded-full border bg-dark-gray bg-gradient-to-bl from-white/40 to-black/20 '
+                        className='absolute inset-0 rounded-full border'
                     />
-                    <div className='absolute inset-0 grid place-items-center text-[1.75rem] md:text-[2rem]'>
+                    <div className='absolute inset-0 grid place-items-center'>
                         {<skill.logo />}
                     </div>
                 </motion.div>

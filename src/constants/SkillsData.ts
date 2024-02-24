@@ -37,13 +37,13 @@ export type Skill = {
 };
 
 export const skillsData: Skill[] = [
-    // {
-    //     name: "Figma",
-    //     color: "#7f3bf1",
-    //     type: ["web", "mobile"],
-    //     logo: BiLogoFigma,
-    //     level: 2,
-    // },
+    {
+        name: "Figma",
+        color: "#7f3bf1",
+        type: ["web", "mobile"],
+        logo: BiLogoFigma,
+        level: 2,
+    },
     {
         name: "Bootstrap",
         color: "#a339db",
@@ -51,13 +51,13 @@ export const skillsData: Skill[] = [
         logo: BiLogoBootstrap,
         level: 4.5,
     },
-    // {
-    //     name: "Jest",
-    //     color: "#db3972",
-    //     type: "web",
-    //     logo: SiJest,
-    //     level: 3.5,
-    // },
+    {
+        name: "Jest",
+        color: "#db3972",
+        type: "web",
+        logo: SiJest,
+        level: 3.5,
+    },
     {
         name: "Java",
         color: "#e9344c",
@@ -72,13 +72,13 @@ export const skillsData: Skill[] = [
         logo: BiLogoHtml5,
         level: 4,
     },
-    // {
-    //     name: "GitLab",
-    //     color: "#e26220",
-    //     type: ["web", "mobile", "game"],
-    //     logo: FaGitlab,
-    //     level: 4.5,
-    // },
+    {
+        name: "GitLab",
+        color: "#e26220",
+        type: ["web", "mobile", "game"],
+        logo: FaGitlab,
+        level: 4.5,
+    },
     {
         name: "Blender",
         color: "#d87f24",
@@ -86,13 +86,13 @@ export const skillsData: Skill[] = [
         logo: BiLogoBlender,
         level: 2,
     },
-    // {
-    //     name: "Firebase",
-    //     color: "#fdca2f",
-    //     type: ["mobile", "web", "game"],
-    //     logo: BiLogoFirebase,
-    //     level: 3,
-    // },
+    {
+        name: "Firebase",
+        color: "#fdca2f",
+        type: ["mobile", "web", "game"],
+        logo: BiLogoFirebase,
+        level: 3,
+    },
     {
         name: "JavaScript",
         color: "#ddd541",
@@ -121,13 +121,13 @@ export const skillsData: Skill[] = [
         logo: SiUnrealengine,
         level: 4,
     },
-    // {
-    //     name: "GitHub",
-    //     color: "#282b2c",
-    //     type: ["web", "mobile", "game"],
-    //     logo: BiLogoGithub,
-    //     level: 3.5,
-    // },
+    {
+        name: "GitHub",
+        color: "#282b2c",
+        type: ["web", "mobile", "game"],
+        logo: BiLogoGithub,
+        level: 3.5,
+    },
     {
         name: "Unity",
         color: "#29333d",
@@ -142,13 +142,13 @@ export const skillsData: Skill[] = [
         logo: BiLogoMongodb,
         level: 2.5,
     },
-    // {
-    //     name: "Cypress",
-    //     color: "#60bf99",
-    //     type: "web",
-    //     logo: SiCypress,
-    //     level: 2,
-    // },
+    {
+        name: "Cypress",
+        color: "#60bf99",
+        type: "web",
+        logo: SiCypress,
+        level: 2,
+    },
     {
         name: "Tailwind CSS",
         color: "#38b2ad",
@@ -198,13 +198,13 @@ export const skillsData: Skill[] = [
         logo: BiLogoCPlusPlus,
         level: 3.5,
     },
-    // {
-    //     name: "Trello",
-    //     color: "#0669ea",
-    //     type: ["mobile", "web", "game"],
-    //     logo: BiLogoTrello,
-    //     level: 4.5,
-    // },
+    {
+        name: "Trello",
+        color: "#0669ea",
+        type: ["mobile", "web", "game"],
+        logo: BiLogoTrello,
+        level: 4.5,
+    },
     {
         name: "CSS3",
         color: "#3069ef",

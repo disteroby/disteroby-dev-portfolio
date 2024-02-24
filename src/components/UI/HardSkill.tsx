@@ -1,7 +1,7 @@
+import { MouseEvent } from "react";
 import { Skill, SkillType } from "../../constants/SkillsData.ts";
 import { hasFilterOrNoFilter } from "../../utils/SkillUtils.ts";
-import SkillPopup from "./SkillPopup.tsx";
-import { motion } from "framer-motion";
+import { motion, useMotionValue } from "framer-motion";
 import { twJoin, twMerge } from "tailwind-merge";
 
 type HardSkillProps = {
@@ -9,18 +9,35 @@ type HardSkillProps = {
     className?: string;
     color?: string;
     filters?: SkillType[];
+    onClick: (idx: number) => void;
+    idx: number;
+    isSelected: boolean;
 };
 
 export default function HardSkill({
     skill,
     className,
     color,
+    onClick,
+    idx,
+    isSelected,
     filters = [],
 }: HardSkillProps) {
-    const isSelected = hasFilterOrNoFilter(skill.type, filters);
+    const isFiltered = hasFilterOrNoFilter(skill.type, filters);
+
+    const x = useMotionValue(0); // going to set this value on mouse move
+
+    const handleMouseMove = (event: MouseEvent<HTMLDivElement>) => {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-expect-error
+        const halfWidth = event.target.offsetWidth / 2;
+        x.set(event.nativeEvent.offsetX - halfWidth); // set the x value, which is then used in transform and rotate
+    };
 
     return (
         <motion.div
+            onMouseMove={handleMouseMove}
+            onMouseLeave={() => x.set(0)}
             variants={{
                 selected: {
                     opacity: 1,
@@ -30,71 +47,70 @@ export default function HardSkill({
                     opacity: 0.25,
                 },
             }}
-            animate={isSelected ? "selected" : "unselected"}>
+            animate={isFiltered ? "selected" : "unselected"}>
             <motion.div
                 variants={{
                     init: { transition: {} },
-                    onHover: {},
+                    isActive: {},
                 }}
-                className='relative select-none'
-                animate='init'
-                whileHover={isSelected ? "onHover" : ""}
-                whileTap={isSelected ? "onHover" : ""}>
-                <motion.div
-                    variants={{
-                        init: {
-                            opacity: 0,
-                            bottom: "0%",
-                            scale: 0.5,
-                            translateX: "-50%",
-                            translateY: "-1rem",
-                        },
-                        onHover: {
-                            opacity: 0.75,
-                            bottom: "60%",
-                            scale: 1,
-                            transition: {
-                                easings: ["linear"],
-                                duration: 0.25,
-                            },
-                        },
-                    }}
-                    className='absolute left-1/2 z-[999]'>
-                    <SkillPopup skill={skill} />
-                </motion.div>
+                className={twMerge(
+                    "relative select-none duration-200",
+                    isFiltered && "cursor-pointer hover:scale-110",
+                    isSelected && "scale-110",
+                )}
+                animate={isSelected ? "isActive" : "init"}
+                onClick={() => isFiltered && onClick(idx)}>
+                {/*<motion.div*/}
+                {/*    variants={{*/}
+                {/*        init: {*/}
+                {/*            opacity: 0,*/}
+                {/*            bottom: "0%",*/}
+                {/*            scale: 0.5,*/}
+                {/*            translateX: "-50%",*/}
+                {/*            translateY: "-1rem",*/}
+                {/*        },*/}
+                {/*        isActive: {*/}
+                {/*            opacity: 0.75,*/}
+                {/*            bottom: "60%",*/}
+                {/*            scale: 1,*/}
+                {/*            transition: {*/}
+                {/*                easings: ["linear"],*/}
+                {/*                duration: 0.25,*/}
+                {/*            },*/}
+                {/*        },*/}
+                {/*    }}*/}
+                {/*    className='absolute left-1/2 z-[999]'>*/}
+                {/*    <SkillPopup skill={skill} />*/}
+                {/*</motion.div>*/}
                 <motion.div
                     variants={{
                         init: { transition: {} },
-                        onHover: {
-                            rotate: "-37.5deg",
-                            skewX: "15deg",
+                        isActive: {
+                            // rotate: "-37.5deg",
+                            // skewX: "15deg",
                             transition: {
                                 staggerChildren: 0.05,
                             },
                         },
                     }}
-                    transition={{
-                        easings: ["easeIn"],
-                        duration: 0.25,
-                    }}
                     className={twMerge(
                         "animation-[60s] relative -z-10 size-[4rem] hover:select-none",
                         className,
                     )}>
-                    {["opacity-80", "opacity-50", "opacity-20"].map(
+                    {["opacity-70", "opacity-40", "opacity-10"].map(
                         (opacity, idx) => (
                             <motion.div
                                 key={opacity}
                                 variants={{
                                     init: {
+                                        inset: `${5}%`,
                                         transition: {
                                             translateX: 0,
                                             translateY: 0,
                                         },
                                     },
-                                    onHover: offset => ({
-                                        translateX: `-${0.35 * offset}rem`,
-                                        translateY: `${0.35 * offset}rem`,
+                                    isActive: offset => ({
+                                        inset: `-${offset * 15}%`,
                                         transition: {
                                             delay: 0.1,
                                         },
@@ -105,19 +121,17 @@ export default function HardSkill({
                                 }}
                                 custom={idx + 1}
                                 className={twJoin(
-                                    "absolute inset-0 rounded-full border",
+                                    "absolute rounded-full border lg:border-2",
                                     opacity,
                                 )}
                             />
                         ),
                     )}
                     <div
-                        // style={{ backgroundColor: skill.color }}
                         style={{ backgroundColor: `#${color}` }}
-                        // className='absolute inset-0 rounded-full border bg-dark-gray bg-gradient-to-bl from-white/40 to-black/20 '
-                        className='absolute inset-0 rounded-full border'
+                        className='absolute inset-0 rounded-full border border-white lg:border-2'
                     />
-                    <div className='absolute inset-0 grid place-items-center'>
+                    <div className='pointer-events-none absolute inset-0 grid select-none place-items-center'>
                         {<skill.logo />}
                     </div>
                 </motion.div>

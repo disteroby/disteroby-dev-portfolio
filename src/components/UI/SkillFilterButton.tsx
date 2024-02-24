@@ -48,17 +48,17 @@ export default function SkillFilterButton({
             whileInView='visible'
             initial='invisible'
             transition={{
-                duration: 1.5,
+                duration: 2.5,
             }}
-            viewport={{ amount: "all", once: true }}
+            viewport={{ amount: 0.5, once: true }}
             style={{ height: `${radius * 2}rem`, width: `${radius * 2}rem` }}
-            className='relative max-md:scale-75 '>
+            className='relative'>
             <div
                 style={{
                     maskImage:
                         "radial-gradient(100% 100% at center, black 0%,transparent 50%)",
                 }}
-                className='pattern-cross pattern-white pattern-bg-dark-gray pattern-size-6 pattern-opacity-10 absolute inset-0 rounded-full border-4 border-dashed'
+                className='pattern-cross absolute inset-0 rounded-full border-4 border-dashed pattern-white pattern-bg-dark-gray pattern-opacity-10 pattern-size-6'
             />
             <div className='absolute inset-0 flex flex-col items-center justify-center gap-2 rounded-full border-2 pt-4 text-center text-4xl uppercase tracking-widest text-white/10'>
                 <div>Filter</div>

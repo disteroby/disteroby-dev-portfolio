@@ -1,7 +1,6 @@
 import { SkillType } from "../../constants/SkillsData.ts";
 import { opacityVariants } from "../../utils/FramerMotionUtils.ts";
 import { hasFilter } from "../../utils/SkillUtils.ts";
-import { polarToCartesian } from "../../utils/TransformUtils.ts";
 import { motion } from "framer-motion";
 import { FaMobile } from "react-icons/fa6";
 import { ImFilter } from "react-icons/im";
@@ -17,7 +16,11 @@ const icons: { [key in SkillType]: JSX.Element } = {
     game: <IoLogoGameControllerB />,
 };
 
-const bgColors = ["bg-indigo-500/90", "bg-cyan-500/90", "bg-fuchsia-500/90"];
+const ringColors = [
+    "ring-indigo-500/90",
+    "ring-cyan-500/90",
+    "ring-fuchsia-500/90",
+];
 const textColors = ["text-indigo-500", "text-cyan-500", "text-fuchsia-500"];
 
 type SkillFilterButtonProps = {
@@ -25,19 +28,10 @@ type SkillFilterButtonProps = {
     onClick: (filter: SkillType) => void;
 };
 
-export default function SkillFilterCircularButton({
+export default function SkillFilterFlatButton({
     currentFilters,
     onClick,
 }: SkillFilterButtonProps) {
-    const radius = 10;
-    const coords = types.map((_, i) =>
-        polarToCartesian(((Math.PI * 2) / types.length) * i, radius).map(
-            (coord, dim) => {
-                return coord * (dim === 0 ? 1 : -1) + radius;
-            },
-        ),
-    );
-
     const isFilterSelected = types.map(skill =>
         hasFilter(skill, currentFilters),
     );
@@ -50,55 +44,39 @@ export default function SkillFilterCircularButton({
             transition={{
                 staggerChildren: 0.5,
             }}
-            viewport={{ amount: "all", once: true }}
-            className='flex'>
-            <div
-                style={{
-                    maskImage:
-                        "radial-gradient(100% 100% at center, black 0%,transparent 50%)",
-                }}
-                className='pattern-cross absolute inset-0 rounded-full border-4 border-dashed pattern-white pattern-bg-dark-gray pattern-opacity-10 pattern-size-6'
-            />
-            <div className='absolute inset-0 flex flex-col items-center justify-center gap-2 rounded-full border-2 pt-4 text-center text-4xl uppercase tracking-widest text-white/10'>
+            viewport={{ amount: "some", once: true }}
+            className='space-y-8 px-8'>
+            <motion.div
+                variants={opacityVariants}
+                className='flex items-center justify-center gap-2 text-4xl font-light uppercase tracking-widest text-white/10'>
                 <div>Filter</div>
-                <ImFilter />
-            </div>
-            <div className='absolute inset-0 overflow-hidden rounded-full'>
+                <span className='pb-2 text-2xl'>
+                    <ImFilter />
+                </span>
+            </motion.div>
+            <motion.div
+                variants={opacityVariants}
+                transition={{
+                    staggerChildren: 0.5,
+                }}
+                className='flex justify-between '>
                 {types.map((type, idx) => (
-                    <div
-                        key={`border-${type}`}
-                        style={{
-                            left: `${coords[idx][0]}rem`,
-                            top: `${coords[idx][1]}rem`,
-                        }}
-                        className={twMerge(
-                            "absolute size-[7rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/40 transition duration-300 ease-in-out",
-                            isFilterSelected[idx] && bgColors[idx],
-                        )}
-                    />
-                ))}
-            </div>
-            <div className='absolute inset-0 rounded-full'>
-                {types.map((type, idx) => (
-                    <div
+                    <motion.div
                         key={`button-${type}`}
-                        style={{
-                            left: `${coords[idx][0]}rem`,
-                            top: `${coords[idx][1]}rem`,
-                        }}
+                        variants={opacityVariants}
+                        transition={{ duration: 1 }}
                         className={twMerge(
-                            "group absolute grid size-[5.5rem] -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-white text-dark-gray/40 hover:cursor-pointer",
-                            isFilterSelected[idx]
-                                ? textColors[idx]
-                                : "hover:text-dark-gray/60",
+                            "group grid size-[3.5rem] place-items-center rounded-full bg-white text-dark-gray/40 ring-[.5rem] ring-white/40 transition duration-300 ease-in-out hover:cursor-pointer",
+                            isFilterSelected[idx] && [
+                                textColors[idx],
+                                ringColors[idx],
+                            ],
                         )}
                         onClick={() => onClick(type)}>
-                        <div className='absolute text-3xl transition duration-300 ease-in-out group-hover:scale-125'>
-                            {icons[type]}
-                        </div>
-                    </div>
+                        <div className='absolute text-3xl'>{icons[type]}</div>
+                    </motion.div>
                 ))}
-            </div>
+            </motion.div>
         </motion.div>
     );
 }

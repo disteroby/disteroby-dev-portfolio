@@ -6,6 +6,7 @@ import { opacityVariants } from "../../../utils/FramerMotionUtils.ts";
 import { Lerp } from "../../../utils/LerpUtils.ts";
 import HardSkill from "../../UI/HardSkill.tsx";
 import SkillFilterCircularButton from "../../UI/SkillFilterCircularButton.tsx";
+import SkillFilterFlatButton from "../../UI/SkillFilterFlatButton.tsx";
 import SkillPopup from "../../UI/SkillPopup.tsx";
 import { AnimatePresence, motion } from "framer-motion";
 
@@ -160,11 +161,13 @@ export default function FragmentSkills() {
                     )}
                 </AnimatePresence>
             </div>
-            <div className='mx-auto scale-[65%] lg:hidden'>
-                <SkillFilterCircularButton
-                    currentFilters={filters}
-                    onClick={handleOnFilterSelect}
-                />
+            <div className='mt-4 flex justify-center md:mt-8 lg:hidden'>
+                <div className='max-w-[30rem] grow'>
+                    <SkillFilterFlatButton
+                        currentFilters={filters}
+                        onClick={handleOnFilterSelect}
+                    />
+                </div>
             </div>
         </div>
     );

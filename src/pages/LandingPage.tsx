@@ -122,7 +122,7 @@ function LandingPage() {
                             className='pointer-events-none absolute inset-0 z-10 select-none'>
                             {sections[0].jsx}
                         </LandingPageSection>
-                        <HeroStage3D />
+                        <HeroStage3D inView={pageIsLoaded} />
                         <FragmentBelowHero />
                         <AnimatePresence>
                             {!pageIsLoaded && <SceneLoader />}

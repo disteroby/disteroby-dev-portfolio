@@ -5,7 +5,11 @@ import HeroDevices from "./HeroDevices.tsx";
 import HeroGrid from "./HeroGrid.tsx";
 import HeroLights from "./HeroLights.tsx";
 
-const HeroStage3D = memo(() => {
+type HeroStage3DProps = {
+    inView: boolean;
+};
+
+const HeroStage3D = memo(({ inView }: HeroStage3DProps) => {
     return (
         <PerformanceCanvas
             id='main-canvas'
@@ -14,17 +18,18 @@ const HeroStage3D = memo(() => {
                 position: [0, 0.2365, 7.15],
                 fov: 60,
             }}>
-            <Environment files='studio2.hdr' path='./environment/'>
+            <Environment files='stars.hdr' path='./environment/'>
                 <Lightformer
                     intensity={0.01}
                     rotation-x={Math.PI}
+                    rotation-y={Math.PI}
                     position={[0, 5, -9]}
-                    scale={[50, 50, 1]}
+                    scale={[500, 500, 1]}
                 />
             </Environment>
             <fog attach='fog' args={["#0C0C0F", 3, 12]} />
             <HeroLights />
-            <HeroDevices />
+            <HeroDevices inView={inView} />
             <HeroGrid />
             <mesh position={[0, -1.7, 0]} rotation-x={-Math.PI / 2}>
                 <planeGeometry args={[50, 50]} />

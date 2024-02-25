@@ -12,6 +12,7 @@ import {
     MeshTransform,
 } from "../../../utils/TransformUtils.ts";
 import DeviceModel from "../../Model3D/DeviceModel.tsx";
+import { motion } from "framer-motion-3d";
 
 type Device = DeviceData & {
     transform: MeshTransform;
@@ -23,7 +24,10 @@ const rotationSpeed = 0.15;
 const interpolationSpeed = 0.05;
 const minSpeedMultiplier = 0.15;
 
-function HeroDevices() {
+type HeroDevicesProps = {
+    inView: boolean;
+};
+function HeroDevices({ inView }: HeroDevicesProps) {
     const devices: Device[] = PROJECTS.map((project, i) => {
         const theta = (i * Math.PI * 2) / PROJECTS.length;
         const transform: MeshTransform = {
@@ -48,50 +52,56 @@ function HeroDevices() {
             targetVelocity.current,
             interpolationSpeed,
         );
-
         devicesRef.current.rotation.y += delta * rotationSpeed * smooth.current;
     });
 
     return (
-        <group position={[0, -3, 0]} ref={devicesRef}>
-            {devices.map((device, idx) => (
-                <group
-                    key={idx}
-                    position={device.transform.position}
-                    rotation={device.transform.rotation}>
-                    <Float
-                        floatIntensity={0.25}
-                        speed={10}
-                        position={[0, 2, 0]}
-                        rotationIntensity={0}>
-                        <DeviceModel
-                            device={device}
-                            scale={device.transform.scale}
-                            hoverAnimation={true}
-                            onHover={() => {
-                                targetVelocity.current = minSpeedMultiplier;
-                            }}
-                            onLeave={() => {
-                                targetVelocity.current = 1;
-                            }}
-                            onClick={() => {
-                                document
-                                    .getElementById(device.ref)
-                                    ?.scrollIntoView();
-                            }}
+        <motion.group
+            initial={{ y: -1 }}
+            animate={{ y: -3 }}
+            transition={{ duration: 5, easings: ["easeOut"] }}
+            position={[0, -3, 0]}>
+            <group ref={devicesRef}>
+                {devices.map((device, idx) => (
+                    <group
+                        key={idx}
+                        position={device.transform.position}
+                        rotation={device.transform.rotation}>
+                        <Float
+                            floatIntensity={0.25}
+                            speed={10}
+                            position={[0, 2, 0]}
+                            rotationIntensity={0}>
+                            <DeviceModel
+                                inView={inView}
+                                device={device}
+                                scale={device.transform.scale}
+                                hoverAnimation={true}
+                                onHover={() => {
+                                    targetVelocity.current = minSpeedMultiplier;
+                                }}
+                                onLeave={() => {
+                                    targetVelocity.current = 1;
+                                }}
+                                onClick={() => {
+                                    document
+                                        .getElementById(device.ref)
+                                        ?.scrollIntoView();
+                                }}
+                            />
+                        </Float>
+                        <Shadow
+                            color='black'
+                            position={[0, 1.5, 0.75]}
+                            scale={3}
+                            colorStop={0.25}
+                            opacity={0.75}
+                            fog={true}
                         />
-                    </Float>
-                    <Shadow
-                        color='black'
-                        position={[0, 1.5, 0.75]}
-                        scale={3}
-                        colorStop={0.25}
-                        opacity={0.75}
-                        fog={true}
-                    />
-                </group>
-            ))}
-        </group>
+                    </group>
+                ))}
+            </group>
+        </motion.group>
     );
 }
 

@@ -1,12 +1,14 @@
+import { useEffect, useRef } from "react";
 import {
     BufferGeometry,
     DoubleSide,
+    Group,
     NormalBufferAttributes,
     Object3D,
 } from "three";
 import { Euler, Vector3 } from "@react-three/fiber";
 import { ThreeEvent } from "@react-three/fiber/dist/declarations/src/core/events";
-import { useGLTF, useTexture } from "@react-three/drei";
+import { useAnimations, useGLTF, useTexture } from "@react-three/drei";
 import { DeviceData } from "../../constants/ProjectsData.ts";
 import { modelPath, texturePath } from "../../utils/ResourcesUtils.ts";
 import { motion } from "framer-motion-3d";
@@ -16,6 +18,7 @@ type DeviceModelProps = {
     position?: Vector3;
     rotation?: Euler;
     scale?: Vector3;
+    inView?: boolean;
     hoverAnimation?: boolean;
     onHover?: (event: ThreeEvent<PointerEvent>) => void;
     onLeave?: (event: ThreeEvent<PointerEvent>) => void;
@@ -35,6 +38,7 @@ function DeviceModel({
     rotation,
     scale,
     hoverAnimation = false,
+    inView = true,
     onHover,
     onLeave,
     onClick,
@@ -46,11 +50,45 @@ function DeviceModel({
 
     // const screens = useVideoTexture("./video/test.mp4");
 
-    const { nodes, materials } = useGLTF(modelPath(device.type), true);
+    const { nodes, materials, animations } = useGLTF(
+        modelPath(device.type),
+        true,
+    );
+
+    const group = useRef<Group>(null!);
+    const { actions } = useAnimations(animations, group);
+
+    useEffect(() => {
+        if (inView) {
+            actions?.screenflipAction
+                ?.setDuration(1)
+                .setLoop(2200, 1)
+                // .reset()
+                .play();
+        }
+
+        return () => {
+            actions?.screenflipAction?.stop();
+        };
+    }, [actions, inView]);
 
     return (
         <motion.group
-            initial={{ scale: initialScale }}
+            initial={{ y: 0.5, scale: initialScale, opacity: 0 }}
+            animate={
+                inView
+                    ? {
+                          y: 0,
+                          transition: {
+                              // type: "spring",
+                              // stiffness: 200,
+                              // damping: 20,
+                              duration: 2,
+                              easings: ["easeIn"],
+                          },
+                      }
+                    : {}
+            }
             whileHover={hoverAnimation ? { scale: hoverScale } : {}}
             transition={{ easings: "easeInOut", duration: 0.4 }}
             onPointerEnter={e => {
@@ -74,7 +112,11 @@ function DeviceModel({
             scale={scale}
             position={position}
             rotation={rotation}>
-            <group rotation-x={-0.425} position={[0, -0.04, 0.41]}>
+            <group
+                ref={group}
+                name='screenflip'
+                rotation-x={-0.1}
+                position={[0, -0.04, 0.41]}>
                 <group
                     position={[0, 2.96, -0.13]}
                     rotation={[Math.PI / 2, 0, 0]}>
@@ -92,7 +134,7 @@ function DeviceModel({
                         }>
                         <meshStandardMaterial
                             roughness={0}
-                            metalness={0.5}
+                            metalness={0.25}
                             side={DoubleSide}
                             map={currentTexture}
                         />

@@ -5,7 +5,7 @@ import useWindowSize from "../../../hooks/useWindowSize.ts";
 import { opacityVariants } from "../../../utils/FramerMotionUtils.ts";
 import { Lerp } from "../../../utils/LerpUtils.ts";
 import HardSkill from "../../UI/HardSkill.tsx";
-import SkillFilterButton from "../../UI/SkillFilterButton.tsx";
+import SkillFilterCircularButton from "../../UI/SkillFilterCircularButton.tsx";
 import SkillPopup from "../../UI/SkillPopup.tsx";
 import { AnimatePresence, motion } from "framer-motion";
 
@@ -14,7 +14,7 @@ const fullSizePadding = 0.3;
 
 const planetPerRing = 5;
 
-const maxMobileWidth = 1000; //TODO
+const maxMobileWidth = 1024;
 
 export default function FragmentSkills() {
     const [currentSelectedIdx, setCurrentSelectedIdx] = useState(-1);
@@ -36,15 +36,12 @@ export default function FragmentSkills() {
         setCurrentSelectedIdx(-1);
     }
 
-    function getPopupCoord() {
-        if (currentSelectedIdx === -1) {
-            return { x: 0, y: 0 };
-        }
-
-        return isMobile
-            ? skillPlanets[currentSelectedIdx].size.mobile.coords
-            : skillPlanets[currentSelectedIdx].size.fullSize.coords;
-    }
+    const currentCoords =
+        currentSelectedIdx === -1
+            ? { x: 0, y: 0 }
+            : isMobile
+              ? skillPlanets[currentSelectedIdx].size.mobile.coords
+              : skillPlanets[currentSelectedIdx].size.fullSize.coords;
 
     return (
         <div className='flex w-full flex-col items-stretch justify-center gap-8 p-2'>
@@ -72,7 +69,7 @@ export default function FragmentSkills() {
                     </div>
 
                     <div className='absolute inset-0 hidden scale-[75%] place-items-center lg:grid'>
-                        <SkillFilterButton
+                        <SkillFilterCircularButton
                             currentFilters={filters}
                             onClick={handleOnFilterSelect}
                         />
@@ -103,7 +100,7 @@ export default function FragmentSkills() {
                                     color={
                                         isMobile ? mobile.color : fullSize.color
                                     }
-                                    className='z-50 size-8 text-xl lg:size-16 lg:text-4xl'
+                                    className='z-50 size-8 text-xl sm:size-12 sm:text-2xl md:size-16 md:text-4xl'
                                     filters={filters}
                                 />
                             </motion.div>
@@ -111,13 +108,19 @@ export default function FragmentSkills() {
                     )}
                 </motion.div>
                 <AnimatePresence>
-                    {currentSelectedIdx >= 0 && (
-                        <div
+                    {currentSelectedIdx !== -1 && (
+                        <motion.div
                             className='pointer-events-none absolute inset-0 z-50'
+                            animate={{
+                                translate: `${currentCoords.x}% ${-currentCoords.y}%`,
+                            }}
+                            transition={{
+                                type: "spring",
+                                stiffness: 400,
+                                damping: 20,
+                            }}
                             style={{
-                                transition:
-                                    "all 200ms cubic-bezier(0, 0, 0.2, 1)",
-                                translate: `${getPopupCoord().x}% ${-getPopupCoord().y}%`,
+                                translate: `${currentCoords.x}% ${-currentCoords.y}%`,
                                 left: `${50}%`,
                                 top: `${50}%`,
                             }}>
@@ -153,12 +156,12 @@ export default function FragmentSkills() {
                                     />
                                 </motion.div>
                             </div>
-                        </div>
+                        </motion.div>
                     )}
                 </AnimatePresence>
             </div>
             <div className='mx-auto scale-[65%] lg:hidden'>
-                <SkillFilterButton
+                <SkillFilterCircularButton
                     currentFilters={filters}
                     onClick={handleOnFilterSelect}
                 />

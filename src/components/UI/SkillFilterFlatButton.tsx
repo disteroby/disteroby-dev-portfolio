@@ -25,7 +25,7 @@ type SkillFilterButtonProps = {
     onClick: (filter: SkillType) => void;
 };
 
-export default function SkillFilterButton({
+export default function SkillFilterCircularButton({
     currentFilters,
     onClick,
 }: SkillFilterButtonProps) {
@@ -48,11 +48,10 @@ export default function SkillFilterButton({
             whileInView='visible'
             initial='invisible'
             transition={{
-                duration: 2.5,
+                staggerChildren: 0.5,
             }}
-            viewport={{ amount: 0.5, once: true }}
-            style={{ height: `${radius * 2}rem`, width: `${radius * 2}rem` }}
-            className='relative'>
+            viewport={{ amount: "all", once: true }}
+            className='flex'>
             <div
                 style={{
                     maskImage:

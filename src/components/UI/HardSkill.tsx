@@ -1,7 +1,6 @@
-import { MouseEvent } from "react";
 import { Skill, SkillType } from "../../constants/SkillsData.ts";
 import { hasFilterOrNoFilter } from "../../utils/SkillUtils.ts";
-import { motion, useMotionValue } from "framer-motion";
+import { motion } from "framer-motion";
 import { twJoin, twMerge } from "tailwind-merge";
 
 type HardSkillProps = {
@@ -25,19 +24,8 @@ export default function HardSkill({
 }: HardSkillProps) {
     const isFiltered = hasFilterOrNoFilter(skill.type, filters);
 
-    const x = useMotionValue(0); // going to set this value on mouse move
-
-    const handleMouseMove = (event: MouseEvent<HTMLDivElement>) => {
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-expect-error
-        const halfWidth = event.target.offsetWidth / 2;
-        x.set(event.nativeEvent.offsetX - halfWidth); // set the x value, which is then used in transform and rotate
-    };
-
     return (
         <motion.div
-            onMouseMove={handleMouseMove}
-            onMouseLeave={() => x.set(0)}
             variants={{
                 selected: {
                     opacity: 1,
@@ -60,34 +48,10 @@ export default function HardSkill({
                 )}
                 animate={isSelected ? "isActive" : "init"}
                 onClick={() => isFiltered && onClick(idx)}>
-                {/*<motion.div*/}
-                {/*    variants={{*/}
-                {/*        init: {*/}
-                {/*            opacity: 0,*/}
-                {/*            bottom: "0%",*/}
-                {/*            scale: 0.5,*/}
-                {/*            translateX: "-50%",*/}
-                {/*            translateY: "-1rem",*/}
-                {/*        },*/}
-                {/*        isActive: {*/}
-                {/*            opacity: 0.75,*/}
-                {/*            bottom: "60%",*/}
-                {/*            scale: 1,*/}
-                {/*            transition: {*/}
-                {/*                easings: ["linear"],*/}
-                {/*                duration: 0.25,*/}
-                {/*            },*/}
-                {/*        },*/}
-                {/*    }}*/}
-                {/*    className='absolute left-1/2 z-[999]'>*/}
-                {/*    <SkillPopup skill={skill} />*/}
-                {/*</motion.div>*/}
                 <motion.div
                     variants={{
                         init: { transition: {} },
                         isActive: {
-                            // rotate: "-37.5deg",
-                            // skewX: "15deg",
                             transition: {
                                 staggerChildren: 0.05,
                             },

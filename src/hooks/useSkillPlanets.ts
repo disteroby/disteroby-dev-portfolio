@@ -7,8 +7,8 @@ import colors from "tailwindcss/colors";
 
 // Parameters
 const planetPerRing = 5;
-const colorFrom = new THREE.Color(colors.purple["500"]);
-const colorTo = new THREE.Color(colors.cyan["500"]);
+const colorFrom = new THREE.Color(colors.purple["400"]);
+const colorTo = new THREE.Color(colors.cyan["400"]);
 
 type PlanetData = {
     coords: {
@@ -33,78 +33,86 @@ export default function useSkillPlanets(
 ) {
     return useMemo(
         () =>
-            skillsData.map((skill, i) => {
-                // Normalized index --> (0,1]
-                const normalizedIdx = (i + 1) / skillsData.length;
+            skillsData
+                .sort((skillA, skillB) => skillB.level - skillA.level)
+                .map((skill, i) => {
+                    // Normalized index --> (0,1]
+                    const normalizedIdx = (i + 1) / skillsData.length;
 
-                // Stepped index --> (0,1], step = planetPerRing
-                const stepNormalizedIdx =
-                    Math.ceil(normalizedIdx * planetPerRing) / planetPerRing;
+                    // Stepped index --> (0,1], step = planetPerRing
+                    const stepNormalizedIdx =
+                        Math.ceil(normalizedIdx * planetPerRing) /
+                        planetPerRing;
 
-                // Custom distances
-                const distanceNorm = Lerp(mobilePadding, 1, stepNormalizedIdx);
+                    // Custom distances
+                    const distanceNorm = Lerp(
+                        mobilePadding,
+                        1,
+                        stepNormalizedIdx,
+                    );
 
-                // Padding from center
-                const distancePadding = Lerp(
-                    fullSizePadding,
-                    1,
-                    stepNormalizedIdx,
-                );
+                    // Padding from center
+                    const distancePadding = Lerp(
+                        fullSizePadding,
+                        1,
+                        stepNormalizedIdx,
+                    );
 
-                const offset =
-                    Math.floor(i / planetPerRing) % 2 === 0
-                        ? 0
-                        : Math.PI / planetPerRing;
-                const theta =
-                    ((Math.PI * 2) / planetPerRing) * (i % planetPerRing) +
-                    offset;
+                    const offset =
+                        Math.floor(i / planetPerRing) % 2 === 0
+                            ? 0
+                            : Math.PI / planetPerRing;
+                    const theta =
+                        ((Math.PI * 2) / planetPerRing) * (i % planetPerRing) +
+                        offset;
 
-                const coordsList = [distanceNorm, distancePadding]
-                    .map(
-                        dist =>
-                            polarToCartesian(theta, dist).map(
-                                coord => coord * 100,
-                            ) as [number, number],
-                    )
-                    .map(coords => ({
-                        x: coords[0],
-                        y: coords[1],
-                    }));
+                    const coordsList = [distanceNorm, distancePadding]
+                        .map(
+                            dist =>
+                                polarToCartesian(theta, dist)
+                                    .map(coord => coord * 100)
+                                    .map(
+                                        coord => Math.round(coord * 100) / 100,
+                                    ) as [number, number],
+                        )
+                        .map(coords => ({
+                            x: coords[0],
+                            y: coords[1],
+                        }));
 
-                // Horizontal gradients color
-                const colorsLerp = coordsList.map(coords => coords.x / 100) as [
-                    number,
-                    number,
-                ];
+                    // Horizontal gradients color
+                    const colorsLerp = coordsList.map(
+                        coords => coords.x / 100,
+                    ) as [number, number];
 
-                const mobile: PlanetData = {
-                    coords: coordsList[0],
-                    distance: distanceNorm,
-                    color: LerpColor(
-                        colorFrom,
-                        colorTo,
-                        colorsLerp[0],
-                    ).getHexString(),
-                };
+                    const mobile: PlanetData = {
+                        coords: coordsList[0],
+                        distance: distanceNorm,
+                        color: LerpColor(
+                            colorFrom,
+                            colorTo,
+                            colorsLerp[0],
+                        ).getHexString(),
+                    };
 
-                const fullSize: PlanetData = {
-                    coords: coordsList[1],
-                    distance: distancePadding,
-                    color: LerpColor(
-                        colorFrom,
-                        colorTo,
-                        colorsLerp[1],
-                    ).getHexString(),
-                };
+                    const fullSize: PlanetData = {
+                        coords: coordsList[1],
+                        distance: distancePadding,
+                        color: LerpColor(
+                            colorFrom,
+                            colorTo,
+                            colorsLerp[1],
+                        ).getHexString(),
+                    };
 
-                return {
-                    skill,
-                    size: {
-                        mobile,
-                        fullSize,
-                    },
-                } as SkillPlanet;
-            }),
+                    return {
+                        skill,
+                        size: {
+                            mobile,
+                            fullSize,
+                        },
+                    } as SkillPlanet;
+                }),
         [mobilePadding, fullSizePadding],
     );
 }

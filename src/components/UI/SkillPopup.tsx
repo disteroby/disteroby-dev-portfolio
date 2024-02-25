@@ -1,6 +1,6 @@
 import { Key } from "react";
 import { Skill } from "../../constants/SkillsData.ts";
-import { BsBook, BsBookFill, BsBookHalf } from "react-icons/bs";
+import { PiStar, PiStarFill, PiStarHalfFill } from "react-icons/pi";
 
 type LevelType = "full" | "half" | "empty";
 
@@ -31,11 +31,11 @@ export default function SkillPopup({ skill }: SkillPopupProps) {
 
         switch (star) {
             case "full":
-                return <BsBookFill {...props} />;
+                return <PiStarFill {...props} />;
             case "half":
-                return <BsBookHalf {...props} />;
+                return <PiStarHalfFill {...props} />;
             case "empty":
-                return <BsBook {...props} />;
+                return <PiStar {...props} />;
         }
     }
 

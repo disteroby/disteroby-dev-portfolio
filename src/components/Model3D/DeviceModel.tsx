@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
     BufferGeometry,
     DoubleSide,
@@ -10,6 +10,7 @@ import { Euler, Vector3 } from "@react-three/fiber";
 import { ThreeEvent } from "@react-three/fiber/dist/declarations/src/core/events";
 import { useAnimations, useGLTF, useTexture } from "@react-three/drei";
 import { DeviceData } from "../../constants/ProjectsData.ts";
+import useTimeout from "../../hooks/useTimeout.ts";
 import { modelPath, texturePath } from "../../utils/ResourcesUtils.ts";
 import { motion } from "framer-motion-3d";
 
@@ -18,6 +19,8 @@ type DeviceModelProps = {
     position?: Vector3;
     rotation?: Euler;
     scale?: Vector3;
+    animDelay?: number;
+    animDuration?: number;
     inView?: boolean;
     hoverAnimation?: boolean;
     onHover?: (event: ThreeEvent<PointerEvent>) => void;
@@ -37,12 +40,24 @@ function DeviceModel({
     position,
     rotation,
     scale,
-    hoverAnimation = false,
+    animDelay = 0,
+    animDuration = 1,
     inView = true,
+    hoverAnimation = false,
     onHover,
     onLeave,
     onClick,
 }: DeviceModelProps) {
+    const [delayCompleted, setDelayCompleted] = useState(animDelay <= 0);
+
+    useTimeout(
+        () => {
+            setDelayCompleted(true);
+        },
+        animDelay,
+        animDelay > 0,
+    );
+
     const screens = useTexture(
         device.textures.map(texture => texturePath(texture)),
     );
@@ -56,21 +71,31 @@ function DeviceModel({
     );
 
     const group = useRef<Group>(null!);
-    const { actions } = useAnimations(animations, group);
+    const { actions, mixer } = useAnimations(animations, group);
 
     useEffect(() => {
-        if (inView) {
-            actions?.screenflipAction
-                ?.setDuration(1)
-                .setLoop(2200, 1)
-                // .reset()
-                .play();
+        if (inView && delayCompleted) {
+            animations.forEach(animation => {
+                const action = mixer
+                    // .clipAction(animation, group.current)
+                    .clipAction(animation)
+                    .setDuration(animDuration)
+                    .setLoop(2200, 1);
+                action.clampWhenFinished = true;
+                action.play();
+            });
         }
 
         return () => {
-            actions?.screenflipAction?.stop();
+            animations.forEach(animation => {
+                const action = mixer.existingAction(animation);
+                if (action) {
+                    action.timeScale = -1;
+                    action.play();
+                }
+            });
         };
-    }, [actions, inView]);
+    }, [mixer, actions, inView, animations, delayCompleted, animDuration]);
 
     return (
         <motion.group
@@ -83,8 +108,8 @@ function DeviceModel({
                               // type: "spring",
                               // stiffness: 200,
                               // damping: 20,
-                              duration: 2,
-                              easings: ["easeIn"],
+                              duration: 3,
+                              easings: ["easeOut"],
                           },
                       }
                     : {}
@@ -115,7 +140,7 @@ function DeviceModel({
             <group
                 ref={group}
                 name='screenflip'
-                rotation-x={-0.1}
+                rotation-x={Math.PI / 2}
                 position={[0, -0.04, 0.41]}>
                 <group
                     position={[0, 2.96, -0.13]}

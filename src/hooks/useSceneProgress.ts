@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useProgress } from "@react-three/drei";
+import useTimeout from "./useTimeout.ts";
 
 export default function useSceneProgress(
     minTimeout: number,
@@ -11,15 +12,19 @@ export default function useSceneProgress(
     const [minTimeoutFlag, setMinTimeoutFlag] = useState(false);
     const [extraTimeoutFlag, setExtraTimeoutFlag] = useState(false);
 
-    useEffect(() => {
-        const timer = setTimeout(() => {
-            setMinTimeoutFlag(true);
-        }, minTimeout);
+    // useEffect(() => {
+    //     const timer = setTimeout(() => {
+    //         setMinTimeoutFlag(true);
+    //     }, minTimeout);
+    //
+    //     return () => {
+    //         clearTimeout(timer);
+    //     };
+    // }, [minTimeout]);
 
-        return () => {
-            clearTimeout(timer);
-        };
-    }, [minTimeout]);
+    useTimeout(() => {
+        setMinTimeoutFlag(true);
+    }, minTimeout);
 
     useEffect(() => {
         let timer: number | undefined = undefined;

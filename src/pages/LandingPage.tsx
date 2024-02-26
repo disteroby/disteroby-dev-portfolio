@@ -35,7 +35,7 @@ type SectionData = {
 };
 
 function LandingPage() {
-    const pageIsLoaded = useSceneProgress(500, 2000) === 100;
+    const pageIsLoaded = useSceneProgress(100, 5000) === 100;
 
     const heroRef = useRef(null!);
     const projectsRef = useRef(null!);

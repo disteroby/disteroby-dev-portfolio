@@ -56,23 +56,25 @@ function HeroDevices({ inView }: HeroDevicesProps) {
     });
 
     return (
-        <motion.group
-            initial={{ y: -1 }}
-            animate={{ y: -3 }}
-            transition={{ duration: 5, easings: ["easeOut"] }}
-            position={[0, -3, 0]}>
-            <group ref={devicesRef}>
-                {devices.map((device, idx) => (
-                    <group
-                        key={idx}
-                        position={device.transform.position}
-                        rotation={device.transform.rotation}>
-                        <Float
-                            floatIntensity={0.25}
-                            speed={10}
-                            position={[0, 2, 0]}
-                            rotationIntensity={0}>
+        <group ref={devicesRef} position-y={-3}>
+            {devices.map((device, idx) => (
+                <group
+                    key={idx}
+                    position={device.transform.position}
+                    rotation={device.transform.rotation}>
+                    <Float
+                        floatIntensity={0.25}
+                        speed={10}
+                        position={[0, 2, 0]}
+                        rotationIntensity={0}>
+                        <motion.group
+                            initial={{ y: 2 }}
+                            animate={{ y: -0.15 }}
+                            transition={{ duration: 5, easings: ["easeOut"] }}
+                            position={[0, 2, 0]}>
                             <DeviceModel
+                                animDuration={4}
+                                animDelay={2000}
                                 inView={inView}
                                 device={device}
                                 scale={device.transform.scale}
@@ -89,19 +91,19 @@ function HeroDevices({ inView }: HeroDevicesProps) {
                                         ?.scrollIntoView();
                                 }}
                             />
-                        </Float>
-                        <Shadow
-                            color='black'
-                            position={[0, 1.5, 0.75]}
-                            scale={3}
-                            colorStop={0.25}
-                            opacity={0.75}
-                            fog={true}
-                        />
-                    </group>
-                ))}
-            </group>
-        </motion.group>
+                        </motion.group>
+                    </Float>
+                    <Shadow
+                        color='black'
+                        position={[0, 1.5, 0.75]}
+                        scale={3}
+                        colorStop={0.25}
+                        opacity={0.75}
+                        fog={true}
+                    />
+                </group>
+            ))}
+        </group>
     );
 }
 

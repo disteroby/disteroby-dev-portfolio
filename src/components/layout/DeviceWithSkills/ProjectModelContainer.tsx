@@ -12,7 +12,7 @@ type ProjectModelContainerProps = {
 const ProjectModelContainer = memo(
     ({ project }: ProjectModelContainerProps) => {
         const wrapperRef = useRef(null!);
-        const inView = useInView(wrapperRef, { amount: "some", once: true });
+        const inView = useInView(wrapperRef, { amount: 0.75, once: true });
 
         return (
             <div ref={wrapperRef} className='h-full w-full hover:select-none'>

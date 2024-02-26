@@ -28,7 +28,7 @@ export default function ProjectModel({
                 rotation-x={-Math.PI * 1.94}
                 rotationIntensity={0.25}
                 {...props}>
-                <DeviceModel inView={inView} device={device} />
+                <DeviceModel animDuration={3} inView={inView} device={device} />
             </Float>
             <Shadow
                 position={[0, -0.65, 0]}

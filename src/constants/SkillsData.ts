@@ -45,7 +45,7 @@ export const skillsData: Skill[] = [
         name: "Bootstrap",
         type: "web",
         logo: BiLogoBootstrap,
-        level: 4.5,
+        level: 4,
     },
     {
         name: "Jest",
@@ -141,7 +141,7 @@ export const skillsData: Skill[] = [
         name: "React",
         type: "web",
         logo: BiLogoReact,
-        level: 4,
+        level: 4.5,
     },
     {
         name: "Flutter",

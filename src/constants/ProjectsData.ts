@@ -67,7 +67,7 @@ export const PROJECTS: ProjectData[] = [
             type: "smartphone",
             deviceOrientation: "portrait",
             mainTextureIndex: 0,
-            textures: ["texture_codehunter_0.webp"],
+            textures: ["texture_codehunter_0.webp"], //TODO
         },
     },
     {
@@ -80,7 +80,7 @@ export const PROJECTS: ProjectData[] = [
             type: "smartphone",
             deviceOrientation: "landscape",
             mainTextureIndex: 0,
-            textures: ["texture_codehunter_0.webp"],
+            textures: ["texture_codehunter_0.webp"], //TODO
         },
     },
     {
@@ -93,7 +93,7 @@ export const PROJECTS: ProjectData[] = [
             type: "smartphone",
             deviceOrientation: "portrait",
             mainTextureIndex: 0,
-            textures: ["texture_codehunter_0.webp"],
+            textures: ["texture_codehunter_0.webp"], //TODO
         },
     },
     {
@@ -117,7 +117,7 @@ export const PROJECTS: ProjectData[] = [
         device: {
             type: "laptop",
             mainTextureIndex: 0,
-            textures: ["texture_codehunter_0.webp"],
+            textures: ["texture_unimiibo_0.webp"],
         },
     },
     {
@@ -148,7 +148,7 @@ export const PROJECTS: ProjectData[] = [
         device: {
             type: "laptop",
             mainTextureIndex: 0,
-            textures: ["texture_codehunter_0.webp"],
+            textures: ["texture_undertale3d_0.webp"],
         },
     },
 ];

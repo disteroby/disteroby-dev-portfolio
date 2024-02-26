@@ -12,7 +12,6 @@ import {
     MeshTransform,
 } from "../../../utils/TransformUtils.ts";
 import DeviceModel from "../../Model3D/DeviceModel.tsx";
-import { motion } from "framer-motion-3d";
 
 type Device = DeviceData & {
     transform: MeshTransform;
@@ -67,11 +66,11 @@ function HeroDevices({ inView }: HeroDevicesProps) {
                         speed={10}
                         position={[0, 2, 0]}
                         rotationIntensity={0}>
-                        <motion.group
-                            initial={{ y: 2 }}
-                            animate={{ y: -0.15 }}
-                            transition={{ duration: 5, easings: ["easeOut"] }}
-                            position={[0, 2, 0]}>
+                        <group
+                            // initial={{ y: 2 }}
+                            // animate={{ y: -0.15 }}
+                            // transition={{ duration: 5, easings: ["easeOut"] }}
+                            position={[0, -0.15, 0]}>
                             <DeviceModel
                                 animDuration={4}
                                 animDelay={2000}
@@ -91,7 +90,7 @@ function HeroDevices({ inView }: HeroDevicesProps) {
                                         ?.scrollIntoView();
                                 }}
                             />
-                        </motion.group>
+                        </group>
                     </Float>
                     <Shadow
                         color='black'

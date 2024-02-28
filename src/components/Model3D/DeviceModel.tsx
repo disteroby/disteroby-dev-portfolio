@@ -3,6 +3,7 @@ import { Euler, Vector3 } from "@react-three/fiber";
 import { ThreeEvent } from "@react-three/fiber/dist/declarations/src/core/events";
 import { DeviceData } from "../../constants/ProjectsData.ts";
 import Laptop from "./Laptop.tsx";
+import Smartphone from "./Smartphone.tsx";
 import { motion } from "framer-motion-3d";
 
 type DeviceModelProps = {
@@ -74,12 +75,16 @@ function DeviceModel({
             scale={scale}
             position={position}
             rotation={rotation}>
-            <Laptop
-                device={device}
-                inView={inView}
-                animDuration={animDuration}
-                animDelay={animDelay}
-            />
+            {device.type === "laptop" ? (
+                <Laptop
+                    device={device}
+                    inView={inView}
+                    animDuration={animDuration}
+                    animDelay={animDelay}
+                />
+            ) : (
+                <Smartphone device={device} scale={1.75} position-y={1.8} />
+            )}
         </motion.group>
     );
 }

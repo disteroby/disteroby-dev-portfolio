@@ -48,7 +48,6 @@ export default function Laptop({
         if (inView && delayCompleted) {
             animations.forEach(animation => {
                 const action = mixer
-                    // .clipAction(animation, group.current)
                     .clipAction(animation)
                     .setDuration(animDuration)
                     .setLoop(2200, 1);

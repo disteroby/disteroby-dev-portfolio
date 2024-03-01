@@ -1,9 +1,8 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import { DoubleSide, Group } from "three";
-import { useAnimations, useGLTF, useTexture } from "@react-three/drei";
 import { DeviceData } from "../../constants/ProjectsData.ts";
-import useTimeout from "../../hooks/useTimeout.ts";
-import { modelPath, texturePath } from "../../utils/ResourcesUtils.ts";
+import useModelAnimations from "../../hooks/useModelAnimations.ts";
+import useProjectTexture from "../../hooks/useProjectTexture.ts";
 import { IGeometry } from "./DeviceModel.tsx";
 
 type LaptopProps = {
@@ -19,53 +18,16 @@ export default function Laptop({
     animDuration,
     inView,
 }: LaptopProps) {
-    const [delayCompleted, setDelayCompleted] = useState(animDelay <= 0);
-
-    useTimeout(
-        () => {
-            setDelayCompleted(true);
-        },
-        animDelay,
-        animDelay > 0,
-    );
-
-    const screens = useTexture(
-        device.textures.map(texture => texturePath(texture)),
-    );
-    const currentTexture = screens[device.mainTextureIndex];
-
-    // const screens = useVideoTexture("./video/test.mp4");
-
-    const { nodes, materials, animations } = useGLTF(
-        modelPath(device.type),
-        true,
-    );
-
     const group = useRef<Group>(null!);
-    const { actions, mixer } = useAnimations(animations, group);
+    const { nodes, materials } = useModelAnimations(
+        device,
+        animDelay,
+        animDuration,
+        inView,
+        group,
+    );
 
-    useEffect(() => {
-        if (inView && delayCompleted) {
-            animations.forEach(animation => {
-                const action = mixer
-                    .clipAction(animation)
-                    .setDuration(animDuration)
-                    .setLoop(2200, 1);
-                action.clampWhenFinished = true;
-                action.play();
-            });
-        }
-
-        return () => {
-            animations.forEach(animation => {
-                const action = mixer.existingAction(animation);
-                if (action) {
-                    action.timeScale = -1;
-                    action.play();
-                }
-            });
-        };
-    }, [mixer, actions, inView, animations, delayCompleted, animDuration]);
+    const texture = useProjectTexture(device);
 
     return (
         <>
@@ -93,7 +55,7 @@ export default function Laptop({
                             roughness={0.9}
                             metalness={0.35}
                             side={DoubleSide}
-                            map={currentTexture}
+                            map={texture}
                         />
                     </mesh>
                 </group>

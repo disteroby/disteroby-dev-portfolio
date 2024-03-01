@@ -31,7 +31,6 @@ function HeroDevices({ inView }: HeroDevicesProps) {
         const theta = (i * Math.PI * 2) / PROJECTS.length;
         const transform: MeshTransform = {
             ...itemsPolarTransform(theta, itemsPositionRadius),
-            scale: [0.2, 0.2, 0.2],
         };
 
         return {
@@ -66,17 +65,12 @@ function HeroDevices({ inView }: HeroDevicesProps) {
                         speed={10}
                         position={[0, 2, 0]}
                         rotationIntensity={0}>
-                        <group
-                            // initial={{ y: 2 }}
-                            // animate={{ y: -0.15 }}
-                            // transition={{ duration: 5, easings: ["easeOut"] }}
-                            position={[0, -0.15, 0]}>
+                        <group position={[0, -0.15, 0]}>
                             <DeviceModel
                                 animDuration={4}
                                 animDelay={2000}
                                 inView={inView}
                                 device={device}
-                                scale={device.transform.scale}
                                 hoverAnimation={true}
                                 onHover={() => {
                                     targetVelocity.current = minSpeedMultiplier;
@@ -94,7 +88,7 @@ function HeroDevices({ inView }: HeroDevicesProps) {
                     </Float>
                     <Shadow
                         color='black'
-                        position={[0, 1.5, 0.75]}
+                        position={[0, 1.1, 0.75]}
                         scale={3}
                         colorStop={0.25}
                         opacity={0.75}

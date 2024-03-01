@@ -10,7 +10,7 @@ type DeviceModelProps = {
     device: DeviceData;
     position?: Vector3;
     rotation?: Euler;
-    scale?: Vector3;
+    scale?: number;
     animDelay?: number;
     animDuration?: number;
     inView?: boolean;
@@ -75,6 +75,7 @@ function DeviceModel({
             scale={scale}
             position={position}
             rotation={rotation}>
+            <ambientLight intensity={0.4} />
             {device.type === "laptop" ? (
                 <Laptop
                     device={device}
@@ -88,8 +89,7 @@ function DeviceModel({
                     inView={inView}
                     animDuration={animDuration}
                     animDelay={animDelay}
-                    scale={1.75}
-                    position-y={1.8}
+                    scale={1.35 * (scale ?? 1)}
                 />
             )}
         </motion.group>

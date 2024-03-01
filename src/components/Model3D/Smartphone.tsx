@@ -32,10 +32,12 @@ type SmartphoneProps = {
     animDelay: number;
     animDuration: number;
     inView: boolean;
-} & JSX.IntrinsicElements["group"];
+    scale: number;
+};
 
 export default function Smartphone({
     device,
+    scale,
     animDelay,
     animDuration,
     inView,
@@ -57,8 +59,20 @@ export default function Smartphone({
             ? 0
             : Math.PI / 2;
 
+    const realScale =
+        scale *
+        (device.type === "smartphone" && device.deviceOrientation === "portrait"
+            ? 1
+            : 1.2);
+
     return (
-        <group ref={group} rotation-z={rotationMode} {...props} dispose={null}>
+        <group
+            ref={group}
+            scale={realScale}
+            position-y={1.8}
+            rotation-z={rotationMode}
+            {...props}
+            dispose={null}>
             <group name='Scene'>
                 <group name='root' rotation={[Math.PI / 2, 0, 0]}>
                     <mesh

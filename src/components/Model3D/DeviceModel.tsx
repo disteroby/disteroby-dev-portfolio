@@ -83,7 +83,14 @@ function DeviceModel({
                     animDelay={animDelay}
                 />
             ) : (
-                <Smartphone device={device} scale={1.75} position-y={1.8} />
+                <Smartphone
+                    device={device}
+                    inView={inView}
+                    animDuration={animDuration}
+                    animDelay={animDelay}
+                    scale={1.75}
+                    position-y={1.8}
+                />
             )}
         </motion.group>
     );

@@ -67,7 +67,7 @@ export const PROJECTS: ProjectData[] = [
             type: "smartphone",
             deviceOrientation: "portrait",
             mainTextureIndex: 0,
-            textures: ["texture_codehunter_0.webp"], //TODO
+            textures: ["texture_mindblooming_0.jpg"], //TODO
         },
     },
     {
@@ -80,7 +80,7 @@ export const PROJECTS: ProjectData[] = [
             type: "smartphone",
             deviceOrientation: "landscape",
             mainTextureIndex: 0,
-            textures: ["texture_codehunter_0.webp"], //TODO
+            textures: ["texture_mindblooming_0.jpg"], //TODO
         },
     },
     {
@@ -93,7 +93,7 @@ export const PROJECTS: ProjectData[] = [
             type: "smartphone",
             deviceOrientation: "portrait",
             mainTextureIndex: 0,
-            textures: ["texture_codehunter_0.webp"], //TODO
+            textures: ["texture_mindblooming_0.jpg"], //TODO
         },
     },
     {

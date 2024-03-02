@@ -81,10 +81,8 @@ export default function Smartphone({
             ? 1
             : 1.2);
 
-    const { imgMatRef, texture, changeScreen } = useProjectTexture(
-        device,
-        screenLoop,
-    );
+    const { imgMatRef, texture, changeScreen, resetInterval } =
+        useProjectTexture(device, screenLoop && inView);
 
     return (
         <group
@@ -149,7 +147,10 @@ export default function Smartphone({
                     </group>
                     <mesh
                         name='screen'
-                        onClick={changeScreen}
+                        onClick={() => {
+                            changeScreen();
+                            resetInterval();
+                        }}
                         geometry={nodes.screen.geometry}>
                         <imageFadeMaterial
                             ref={imgMatRef}

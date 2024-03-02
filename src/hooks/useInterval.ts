@@ -1,10 +1,11 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 function useInterval(
     callback: () => void,
     time: number,
     enabled: boolean = true,
 ) {
+    const [resetCounter, setResetCounter] = useState(0);
     const callbackRef = useRef(callback);
 
     useEffect(() => {
@@ -17,7 +18,13 @@ function useInterval(
         return () => {
             clearInterval(timer);
         };
-    }, [enabled, time]);
+    }, [enabled, time, resetCounter]);
+
+    function resetInterval() {
+        setResetCounter(reset => reset + 1);
+    }
+
+    return resetInterval;
 }
 
 export default useInterval;

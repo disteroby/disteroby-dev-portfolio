@@ -67,7 +67,7 @@ export const PROJECTS: ProjectData[] = [
             type: "smartphone",
             deviceOrientation: "portrait",
             textureCount: 3,
-            texture: "texture_mindblooming_0.jpg",
+            texture: "texture_smartphone_test.jpg",
         },
     },
     {
@@ -80,7 +80,7 @@ export const PROJECTS: ProjectData[] = [
             type: "smartphone",
             deviceOrientation: "landscape",
             textureCount: 3,
-            texture: "texture_mindblooming_0.jpg",
+            texture: "texture_smartphone_test.jpg",
         },
     },
     {
@@ -93,7 +93,7 @@ export const PROJECTS: ProjectData[] = [
             type: "smartphone",
             deviceOrientation: "portrait",
             textureCount: 3,
-            texture: "texture_mindblooming_0.jpg",
+            texture: "texture_smartphone_test.jpg",
         },
     },
     {
@@ -117,7 +117,7 @@ export const PROJECTS: ProjectData[] = [
         device: {
             type: "laptop",
             textureCount: 3,
-            texture: "texture_mindblooming_0.jpg",
+            texture: "texture_unimiibo.jpg",
         },
     },
     {
@@ -129,7 +129,7 @@ export const PROJECTS: ProjectData[] = [
         device: {
             type: "laptop",
             textureCount: 3,
-            texture: "texture_mindblooming_0.jpg",
+            texture: "texture_codehunter.jpg",
         },
     },
     {
@@ -148,7 +148,7 @@ export const PROJECTS: ProjectData[] = [
         device: {
             type: "laptop",
             textureCount: 3,
-            texture: "texture_mindblooming_0.jpg",
+            texture: "texture_undertale3d.jpg",
         },
     },
 ];

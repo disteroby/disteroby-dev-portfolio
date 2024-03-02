@@ -2,7 +2,9 @@ import { useRef } from "react";
 import { Group } from "three";
 import * as THREE from "three";
 import { GLTF } from "three-stdlib";
+import { ThreeEvent } from "@react-three/fiber/dist/declarations/src/core/events";
 import { DeviceData } from "../../constants/ProjectsData.ts";
+import useCursorPointer from "../../hooks/useCursorPointer.ts";
 import useModelAnimations from "../../hooks/useModelAnimations.ts";
 import useProjectTexture from "../../hooks/useProjectTexture.ts";
 
@@ -32,6 +34,7 @@ type LaptopProps = {
     animDuration: number;
     inView: boolean;
     screenLoop: boolean;
+    onClick?: (event: ThreeEvent<MouseEvent>) => void;
 };
 
 export default function Laptop({
@@ -40,6 +43,7 @@ export default function Laptop({
     animDuration,
     inView,
     screenLoop,
+    onClick,
 }: LaptopProps) {
     const group = useRef<Group>(null!);
     const { nodes, materials } = useModelAnimations(
@@ -52,11 +56,24 @@ export default function Laptop({
 
     const { imgMatRef, texture, changeScreen } = useProjectTexture(
         device,
-        screenLoop,
+        screenLoop && inView,
     );
 
+    const setCursor = useCursorPointer();
+
     return (
-        <>
+        <group
+            onPointerEnter={() => {
+                setCursor(true);
+            }}
+            onPointerLeave={() => {
+                setCursor(false);
+            }}
+            onClick={e => {
+                e.stopPropagation();
+                onClick?.(e);
+                if (screenLoop) changeScreen();
+            }}>
             <group
                 ref={group}
                 name='screenflip'
@@ -75,10 +92,7 @@ export default function Laptop({
                         geometry={nodes.Cube008_1.geometry}
                         material={materials["matte.001"]}
                     />
-                    <mesh
-                        name='Cube008_2'
-                        onClick={changeScreen}
-                        geometry={nodes.Cube008_2.geometry}>
+                    <mesh name='Cube008_2' geometry={nodes.Cube008_2.geometry}>
                         <imageFadeMaterial
                             ref={imgMatRef}
                             tex={texture}
@@ -112,6 +126,6 @@ export default function Laptop({
                 material={materials.touchbar}
                 position={[0, -0.027, 1.201]}
             />
-        </>
+        </group>
     );
 }

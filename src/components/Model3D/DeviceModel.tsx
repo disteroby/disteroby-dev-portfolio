@@ -37,17 +37,8 @@ function DeviceModel({
     onLeave,
     onClick,
 }: DeviceModelProps) {
-    // const mouseX = useMotionValue(0);
-    //
-    // const cameraX = useSmoothTransform(
-    //     mouseX,
-    //     { stiffness: 600, damping: 30 },
-    //     x => x / 350,
-    // );
-
     const animationProps = {
         y: 0,
-        // rotateZ: mouseX.get(),
         transition: {
             duration: 3,
             easings: ["easeOut"],
@@ -72,15 +63,6 @@ function DeviceModel({
                     onLeave?.(e);
                 }
             }}
-            // onPointerMove={e => {
-            //     mouseX.set(e.uv?.x ?? 0);
-            // }}
-            onClick={e => {
-                if (onClick) {
-                    e.stopPropagation();
-                    onClick?.(e);
-                }
-            }}
             scale={scale}
             position={position}
             rotation={rotation}>
@@ -92,6 +74,7 @@ function DeviceModel({
                     animDuration={animDuration}
                     animDelay={animDelay}
                     screenLoop={screenLoop}
+                    onClick={onClick}
                 />
             ) : (
                 <Smartphone
@@ -101,6 +84,7 @@ function DeviceModel({
                     animDelay={animDelay}
                     screenLoop={screenLoop}
                     scale={1.35 * (scale ?? 1)}
+                    onClick={onClick}
                 />
             )}
         </motion.group>

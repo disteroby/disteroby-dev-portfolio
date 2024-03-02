@@ -19,8 +19,10 @@ export default function FragmentProject({
                 "flex w-full flex-col items-stretch gap-[5%] md:min-h-[50rem]",
                 index % 2 ? "lg:flex-row-reverse" : "lg:flex-row",
             )}>
-            <div className='aspect-square h-auto w-full overflow-hidden lg:w-[50%]'>
-                <ProjectModelContainer project={project} />
+            <div className='relative aspect-square h-auto w-full lg:w-[50%]'>
+                <div className='absolute -inset-[4rem] border border-black lg:-inset-[8rem]'>
+                    <ProjectModelContainer project={project} />
+                </div>
             </div>
             <div className='w-full lg:w-[45%]'>
                 <ProjectDescription project={project} index={index + 1} />

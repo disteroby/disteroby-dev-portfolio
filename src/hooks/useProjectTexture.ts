@@ -18,7 +18,7 @@ export default function useProjectTexture(
 
     const imgMatRef = useRef<typeof ImageFadeMaterial>(null!);
 
-    const changeScreen = useCallback(() => {
+    const changeRefScreen = useCallback(() => {
         imgMatRef.current.currentIdx = imgMatRef.current.targetIdx;
         imgMatRef.current.targetIdx =
             (imgMatRef.current.targetIdx + 1) % device.textureCount;
@@ -30,22 +30,15 @@ export default function useProjectTexture(
     });
 
     const resetInterval = useInterval(
-        changeScreen,
+        changeRefScreen,
         screenChangeInterval,
         enableAnim,
     );
 
-    // useEffect(() => {
-    //     const timer = setInterval(() => {
-    //         if (enabled) {
-    //             callbackRef.current();
-    //         }
-    //     }, time);
-    //
-    //     return () => {
-    //         clearInterval(timer);
-    //     };
-    // }, [enabled, time]);
+    const changeScreen = useCallback(() => {
+        changeRefScreen();
+        resetInterval();
+    }, [changeRefScreen, resetInterval]);
 
-    return { imgMatRef, texture, changeScreen, resetInterval } as const;
+    return { imgMatRef, texture, changeScreen } as const;
 }

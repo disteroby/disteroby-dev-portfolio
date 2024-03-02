@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 
-function useInterval(
+export default function useInterval(
     callback: () => void,
     time: number,
     enabled: boolean = true,
@@ -26,5 +26,3 @@ function useInterval(
 
     return resetInterval;
 }
-
-export default useInterval;

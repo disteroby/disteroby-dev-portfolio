@@ -2,24 +2,11 @@ import { useRef } from "react";
 import { Group } from "three";
 import * as THREE from "three";
 import { GLTF } from "three-stdlib";
-import { extend, ReactThreeFiber } from "@react-three/fiber";
+import { ThreeEvent } from "@react-three/fiber/dist/declarations/src/core/events";
 import { DeviceData } from "../../constants/ProjectsData.ts";
+import useCursorPointer from "../../hooks/useCursorPointer.ts";
 import useModelAnimations from "../../hooks/useModelAnimations.ts";
 import useProjectTexture from "../../hooks/useProjectTexture.ts";
-import { ImageFadeMaterial } from "./ImageFadeMaterial.tsx";
-
-declare global {
-    // eslint-disable-next-line @typescript-eslint/no-namespace
-    namespace JSX {
-        interface IntrinsicElements {
-            imageFadeMaterial: ReactThreeFiber.Node<
-                typeof ImageFadeMaterial &
-                    JSX.IntrinsicElements["shaderMaterial"],
-                typeof ImageFadeMaterial
-            >;
-        }
-    }
-}
 
 type GLTFResult = GLTF & {
     nodes: {
@@ -49,9 +36,8 @@ type SmartphoneProps = {
     inView: boolean;
     screenLoop: boolean;
     scale: number;
+    onClick?: (event: ThreeEvent<MouseEvent>) => void;
 };
-
-extend({ TestMaterial: ImageFadeMaterial });
 
 export default function Smartphone({
     device,
@@ -60,6 +46,7 @@ export default function Smartphone({
     animDuration,
     inView,
     screenLoop,
+    onClick,
 }: SmartphoneProps) {
     const group = useRef<Group>(null!);
     const { nodes, materials } = useModelAnimations(
@@ -75,21 +62,30 @@ export default function Smartphone({
             ? 0
             : Math.PI / 2;
 
-    const realScale =
-        scale *
-        (device.type === "smartphone" && device.deviceOrientation === "portrait"
-            ? 1
-            : 1.2);
+    const { imgMatRef, texture, changeScreen } = useProjectTexture(
+        device,
+        screenLoop && inView,
+    );
 
-    const { imgMatRef, texture, changeScreen, resetInterval } =
-        useProjectTexture(device, screenLoop && inView);
+    const setCursor = useCursorPointer();
 
     return (
         <group
             ref={group}
-            scale={realScale}
+            scale={scale}
             position-y={1.8}
             rotation-z={rotationMode}
+            onPointerEnter={() => {
+                setCursor(true);
+            }}
+            onPointerLeave={() => {
+                setCursor(false);
+            }}
+            onClick={e => {
+                e.stopPropagation();
+                onClick?.(e);
+                if (screenLoop) changeScreen();
+            }}
             dispose={null}>
             <group name='Scene'>
                 <group name='root' rotation={[Math.PI / 2, 0, 0]}>
@@ -145,13 +141,7 @@ export default function Smartphone({
                             material={materials.lens}
                         />
                     </group>
-                    <mesh
-                        name='screen'
-                        onClick={() => {
-                            changeScreen();
-                            resetInterval();
-                        }}
-                        geometry={nodes.screen.geometry}>
+                    <mesh name='screen' geometry={nodes.screen.geometry}>
                         <imageFadeMaterial
                             ref={imgMatRef}
                             tex={texture}

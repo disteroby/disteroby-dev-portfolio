@@ -21,8 +21,11 @@ void main() {
     vec4 croppedTextStart = texture2D(tex, startUv);
     vec4 croppedTextEnd = texture2D(tex, endUv);
 
+    // Alpha Blend Transition
     vec4 finalTexture = mix(croppedTextStart, croppedTextEnd, alpha);
-//    vec4 finalTexture = texture2D(tex, mix(startUv, endUv, alpha));
+
+//    // Slide Transition
+//     vec4 finalTexture = texture2D(tex, mix(startUv, endUv, alpha));
 
     gl_FragColor = finalTexture;
     #include <tonemapping_fragment>

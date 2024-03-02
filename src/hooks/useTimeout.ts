@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 
-function useTimeout(
+export default function useTimeout(
     callback: () => void,
     time: number,
     enabled: boolean = true,
@@ -19,5 +19,3 @@ function useTimeout(
         };
     }, [enabled, time]);
 }
-
-export default useTimeout;

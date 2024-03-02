@@ -12,16 +12,6 @@ export default function useSceneProgress(
     const [minTimeoutFlag, setMinTimeoutFlag] = useState(false);
     const [extraTimeoutFlag, setExtraTimeoutFlag] = useState(false);
 
-    // useEffect(() => {
-    //     const timer = setTimeout(() => {
-    //         setMinTimeoutFlag(true);
-    //     }, minTimeout);
-    //
-    //     return () => {
-    //         clearTimeout(timer);
-    //     };
-    // }, [minTimeout]);
-
     useTimeout(() => {
         setMinTimeoutFlag(true);
     }, minTimeout);

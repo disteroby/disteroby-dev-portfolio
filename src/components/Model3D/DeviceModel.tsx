@@ -1,4 +1,3 @@
-import { BufferGeometry, NormalBufferAttributes, Object3D } from "three";
 import { Euler, Vector3 } from "@react-three/fiber";
 import { ThreeEvent } from "@react-three/fiber/dist/declarations/src/core/events";
 import { DeviceData } from "../../constants/ProjectsData.ts";
@@ -15,13 +14,10 @@ type DeviceModelProps = {
     animDuration?: number;
     inView?: boolean;
     hoverAnimation?: boolean;
+    screenLoop: boolean;
     onHover?: (event: ThreeEvent<PointerEvent>) => void;
     onLeave?: (event: ThreeEvent<PointerEvent>) => void;
     onClick?: (event: ThreeEvent<MouseEvent>) => void;
-};
-
-export type IGeometry = Object3D & {
-    geometry: BufferGeometry<NormalBufferAttributes>;
 };
 
 const initialScale = 0.2;
@@ -36,12 +32,22 @@ function DeviceModel({
     animDuration = 1,
     inView = true,
     hoverAnimation = false,
+    screenLoop,
     onHover,
     onLeave,
     onClick,
 }: DeviceModelProps) {
+    // const mouseX = useMotionValue(0);
+    //
+    // const cameraX = useSmoothTransform(
+    //     mouseX,
+    //     { stiffness: 600, damping: 30 },
+    //     x => x / 350,
+    // );
+
     const animationProps = {
         y: 0,
+        // rotateZ: mouseX.get(),
         transition: {
             duration: 3,
             easings: ["easeOut"],
@@ -66,6 +72,9 @@ function DeviceModel({
                     onLeave?.(e);
                 }
             }}
+            // onPointerMove={e => {
+            //     mouseX.set(e.uv?.x ?? 0);
+            // }}
             onClick={e => {
                 if (onClick) {
                     e.stopPropagation();
@@ -82,6 +91,7 @@ function DeviceModel({
                     inView={inView}
                     animDuration={animDuration}
                     animDelay={animDelay}
+                    screenLoop={screenLoop}
                 />
             ) : (
                 <Smartphone
@@ -89,6 +99,7 @@ function DeviceModel({
                     inView={inView}
                     animDuration={animDuration}
                     animDelay={animDelay}
+                    screenLoop={screenLoop}
                     scale={1.35 * (scale ?? 1)}
                 />
             )}

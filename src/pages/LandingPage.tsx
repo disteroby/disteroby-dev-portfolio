@@ -154,9 +154,7 @@ function LandingPage() {
 useGLTF.preload(modelPath("laptop"));
 useGLTF.preload(modelPath("smartphone"));
 PROJECTS.forEach(({ device }) => {
-    device.textures.forEach(texture => {
-        useTexture.preload(texturePath(texture));
-    });
+    useTexture.preload(texturePath(device.texture));
 });
 
 export default LandingPage;

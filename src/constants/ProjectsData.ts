@@ -26,9 +26,9 @@ type SmartphoneData = {
 };
 
 export type DeviceData = {
-    mainTextureIndex: number;
-    textures: string[];
     type: DeviceType;
+    texture: string;
+    textureCount: number;
 } & (LaptopData | SmartphoneData);
 
 export type ProjectData = {
@@ -66,8 +66,8 @@ export const PROJECTS: ProjectData[] = [
         device: {
             type: "smartphone",
             deviceOrientation: "portrait",
-            mainTextureIndex: 0,
-            textures: ["texture_mindblooming_0.jpg"], //TODO
+            textureCount: 3,
+            texture: "texture_mindblooming_0.jpg",
         },
     },
     {
@@ -79,8 +79,8 @@ export const PROJECTS: ProjectData[] = [
         device: {
             type: "smartphone",
             deviceOrientation: "landscape",
-            mainTextureIndex: 0,
-            textures: ["texture_mindblooming_0.jpg"], //TODO
+            textureCount: 3,
+            texture: "texture_mindblooming_0.jpg",
         },
     },
     {
@@ -92,8 +92,8 @@ export const PROJECTS: ProjectData[] = [
         device: {
             type: "smartphone",
             deviceOrientation: "portrait",
-            mainTextureIndex: 0,
-            textures: ["texture_mindblooming_0.jpg"], //TODO
+            textureCount: 3,
+            texture: "texture_mindblooming_0.jpg",
         },
     },
     {
@@ -116,8 +116,8 @@ export const PROJECTS: ProjectData[] = [
         ],
         device: {
             type: "laptop",
-            mainTextureIndex: 0,
-            textures: ["texture_unimiibo_0.webp"],
+            textureCount: 3,
+            texture: "texture_mindblooming_0.jpg",
         },
     },
     {
@@ -128,8 +128,8 @@ export const PROJECTS: ProjectData[] = [
         tags: ["react", "spring-boot", "university-project"],
         device: {
             type: "laptop",
-            mainTextureIndex: 0,
-            textures: ["texture_codehunter_0.webp"],
+            textureCount: 3,
+            texture: "texture_mindblooming_0.jpg",
         },
     },
     {
@@ -147,8 +147,8 @@ export const PROJECTS: ProjectData[] = [
         ],
         device: {
             type: "laptop",
-            mainTextureIndex: 0,
-            textures: ["texture_undertale3d_0.webp"],
+            textureCount: 3,
+            texture: "texture_mindblooming_0.jpg",
         },
     },
 ];

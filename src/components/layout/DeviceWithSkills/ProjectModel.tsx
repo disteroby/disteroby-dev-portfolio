@@ -33,6 +33,7 @@ export default function ProjectModel({
                     scale={device.type === "smartphone" ? 1.5 : 1}
                     inView={inView}
                     device={device}
+                    screenLoop={true}
                 />
             </Float>
             <Shadow

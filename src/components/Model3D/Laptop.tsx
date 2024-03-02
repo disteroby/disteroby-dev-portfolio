@@ -1,15 +1,37 @@
 import { useRef } from "react";
-import { DoubleSide, Group } from "three";
+import { Group } from "three";
+import * as THREE from "three";
+import { GLTF } from "three-stdlib";
 import { DeviceData } from "../../constants/ProjectsData.ts";
 import useModelAnimations from "../../hooks/useModelAnimations.ts";
 import useProjectTexture from "../../hooks/useProjectTexture.ts";
-import { IGeometry } from "./DeviceModel.tsx";
+
+type GLTFResult = GLTF & {
+    nodes: {
+        Cube008: THREE.Mesh;
+        Cube008_1: THREE.Mesh;
+        Cube008_2: THREE.Mesh;
+        keyboard: THREE.Mesh;
+        Cube002: THREE.Mesh;
+        Cube002_1: THREE.Mesh;
+        touchbar: THREE.Mesh;
+    };
+    materials: {
+        aluminium: THREE.MeshStandardMaterial;
+        ["matte.001"]: THREE.MeshStandardMaterial;
+        ["screen.001"]: THREE.MeshPhysicalMaterial;
+        keys: THREE.MeshStandardMaterial;
+        trackpad: THREE.MeshStandardMaterial;
+        touchbar: THREE.MeshStandardMaterial;
+    };
+};
 
 type LaptopProps = {
     device: DeviceData;
     animDelay: number;
     animDuration: number;
     inView: boolean;
+    screenLoop: boolean;
 };
 
 export default function Laptop({
@@ -17,6 +39,7 @@ export default function Laptop({
     animDelay,
     animDuration,
     inView,
+    screenLoop,
 }: LaptopProps) {
     const group = useRef<Group>(null!);
     const { nodes, materials } = useModelAnimations(
@@ -25,9 +48,12 @@ export default function Laptop({
         animDuration,
         inView,
         group,
-    );
+    ) as GLTFResult;
 
-    const texture = useProjectTexture(device);
+    const { imgMatRef, texture, changeScreen } = useProjectTexture(
+        device,
+        screenLoop,
+    );
 
     return (
         <>
@@ -37,48 +63,54 @@ export default function Laptop({
                 rotation-x={Math.PI / 2}
                 position={[0, -0.04, 0.41]}>
                 <group
-                    position={[0, 2.96, -0.13]}
+                    position={[0, 2.965, -0.13]}
                     rotation={[Math.PI / 2, 0, 0]}>
                     <mesh
+                        name='Cube008'
+                        geometry={nodes.Cube008.geometry}
                         material={materials.aluminium}
-                        geometry={(nodes["Cube008"] as IGeometry)["geometry"]}
                     />
                     <mesh
+                        name='Cube008_1'
+                        geometry={nodes.Cube008_1.geometry}
                         material={materials["matte.001"]}
-                        geometry={(nodes["Cube008_1"] as IGeometry)["geometry"]}
                     />
                     <mesh
-                        geometry={
-                            (nodes["Cube008_2"] as IGeometry)["geometry"]
-                        }>
-                        <meshStandardMaterial
-                            roughness={0.9}
-                            metalness={0.35}
-                            side={DoubleSide}
-                            map={texture}
+                        name='Cube008_2'
+                        onClick={changeScreen}
+                        geometry={nodes.Cube008_2.geometry}>
+                        <imageFadeMaterial
+                            ref={imgMatRef}
+                            tex={texture}
+                            textureCount={device.textureCount}
+                            toneMapped={false}
                         />
                     </mesh>
                 </group>
             </group>
             <mesh
+                name='keyboard'
+                geometry={nodes.keyboard.geometry}
                 material={materials.keys}
-                geometry={(nodes.keyboard as IGeometry)["geometry"]}
-                position={[1.79, 0, 3.45]}
+                position={[1.793, 0, 3.451]}
             />
-            <group position={[0, -0.1, 3.39]}>
+            <group name='base' position={[0, -0.1, 3.394]}>
                 <mesh
+                    name='Cube002'
+                    geometry={nodes.Cube002.geometry}
                     material={materials.aluminium}
-                    geometry={(nodes["Cube002"] as IGeometry)["geometry"]}
                 />
                 <mesh
+                    name='Cube002_1'
+                    geometry={nodes.Cube002_1.geometry}
                     material={materials.trackpad}
-                    geometry={(nodes["Cube002_1"] as IGeometry)["geometry"]}
                 />
             </group>
             <mesh
+                name='touchbar'
+                geometry={nodes.touchbar.geometry}
                 material={materials.touchbar}
-                geometry={(nodes.touchbar as IGeometry)["geometry"]}
-                position={[0, -0.03, 1.2]}
+                position={[0, -0.027, 1.201]}
             />
         </>
     );

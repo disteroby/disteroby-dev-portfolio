@@ -71,6 +71,7 @@ function HeroDevices({ inView }: HeroDevicesProps) {
                                 animDelay={2000}
                                 inView={inView}
                                 device={device}
+                                screenLoop={false}
                                 hoverAnimation={true}
                                 onHover={() => {
                                     targetVelocity.current = minSpeedMultiplier;

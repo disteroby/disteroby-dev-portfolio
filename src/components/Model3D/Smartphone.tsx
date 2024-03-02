@@ -1,10 +1,25 @@
 import { useRef } from "react";
-import { DoubleSide, Group } from "three";
+import { Group } from "three";
 import * as THREE from "three";
 import { GLTF } from "three-stdlib";
+import { extend, ReactThreeFiber } from "@react-three/fiber";
 import { DeviceData } from "../../constants/ProjectsData.ts";
 import useModelAnimations from "../../hooks/useModelAnimations.ts";
 import useProjectTexture from "../../hooks/useProjectTexture.ts";
+import { ImageFadeMaterial } from "./ImageFadeMaterial.tsx";
+
+declare global {
+    // eslint-disable-next-line @typescript-eslint/no-namespace
+    namespace JSX {
+        interface IntrinsicElements {
+            imageFadeMaterial: ReactThreeFiber.Node<
+                typeof ImageFadeMaterial &
+                    JSX.IntrinsicElements["shaderMaterial"],
+                typeof ImageFadeMaterial
+            >;
+        }
+    }
+}
 
 type GLTFResult = GLTF & {
     nodes: {
@@ -32,8 +47,11 @@ type SmartphoneProps = {
     animDelay: number;
     animDuration: number;
     inView: boolean;
+    screenLoop: boolean;
     scale: number;
 };
+
+extend({ TestMaterial: ImageFadeMaterial });
 
 export default function Smartphone({
     device,
@@ -41,7 +59,7 @@ export default function Smartphone({
     animDelay,
     animDuration,
     inView,
-    ...props
+    screenLoop,
 }: SmartphoneProps) {
     const group = useRef<Group>(null!);
     const { nodes, materials } = useModelAnimations(
@@ -51,8 +69,6 @@ export default function Smartphone({
         inView,
         group,
     ) as GLTFResult;
-
-    const texture = useProjectTexture(device);
 
     const rotationMode =
         device.type === "smartphone" && device.deviceOrientation === "portrait"
@@ -65,13 +81,17 @@ export default function Smartphone({
             ? 1
             : 1.2);
 
+    const { imgMatRef, texture, changeScreen } = useProjectTexture(
+        device,
+        screenLoop,
+    );
+
     return (
         <group
             ref={group}
             scale={realScale}
             position-y={1.8}
             rotation-z={rotationMode}
-            {...props}
             dispose={null}>
             <group name='Scene'>
                 <group name='root' rotation={[Math.PI / 2, 0, 0]}>
@@ -127,12 +147,15 @@ export default function Smartphone({
                             material={materials.lens}
                         />
                     </group>
-                    <mesh name='screen' geometry={nodes.screen.geometry}>
-                        <meshStandardMaterial
-                            roughness={0.1}
-                            metalness={0.35}
-                            side={DoubleSide}
-                            map={texture}
+                    <mesh
+                        name='screen'
+                        onClick={changeScreen}
+                        geometry={nodes.screen.geometry}>
+                        <imageFadeMaterial
+                            ref={imgMatRef}
+                            tex={texture}
+                            textureCount={device.textureCount}
+                            toneMapped={false}
                         />
                     </mesh>
                     <mesh

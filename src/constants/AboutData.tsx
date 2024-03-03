@@ -20,15 +20,17 @@ export const aboutTopics: AboutTopic[] = [
             <>
                 Hi There! I'm{" "}
                 <span className={boldStyle}>Roberto Di Stefano</span>, a
-                25-year-old Italian developer residing near Milan, in Italy.
+                25-year-old developer living in Milan, Italy.
             </>,
             <>
                 What kind of developer am I? Well,{" "}
-                <span className={boldStyle}>the one you need</span>! I love many
-                aspects of computer science and have solid foundational skills
-                in <span className={boldStyle}>web</span>,{" "}
+                <span className={boldStyle}>the one you need</span>! I'm
+                passionate about various aspects of computer science and have
+                solid skills in <span className={boldStyle}>web</span>,{" "}
                 <span className={boldStyle}>mobile app</span> and{" "}
-                <span className={boldStyle}>game</span> development.
+                <span className={boldStyle}>game</span> development. My diverse
+                skill set allows me to adapt to various project requirements and
+                deliver high-quality solutions tailored to your needs.
             </>,
         ],
         icon: FaHouseFlag,
@@ -37,7 +39,8 @@ export const aboutTopics: AboutTopic[] = [
         title: "Education",
         content: [
             <>
-                I hold a <span className={boldStyle}>Bachelor</span>'s and{" "}
+                Throughout my academic journey, I attained both a{" "}
+                <span className={boldStyle}>Bachelor</span>'s and{" "}
                 <span className={boldStyle}>Master</span>'s degree in{" "}
                 <span className={boldStyle}>Computer Science</span> from the{" "}
                 <a
@@ -46,12 +49,14 @@ export const aboutTopics: AboutTopic[] = [
                     target='_blank'>
                     University of Milano-Bicocca
                 </a>
-                , both awarded with top honors of{" "}
-                <span className={boldStyle}>110 cum laude</span>.
+                , each awarded with the highest honors of 110 cum laude.
             </>,
             <>
-                My academic journey has equipped me with a profound
-                understanding of computer systems and a passion for innovation.
+                It was during these university years that I delved deeply into
+                the study of my passion, equipped with both theoretical and
+                practical approaches, fostering a{" "}
+                <span className={boldStyle}>problem-solving mindset</span> that
+                continues to drive me.
             </>,
         ],
         icon: IoIosSchool,

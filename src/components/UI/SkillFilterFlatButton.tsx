@@ -16,11 +16,7 @@ const icons: { [key in SkillType]: JSX.Element } = {
     game: <IoLogoGameControllerB />,
 };
 
-const ringColors = [
-    "ring-indigo-500/90",
-    "ring-cyan-500/90",
-    "ring-fuchsia-500/90",
-];
+const ringColors = ["ring-indigo-500", "ring-cyan-500", "ring-fuchsia-500"];
 const textColors = ["text-indigo-500", "text-cyan-500", "text-fuchsia-500"];
 
 type SkillFilterButtonProps = {
@@ -66,7 +62,7 @@ export default function SkillFilterFlatButton({
                         variants={opacityVariants}
                         transition={{ duration: 1 }}
                         className={twMerge(
-                            "group grid size-[3.5rem] place-items-center rounded-full bg-white text-dark-gray/30 ring-[.5rem] ring-white/60 transition duration-300 ease-in-out hover:cursor-pointer",
+                            "group grid size-[4rem] place-items-center rounded-full bg-white text-dark-gray/20 ring-[.3rem] ring-white/80 transition duration-300 ease-in-out hover:cursor-pointer",
                             isFilterSelected[idx] && [
                                 textColors[idx],
                                 ringColors[idx],

@@ -67,8 +67,8 @@ export default function GlowingCard({ topic, sideOnRight }: GlowingCardProps) {
                                 className={twJoin(
                                     "text-opacity-80",
                                     sideOnRight
-                                        ? "text-cyan-100 decoration-cyan-500"
-                                        : "text-fuchsia-100 decoration-fuchsia-500",
+                                        ? "text-cyan-50 decoration-cyan-500"
+                                        : "text-fuchsia-50 decoration-fuchsia-500",
                                 )}>
                                 {paragraph}
                             </div>

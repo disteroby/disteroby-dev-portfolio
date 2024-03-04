@@ -58,9 +58,9 @@ export default function SkillFilterCircularButton({
                     maskImage:
                         "radial-gradient(100% 100% at center, black 0%,transparent 50%)",
                 }}
-                className='pattern-cross absolute inset-0 rounded-full border-4 border-dashed pattern-white pattern-bg-dark-gray pattern-opacity-10 pattern-size-6'
+                className='pattern-dots absolute inset-0 rounded-full border-4 border-dashed pattern-white pattern-bg-dark-gray pattern-opacity-20 pattern-size-6'
             />
-            <div className='absolute inset-0 flex flex-col items-center justify-center gap-2 rounded-full border-2 pt-4 text-center text-4xl uppercase tracking-widest text-white/10'>
+            <div className='absolute inset-0 flex flex-col items-center justify-center gap-2 rounded-full border-2 pt-4 text-center text-4xl uppercase tracking-widest text-white/30'>
                 <div>Filter</div>
                 <ImFilter />
             </div>
@@ -73,7 +73,7 @@ export default function SkillFilterCircularButton({
                             top: `${coords[idx][1]}rem`,
                         }}
                         className={twMerge(
-                            "absolute size-[7rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/40 transition duration-300 ease-in-out",
+                            "absolute size-[7rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/60 transition duration-300 ease-in-out",
                             isFilterSelected[idx] && bgColors[idx],
                         )}
                     />
@@ -88,10 +88,10 @@ export default function SkillFilterCircularButton({
                             top: `${coords[idx][1]}rem`,
                         }}
                         className={twMerge(
-                            "group absolute grid size-[5.5rem] -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-white text-dark-gray/40 hover:cursor-pointer",
+                            "group absolute grid size-[5.5rem] -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-white text-dark-gray/30 hover:cursor-pointer",
                             isFilterSelected[idx]
                                 ? textColors[idx]
-                                : "hover:text-dark-gray/60",
+                                : "hover:text-dark-gray/50",
                         )}
                         onClick={() => onClick(type)}>
                         <div className='absolute text-3xl transition duration-300 ease-in-out group-hover:scale-125'>

@@ -7,8 +7,10 @@ import colors from "tailwindcss/colors";
 
 // Parameters
 const planetPerRing = 5;
-const colorFrom = new THREE.Color(colors.purple["400"]);
-const colorTo = new THREE.Color(colors.cyan["400"]);
+const colorFrom = new THREE.Color(colors.fuchsia["500"]);
+const colorVia = new THREE.Color(colors.indigo["500"]);
+const colorTo = new THREE.Color(colors.cyan["500"]);
+const viaPercent = 0.5;
 
 type PlanetData = {
     coords: {
@@ -81,27 +83,38 @@ export default function useSkillPlanets(
                         }));
 
                     // Horizontal gradients color
-                    const colorsLerp = coordsList.map(
+                    const colorsHorizontalOffset = coordsList.map(
                         coords => coords.x / 100,
                     ) as [number, number];
+
+                    /**
+                     * Compute the right color from fuchsia-indigo-cyan gradient
+                     * @param xOffset a value in [-1, 1]
+                     */
+                    function computeColorGradient(xOffset: number) {
+                        const alpha = xOffset * 0.5 + 0.5;
+                        return alpha < viaPercent
+                            ? LerpColor(colorFrom, colorVia, alpha / viaPercent)
+                            : LerpColor(
+                                  colorVia,
+                                  colorTo,
+                                  (alpha - viaPercent) / (1 - viaPercent),
+                              );
+                    }
 
                     const mobile: PlanetData = {
                         coords: coordsList[0],
                         distance: distanceNorm,
-                        color: LerpColor(
-                            colorFrom,
-                            colorTo,
-                            colorsLerp[0],
+                        color: computeColorGradient(
+                            colorsHorizontalOffset[0],
                         ).getHexString(),
                     };
 
                     const fullSize: PlanetData = {
                         coords: coordsList[1],
                         distance: distancePadding,
-                        color: LerpColor(
-                            colorFrom,
-                            colorTo,
-                            colorsLerp[1],
+                        color: computeColorGradient(
+                            colorsHorizontalOffset[1],
                         ).getHexString(),
                     };
 

@@ -1,7 +1,7 @@
 import { useCallback, useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 import { useTexture } from "@react-three/drei";
-import { ImageFadeMaterial } from "../components/Model3D/ImageFadeMaterial.tsx";
+import { ImageFadeMaterial } from "../components/model3D/ImageFadeMaterial.tsx";
 import { DeviceData } from "../constants/ProjectsData.ts";
 import { texturePath } from "../utils/ResourcesUtils.ts";
 import useInterval from "./useInterval.ts";

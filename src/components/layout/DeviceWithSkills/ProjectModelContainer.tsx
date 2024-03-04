@@ -1,7 +1,7 @@
 import { memo, useRef } from "react";
 import { Environment, Lightformer, PerspectiveCamera } from "@react-three/drei";
 import { ProjectData } from "../../../constants/ProjectsData.ts";
-import PerformanceCanvas from "../../Model3D/PerformanceCanvas.tsx";
+import PerformanceCanvas from "../../model3D/PerformanceCanvas.tsx";
 import ProjectModel from "./ProjectModel.tsx";
 import { useInView } from "framer-motion";
 

@@ -45,7 +45,7 @@ export default function FragmentSkills() {
               : skillPlanets[currentSelectedIdx].size.fullSize.coords;
 
     return (
-        <div className='flex w-full flex-col items-stretch justify-center gap-8 p-2'>
+        <div className='flex w-full flex-col items-stretch justify-center gap-8 px-2 py-8 lg:px-8 xl:px-16'>
             <div className='relative isolate aspect-square w-full'>
                 <motion.div
                     className='absolute inset-0'
@@ -161,7 +161,7 @@ export default function FragmentSkills() {
                     )}
                 </AnimatePresence>
             </div>
-            <div className='mt-4 flex justify-center md:mt-8 lg:hidden'>
+            <div className='mt-8 flex justify-center lg:hidden'>
                 <div className='max-w-[30rem] grow'>
                     <SkillFilterFlatButton
                         currentFilters={filters}

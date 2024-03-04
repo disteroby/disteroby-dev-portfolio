@@ -2,7 +2,7 @@ import { useThree } from "@react-three/fiber";
 import { Float, Shadow } from "@react-three/drei";
 import { FloatProps } from "@react-three/drei/core/Float";
 import { DeviceData } from "../../../constants/ProjectsData.ts";
-import DeviceModel from "../../Model3D/DeviceModel.tsx";
+import DeviceModel from "../../model3D/DeviceModel.tsx";
 
 type ProjectModelProps = FloatProps & {
     device: DeviceData;

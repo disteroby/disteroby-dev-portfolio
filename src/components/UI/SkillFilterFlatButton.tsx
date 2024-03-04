@@ -41,10 +41,10 @@ export default function SkillFilterFlatButton({
                 staggerChildren: 0.5,
             }}
             viewport={{ amount: "some", once: true }}
-            className='space-y-8 px-8'>
+            className='space-y-4 px-12'>
             <motion.div
                 variants={opacityVariants}
-                className='flex items-center justify-center gap-2 text-4xl font-light uppercase tracking-widest text-white/10'>
+                className='flex items-center justify-center gap-2 text-3xl font-light uppercase tracking-widest text-white/30'>
                 <div>Filter</div>
                 <span className='pb-2 text-2xl'>
                     <ImFilter />
@@ -62,14 +62,14 @@ export default function SkillFilterFlatButton({
                         variants={opacityVariants}
                         transition={{ duration: 1 }}
                         className={twMerge(
-                            "group grid size-[4rem] place-items-center rounded-full bg-white text-dark-gray/20 ring-[.3rem] ring-white/80 transition duration-300 ease-in-out hover:cursor-pointer",
+                            "group grid size-[3rem] place-items-center rounded-full bg-white text-dark-gray/20 ring-[.25rem] ring-white/80 transition duration-300 ease-in-out hover:cursor-pointer",
                             isFilterSelected[idx] && [
                                 textColors[idx],
                                 ringColors[idx],
                             ],
                         )}
                         onClick={() => onClick(type)}>
-                        <div className='absolute text-3xl'>{icons[type]}</div>
+                        <div className='absolute text-2xl'>{icons[type]}</div>
                     </motion.div>
                 ))}
             </motion.div>

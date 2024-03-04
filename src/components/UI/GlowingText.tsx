@@ -9,7 +9,7 @@ type SectionTitleProps = {
 export default function GlowingText({
     text,
     className,
-    blurs = ["blur-sm", "blur-lg"],
+    blurs = ["blur-sm opacity-75", "blur-lg"],
 }: SectionTitleProps) {
     return (
         <div
@@ -32,7 +32,9 @@ export default function GlowingText({
                     {text}
                 </div>
             ))}
-            <div className='relative text-white/90'>{text}</div>
+            <div className='relative text-white/90 [text-shadow:_0_0_0.5rem_rgb(255_255_255_/_10%)]'>
+                {text}
+            </div>
         </div>
     );
 }

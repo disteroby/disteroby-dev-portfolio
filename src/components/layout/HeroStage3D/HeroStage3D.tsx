@@ -1,6 +1,6 @@
 import { memo } from "react";
 import { Environment, Lightformer, Sparkles } from "@react-three/drei";
-import PerformanceCanvas from "../../Model3D/PerformanceCanvas.tsx";
+import PerformanceCanvas from "../../model3D/PerformanceCanvas.tsx";
 import HeroDevices from "./HeroDevices.tsx";
 import HeroGrid from "./HeroGrid.tsx";
 import HeroLights from "./HeroLights.tsx";

@@ -6,6 +6,11 @@ import shaderMaterial from "../../utils/ShaderUtils.ts";
 
 const EarthMaterialProps = {
     earthMask: new THREE.Texture(),
+    fresnelIntensity: 1.0,
+    fresnelMin: 0.0,
+    fresnelMax: 1.0,
+    color1: new THREE.Color(),
+    color2: new THREE.Color(),
 };
 
 export const EarthMaterial = shaderMaterial(

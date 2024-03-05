@@ -50,21 +50,21 @@ function LandingPage() {
             ref: heroRef,
             jsx: <SectionHeroOverlay pageIsLoaded={pageIsLoaded} />,
         },
-        {
-            tag: "projects",
-            ref: projectsRef,
-            jsx: <SectionProjects />,
-        },
-        {
-            tag: "about-me",
-            ref: aboutRef,
-            jsx: <SectionAbout />,
-        },
-        {
-            tag: "skills",
-            ref: skillsRef,
-            jsx: <SectionSkills />,
-        },
+        // {
+        //     tag: "projects",
+        //     ref: projectsRef,
+        //     jsx: <SectionProjects />,
+        // },
+        // {
+        //     tag: "about-me",
+        //     ref: aboutRef,
+        //     jsx: <SectionAbout />,
+        // },
+        // {
+        //     tag: "skills",
+        //     ref: skillsRef,
+        //     jsx: <SectionSkills />,
+        // },
         {
             tag: "contact",
             ref: contactRef,

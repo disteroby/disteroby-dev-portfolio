@@ -1,18 +1,17 @@
 varying vec2 vUv;
 varying vec3 vNormal;
-varying vec3 vEye;
+varying vec3 vPosition;
+varying vec3 vViewPosition;
+varying vec4 vScreenPosition;
 
 void main() {
     vUv = uv;
-    mat4 LM = modelMatrix;
-    LM[2][3] = 0.0;
-    LM[3][0] = 0.0;
-    LM[3][1] = 0.0;
-    LM[3][2] = 0.0;
+    vNormal = normalMatrix * normal;
+    vPosition = position;
 
-    vec4 GN = LM * vec4(normal, 1.0);
-    vNormal = normalize(GN.xyz);
-    vEye = normalize(GN.xyz-cameraPosition);
+    vec4 worldPosition = modelMatrix * vec4(position, 1.0);
+    vViewPosition = cameraPosition - worldPosition.xyz;
+    vScreenPosition = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
 
-    gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
+    gl_Position = vScreenPosition;
 }

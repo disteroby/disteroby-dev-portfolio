@@ -9,6 +9,7 @@ export default function SectionContacts() {
             <SectionTitle title='Contacts Me' />
             <div className='aspect-square w-full max-w-[100rem] hover:select-none'>
                 <PerformanceCanvas
+                    gl={{ sortObjects: false }}
                     id='canvas-earth'
                     className='h-full w-full hover:select-none'>
                     <PerspectiveCamera
@@ -17,8 +18,8 @@ export default function SectionContacts() {
                         position={[0, 0, 5]}
                         zoom={4}
                     />
-                    <directionalLight intensity={0.8} position={[3, 3, 3]} />
-                    <ambientLight intensity={0.2} />
+                    {/*<directionalLight intensity={0.8} position={[3, 3, 3]} />*/}
+                    {/*<ambientLight intensity={0.2} />*/}
                     <EarthModel />
                 </PerformanceCanvas>
             </div>

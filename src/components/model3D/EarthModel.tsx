@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { Group } from "three";
+import { Group, Vector3 } from "three";
 import * as THREE from "three";
 import { useFrame, useThree } from "@react-three/fiber";
 import { useTexture } from "@react-three/drei";
@@ -14,7 +14,7 @@ export default function EarthModel() {
 
     // console.log(viewport.getCurrentViewport());
 
-    const { intensity, c1, c2, minF, maxF, pos, dd, ds } = useControls(
+    const { ii, intensity, c1, c2, minF, maxF, pos, dd, ds } = useControls(
         "Earth",
         {
             intensity: {
@@ -52,6 +52,10 @@ export default function EarthModel() {
                 max: Math.PI,
                 value: [0.4, 1.1, 0],
             },
+            ii: {
+                min: 0,
+                value: 1.5,
+            },
         },
     );
 
@@ -88,22 +92,10 @@ export default function EarthModel() {
     const transform = latLongToCartesian(lat, long, radius, altitude);
 
     const { position } = transform;
+    const posVec3 = new Vector3(position![0], position![1], position![2]);
 
     return (
         <group ref={ref} rotation={pos}>
-            {/*<mesh rotation-z={(Math.PI / 2) * 0.25}>*/}
-            {/*    /!*<sphereGeometry args={[1, 32, 32]} />*!/*/}
-            {/*    <icosahedronGeometry args={[1, 32]} />*/}
-            {/*    <earthMaterial*/}
-            {/*        onBeforeCompile={s => "CIAO" + s.fragmentShader}*/}
-            {/*        earthMask={textureMask}*/}
-            {/*        fresnelIntensity={intensity}*/}
-            {/*        fresnelMin={minF}*/}
-            {/*        fresnelMax={maxF}*/}
-            {/*        color1={new THREE.Color(c1)}*/}
-            {/*        color2={new THREE.Color(c2)}*/}
-            {/*    />*/}
-            {/*</mesh>*/}
             <mesh>
                 <icosahedronGeometry args={[1, 32]} />
                 <earthMaterial
@@ -115,19 +107,15 @@ export default function EarthModel() {
                     dotDensity={dd}
                     dotFillSize={ds}
                     transparent
+                    intensity={ii}
+                    toneMapped={true}
                     color1={new THREE.Color(c1)}
                     color2={new THREE.Color(c2)}
                 />
             </mesh>
             <group position={transform.position}></group>
 
-            <arrowHelper
-                args={[
-                    position as THREE.Vector3,
-                    position as THREE.Vector3,
-                    0.3,
-                ]}
-            />
+            <arrowHelper args={[posVec3, posVec3, 0.3]} />
         </group>
     );
 }

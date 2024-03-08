@@ -7,21 +7,27 @@ export default function SectionContacts() {
     return (
         <div className='flex min-h-screen flex-col items-center'>
             <SectionTitle title='Contacts Me' />
-            <div className='aspect-square w-full max-w-[100rem] hover:select-none'>
-                <PerformanceCanvas
-                    gl={{ sortObjects: false }}
-                    id='canvas-earth'
-                    className='h-full w-full hover:select-none'>
-                    <PerspectiveCamera
-                        makeDefault
-                        fov={90}
-                        position={[0, 0, 5]}
-                        zoom={4}
-                    />
-                    {/*<directionalLight intensity={0.8} position={[3, 3, 3]} />*/}
-                    {/*<ambientLight intensity={0.2} />*/}
-                    <EarthModel />
-                </PerformanceCanvas>
+            <div className='flex w-full flex-col items-stretch bg-green-600/20 lg:flex-row'>
+                <div className='aspect-square bg-blue-600/20 hover:select-none lg:w-2/3'>
+                    <PerformanceCanvas
+                        gl={{ sortObjects: false }}
+                        id='canvas-earth'
+                        className='h-auto w-full hover:select-none'>
+                        <PerspectiveCamera
+                            makeDefault
+                            fov={90}
+                            position={[0, 0, 4.5]}
+                            zoom={4}
+                        />
+                        <EarthModel />
+                    </PerformanceCanvas>
+                </div>
+                <div className='flex flex-col justify-center bg-red-600/20 p-8 lg:w-1/3'>
+                    <div>vdsa</div>
+                    <div>vdsa</div>
+                    <div>vdsa</div>
+                    <div>vdsa</div>
+                </div>
             </div>
         </div>
     );

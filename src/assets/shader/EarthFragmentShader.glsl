@@ -12,6 +12,8 @@ uniform float fresnelMax;
 uniform vec3 color1;
 uniform vec3 color2;
 
+uniform float intensity;
+
 uniform float dotDensity;
 uniform float dotFillSize;
 
@@ -51,7 +53,7 @@ void main() {
     vec3 gradient = getGradientColor(finalMask);
 
 
-    gl_FragColor = vec4(gradient, 0.5);
+    gl_FragColor = vec4(gradient * intensity, 0.5);
 
 
 //    #include <tonemapping_fragment>

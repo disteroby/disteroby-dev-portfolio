@@ -10,6 +10,7 @@ const EarthMaterialProps = {
     fresnelIntensity: 1.0,
     fresnelMin: 0.0,
     fresnelMax: 1.0,
+    intensity: 10,
     dotDensity: 1.0,
     dotFillSize: 1.0,
     color1: new THREE.Color(),

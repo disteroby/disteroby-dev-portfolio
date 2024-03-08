@@ -1,0 +1,109 @@
+.inputGroup {
+    --font-size: .85rem;
+    --input-height: 3.25rem;
+    --border-size: .15rem;
+    --icon-padding: .5rem;
+    --icon-size: calc(var(--input-height) - var(--icon-padding) * 2 - var(--border-size) * 2);
+    --icon-space: calc(var(--icon-size) + var(--icon-padding) * 2);
+    --inactive-text-color: rgb(48, 53, 57);
+    --inactive-color: rgb(30, 33, 35);
+    --active-color: rgb(6 182 212);
+    --active-color-opaque: rgba(6 182 212 / .5);
+    --shadow-blur: 2.4rem;
+    --anim-settings: all 250ms ease-in-out;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-size: var(--font-size);
+    height: var(--input-height);
+    border: var(--border-size) solid var(--inactive-color);
+    width: 100%;
+    border-radius: 100rem;
+    position: relative;
+    display: flex;
+    align-content: center;
+    transition: var(--anim-settings);
+}
+
+.inputLabel {
+    font-family: inherit;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    color: var(--inactive-text-color);
+    left: var(--icon-space);
+    top: 50%;
+    letter-spacing: .1rem;
+    transform: translateY(-48%);
+    pointer-events: none;
+    transition: var(--anim-settings);
+}
+
+.roundInput {
+    font-family: inherit;
+    font-size: inherit;
+    width: 100%;
+    margin: 0;
+    border: none;
+    outline: none;
+    border-radius: 100rem;
+    padding: 0 calc(var(--icon-padding) * 2) 0 var(--icon-space);
+    background-color: transparent;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.roundInput::placeholder {
+    opacity: 0;
+    transition: var(--anim-settings);
+    color: var(--inactive-color);
+}
+
+.inputGroup:focus-within {
+    border-color: var(--active-color);
+    box-shadow: 0 0 2.3rem var(--active-color-opaque),  0 0 .65rem var(--active-color);
+}
+
+.roundInput:where(:focus-visible, :not(:placeholder-shown)) ~ .inputLabel {
+    background-color: var(--active-color);
+    text-align: center;
+    font-weight: bold;
+    color: white;
+    letter-spacing: .05rem;
+    padding: .2rem .65rem .1rem;
+    font-size: .8em;
+    top: 0;
+    left: 2rem;
+    transform: translateY(-57%);
+    border-radius: 100rem;
+}
+
+.roundInput:not(:focus-visible).roundInput:not(:placeholder-shown) ~ .inputLabel {
+    background-color: var(--inactive-color);
+    color: rgb(255, 255, 255);
+}
+
+.roundInput:focus-visible.roundInput::placeholder {
+    opacity: 1;
+}
+
+.icon {
+    position: absolute;
+    width: var(--icon-size);
+    height: var(--icon-size);
+    top: var(--icon-padding);
+    left: var(--icon-padding);
+    color: var(--inactive-color);
+    border-radius: 100%;
+    display: grid;
+    font-size: 1.25rem;
+    place-content: center;
+    transition: var(--anim-settings);
+}
+
+.roundInput:where(:focus-visible, :not(:placeholder-shown)) ~ .icon {
+    color: var(--active-color);
+}
+
+.roundInput:not(:focus-visible).roundInput:not(:placeholder-shown) ~ .icon {
+    color: var(--inactive-color);
+}

@@ -25,8 +25,14 @@ import { GrMysql } from "react-icons/gr";
 import { LiaJava } from "react-icons/lia";
 import { SiCypress, SiJest, SiUnrealengine } from "react-icons/si";
 
+/**
+ * Represents the type of skill.
+ */
 export type SkillType = "web" | "mobile" | "game";
 
+/**
+ * Represents a skill item.
+ */
 export type Skill = {
     name: string;
     level: number;
@@ -34,7 +40,10 @@ export type Skill = {
     logo: IconType;
 };
 
-export const skillsData: Skill[] = [
+/**
+ * Array of skill data.
+ */
+export const SKILLS_DATA: Skill[] = [
     {
         name: "Figma",
         type: ["web", "mobile"],

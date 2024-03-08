@@ -1,3 +1,6 @@
+/**
+ * Represents a tag for a project.
+ */
 export type ProjectTag =
     | "motivapp"
     | "slide-run"
@@ -6,31 +9,52 @@ export type ProjectTag =
     | "code-hunter"
     | "undertale-3d";
 
+/**
+ * Represents the type of call-to-action (CTA).
+ */
 export type CtaType = "product" | "repository" | "store" | "video";
 
+/**
+ * Represents a call-to-action (CTA) item.
+ */
 export type Cta = {
     type: CtaType;
     text: string;
     href: string;
 };
 
+/**
+ * Represents the type of device used in a project.
+ */
 export type DeviceType = "laptop" | "smartphone";
 
+/**
+ * Represents data specific to a laptop.
+ */
 type LaptopData = {
     type: "laptop";
 };
 
+/**
+ * Represents data specific to a smartphone.
+ */
 type SmartphoneData = {
     type: "smartphone";
     deviceOrientation: "portrait" | "landscape";
 };
 
+/**
+ * Represents data about the device used in a project.
+ */
 export type DeviceData = {
     type: DeviceType;
     texture: string;
     textureCount: number;
 } & (LaptopData | SmartphoneData);
 
+/**
+ * Represents data about a project.
+ */
 export type ProjectData = {
     refName: ProjectTag;
     title: string;
@@ -41,6 +65,9 @@ export type ProjectData = {
     device: DeviceData;
 };
 
+/**
+ * Complete list of Project data.
+ */
 export const PROJECTS: ProjectData[] = [
     {
         refName: "motivapp",

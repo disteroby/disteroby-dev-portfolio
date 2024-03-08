@@ -5,6 +5,7 @@ import vertexShader from "../../assets/shader/EarthVertexShader.glsl?raw";
 import shaderMaterial from "../../utils/ShaderUtils.ts";
 
 const EarthMaterialProps = {
+    uTime: 0,
     earthMask: new THREE.Texture(),
     fresnelIntensity: 1.0,
     fresnelMin: 0.0,

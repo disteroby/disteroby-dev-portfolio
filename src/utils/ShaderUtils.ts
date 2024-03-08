@@ -1,25 +1,41 @@
 import * as THREE from "three";
 
-type U = {
-    [name: string]:
-        | THREE.CubeTexture
-        | THREE.Texture
-        | Int32Array
-        | Float32Array
-        | THREE.Matrix4
-        | THREE.Matrix3
-        | THREE.Quaternion
-        | THREE.Vector4
-        | THREE.Vector3
-        | THREE.Vector2
-        | THREE.Color
-        | number
-        | boolean
-        | Array<unknown>
-        | null;
+/**
+ * Represents the type of uniform values allowed in the shader material.
+ */
+type UniformValue =
+    | THREE.CubeTexture
+    | THREE.Texture
+    | Int32Array
+    | Float32Array
+    | THREE.Matrix4
+    | THREE.Matrix3
+    | THREE.Quaternion
+    | THREE.Vector4
+    | THREE.Vector3
+    | THREE.Vector2
+    | THREE.Color
+    | number
+    | boolean
+    | Array<unknown>
+    | null;
+
+/**
+ * Represents the type of uniforms object.
+ */
+type Uniforms = {
+    [name: string]: UniformValue;
 };
 
-export default function shaderMaterial<T extends U>(
+/**
+ * Creates a custom shader material.
+ * @param uniforms The uniform values for the shader material.
+ * @param vertexShader The vertex shader code.
+ * @param fragmentShader The fragment shader code.
+ * @param onInit An optional callback function called after initializing the material.
+ * @returns The custom shader material.
+ */
+export default function shaderMaterial<T extends Uniforms>(
     uniforms: T,
     vertexShader: string,
     fragmentShader: string,
@@ -29,7 +45,7 @@ export default function shaderMaterial<T extends U>(
         public key: string = "";
         constructor(parameters = {}) {
             const entries = Object.entries(uniforms);
-            // Create unforms and shaders
+            // Create uniforms and shaders
             super({
                 uniforms: entries.reduce((acc, [name, value]) => {
                     const uniform = THREE.UniformsUtils.clone({

@@ -14,6 +14,9 @@ import {
 } from "react-icons/pi";
 import { RiSparkling2Fill, RiSparkling2Line } from "react-icons/ri";
 
+/**
+ * Represents a link in the navbar.
+ */
 export type NavbarLink = {
     text: string;
     href: MainSectionTag;
@@ -24,7 +27,10 @@ export type NavbarLink = {
     };
 };
 
-export const navbarLinks: NavbarLink[] = [
+/**
+ * Array of navbar links.
+ */
+export const NAVBAR_LINKS: NavbarLink[] = [
     {
         text: "Overview",
         href: "overview",

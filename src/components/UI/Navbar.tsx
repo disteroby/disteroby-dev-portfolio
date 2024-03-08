@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { navbarLinks } from "../../constants/NavbarLinks.ts";
+import { NAVBAR_LINKS } from "../../constants/NavbarLinks.ts";
 import NavbarButton from "./NavbarButton.tsx";
 import { AnimatePresence, motion, Variants } from "framer-motion";
 import { twJoin } from "tailwind-merge";
@@ -26,7 +26,7 @@ export default function Navbar({ activeIdx, onItemClick }: NavbarProps) {
     };
 
     function renderLinks(baseDelay = 0) {
-        return navbarLinks.map((link, idx) => (
+        return NAVBAR_LINKS.map((link, idx) => (
             <motion.li
                 variants={variants}
                 animate='visible'

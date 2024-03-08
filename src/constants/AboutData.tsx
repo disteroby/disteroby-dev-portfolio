@@ -3,17 +3,30 @@ import { FaHouseFlag, FaUserTie } from "react-icons/fa6";
 import { IoIosSchool } from "react-icons/io";
 import { IoGameController } from "react-icons/io5";
 
+/**
+ * Represents a topic in the About Section.
+ */
 export type AboutTopic = {
     title: string;
     content: JSX.Element[];
     icon: IconType;
 };
 
+/**
+ * Tailwind style for bold text.
+ */
 const boldStyle = "font-bold text-white/90";
+
+/**
+ * Tailwind style for links.
+ */
 const aStyle =
     "underline text-white/90 hover:text-white duration-300 decoration-[unset] underline-offset-2 transition hover:decoration-[inherit] font-semibold";
 
-export const aboutTopics: AboutTopic[] = [
+/**
+ * Array of About Section topics.
+ */
+export const ABOUT_TOPICS: AboutTopic[] = [
     {
         title: "Who Am I?",
         content: [

@@ -4,6 +4,7 @@ varying vec3 vPosition;
 varying vec3 vViewPosition;
 varying vec4 vScreenPosition;
 
+uniform float uTime;
 uniform sampler2D earthMask;
 uniform float fresnelIntensity;
 uniform float fresnelMin;
@@ -23,10 +24,16 @@ float clamp01(float x) {
 }
 
 float getMask(vec2 uv) {
-    vec2 dotUv = fract((uv) * dotDensity) - vec2(0.5);
-    float dotPattern = 1.0 - step(0.5, length(dotUv) / dotFillSize);
 
-    float mask = texture2D(earthMask, uv).x * dotPattern;
+    float pulseDotSize = sin(uTime * 2.0) * 0.025 + dotFillSize;
+
+    vec4 tex = texture2D(earthMask, uv);
+
+    vec2 texSize = vec2(textureSize(earthMask, 0));
+
+    vec2 dotUv = fract(uv * normalize(texSize) * dotDensity) - vec2(0.5);
+    float dotPattern = 1.0 - step(0.5, length(dotUv) / pulseDotSize);
+    float mask = tex.x * dotPattern;
 
     float viewDotNormal = clamp01(dot(normalize(vNormal), normalize(vViewPosition)));
     float fresnel = pow(1.0 - viewDotNormal, fresnelIntensity);

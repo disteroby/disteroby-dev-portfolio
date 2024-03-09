@@ -8,34 +8,54 @@ import SectionTitle from "../../UI/SectionTitle.tsx";
 import { MdMail } from "react-icons/md";
 import { RiSparkling2Line } from "react-icons/ri";
 import { TbMessageCircle2Filled } from "react-icons/tb";
+import { Bounce, toast, ToastContainer, ToastOptions } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function SectionContacts() {
     const emailRef = useRef<HTMLInputElement>(null!);
     const messageRef = useRef<HTMLInputElement>(null!);
 
-    //TODO
-    function onSendMessage() {
-        const data = {
-            email: emailRef.current.value.trim(),
-            message: messageRef.current.value.trim(),
+    async function onSendMessage() {
+        const email = emailRef.current.value.trim();
+        const message = messageRef.current.value.trim();
+
+        const toastOptions: ToastOptions = {
+            position: "bottom-right",
+            autoClose: 4000,
+            hideProgressBar: false,
+            pauseOnHover: true,
+            closeOnClick: true,
+            draggable: true,
+            theme: "dark",
+            transition: Bounce,
         };
 
-        const options: RequestInit = {
-            method: "POST",
-            headers: {
-                "Access-Control-Allow-Origin": "*",
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(data),
-        };
+        if (email === "" || message === "") {
+            toast.error("Please, fill out all fields!", toastOptions);
+            return;
+        }
 
-        console.log(data, options);
+        const id = toast.loading("I'm sending your message...", {
+            ...toastOptions,
+            autoClose: false,
+            closeButton: false,
+            hideProgressBar: true,
+            closeOnClick: false,
+            draggable: false,
+        });
 
-        saveDbMessage(data)
-            .then(createdDoc => {
-                console.log(createdDoc);
-            })
-            .catch(e => console.error(e));
+        const saveResult = await saveDbMessage(email, message);
+
+        console.log("Save result:", saveResult);
+
+        toast.update(id, {
+            ...toastOptions,
+            render: saveResult
+                ? "Perfect! I'll reply shortly, thanks!🔥"
+                : "Whops... something went wrong! Please, retry later🙁",
+            type: saveResult ? "success" : "error",
+            isLoading: false,
+        });
     }
 
     return (
@@ -83,6 +103,7 @@ export default function SectionContacts() {
                     </div>
                 </div>
             </div>
+            <ToastContainer newestOnTop />
         </div>
     );
 }

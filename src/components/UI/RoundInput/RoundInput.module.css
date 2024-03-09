@@ -21,7 +21,7 @@
     border-radius: 100rem;
     position: relative;
     display: flex;
-    align-items: center;
+    align-items: stretch;
     transition: var(--anim-settings);
 }
 

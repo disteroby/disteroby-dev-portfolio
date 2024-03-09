@@ -1,12 +1,17 @@
-import { initializeApp } from "firebase/app";
+import { FirebaseApp, FirebaseOptions, initializeApp } from "firebase/app";
 import {
     addDoc,
     collection,
+    Firestore,
     getFirestore,
     Timestamp,
 } from "firebase/firestore";
 
-const firebaseConfig = {
+/**
+ * Firebase configuration object.
+ * @type {FirebaseOptions}
+ */
+const firebaseConfig: FirebaseOptions = {
     apiKey: import.meta.env.VITE_API_KEY,
     authDomain: import.meta.env.VITE_AUTH_DOMAIN,
     databaseURL: import.meta.env.VITE_DATABASE_URL,
@@ -16,18 +21,38 @@ const firebaseConfig = {
     appId: import.meta.env.VITE_APP_ID,
 };
 
-// Initialize Firebase
-const firebaseApp = initializeApp(firebaseConfig);
-const firestore = getFirestore(firebaseApp);
+/**
+ * The initialized Firebase App with the provided configuration.
+ * @type {FirebaseApp}
+ */
+const firebaseApp: FirebaseApp = initializeApp(firebaseConfig);
 
-export async function saveDbMessage({
-    email,
-    message,
-}: {
-    email: string;
-    message: string;
-}) {
-    const now = Timestamp.now();
-    const contactsCollection = collection(firestore, "contacts");
-    return await addDoc(contactsCollection, { email, message, timestamp: now });
+/**
+ * The initialized Firestore Database with the provided configuration.
+ * @type {Firestore}
+ */
+const firestore: Firestore = getFirestore(firebaseApp);
+
+/**
+ * Saves a message to the Firestore database under the 'contacts' collection.
+ * @param {string} email - The email associated with the message.
+ * @param {string} message - The message content.
+ * @returns {Promise<boolean>} A promise that resolves with a boolean indicating the success of the save operation.
+ */
+export async function saveDbMessage(
+    email: string,
+    message: string,
+): Promise<boolean> {
+    await new Promise(resolve => setTimeout(resolve, 1000));
+
+    try {
+        const now = Timestamp.now();
+        const contactsCollection = collection(firestore, "contacts");
+
+        await addDoc(contactsCollection, { email, message, timestamp: now });
+        return true;
+    } catch (error) {
+        console.error("Error saving message to database:", error);
+        return false;
+    }
 }

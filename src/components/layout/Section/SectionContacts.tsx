@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import { PerspectiveCamera } from "@react-three/drei";
+import { saveDbMessage } from "../../../utils/FirebaseUtils.ts";
 import EarthModel from "../../model3D/EarthModel.tsx";
 import PerformanceCanvas from "../../model3D/PerformanceCanvas.tsx";
 import RoundInput from "../../UI/RoundInput/RoundInput.tsx";
@@ -14,8 +15,27 @@ export default function SectionContacts() {
 
     //TODO
     function onSendMessage() {
-        console.log(emailRef.current.value);
-        console.log(messageRef.current.value);
+        const data = {
+            email: emailRef.current.value.trim(),
+            message: messageRef.current.value.trim(),
+        };
+
+        const options: RequestInit = {
+            method: "POST",
+            headers: {
+                "Access-Control-Allow-Origin": "*",
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+        };
+
+        console.log(data, options);
+
+        saveDbMessage(data)
+            .then(createdDoc => {
+                console.log(createdDoc);
+            })
+            .catch(e => console.error(e));
     }
 
     return (
@@ -37,7 +57,9 @@ export default function SectionContacts() {
                 </div>
                 <div className='grid place-items-center p-8 lg:w-[40%]'>
                     <div className='flex max-w-[23rem] flex-col justify-center gap-8 '>
-                        <h3 className='w-fit bg-gradient-to-r from-indigo-500 to-cyan-500 bg-clip-text text-3xl font-medium text-transparent lg:text-4xl xl:text-5xl'>
+                        <h3
+                            onClick={onSendMessage}
+                            className='w-fit bg-gradient-to-r from-indigo-500 to-cyan-500 bg-clip-text text-3xl font-medium text-transparent lg:text-4xl xl:text-5xl'>
                             Get in touch!
                         </h3>
                         <span className='-mt-4 mb-4'>

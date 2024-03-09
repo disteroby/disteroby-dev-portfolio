@@ -115,33 +115,33 @@ export default function ProjectDescription({
                     variants={{
                         inView: {
                             opacity: 1,
-                            translateX: 0,
+                            translateY: 0,
                         },
                     }}
                     transition={{
-                        duration: 1,
-                        easings: ["ease"],
+                        duration: 1.5,
+                        easings: ["easeInOut"],
                     }}
                     viewport={{ once: true }}
                     whileInView='inView'
                     style={{
                         opacity: 0,
-                        translateX: "4rem",
+                        translateY: "2rem",
                     }}>
                     <div className='flex gap-1 align-bottom opacity-60'>
                         {renderTeamLabel()}
                     </div>
                     <div className='w-fit text-3xl font-light lg:text-5xl'>
                         <span>0{index}. </span>
-                        <span
+                        <h3
                             className={twJoin(
-                                "bg-gradient-to-r bg-clip-text font-medium text-transparent",
+                                "inline-block bg-gradient-to-r bg-clip-text font-medium text-transparent",
                                 isOnTheRight
                                     ? "from-fuchsia-500 to-indigo-500"
                                     : "from-indigo-500 to-cyan-500",
                             )}>
                             {title}
-                        </span>
+                        </h3>
                     </div>
                 </motion.div>
 

@@ -1,8 +1,11 @@
-import { useThree } from "@react-three/fiber";
-import { Float, Shadow } from "@react-three/drei";
+import { useRef } from "react";
+import { useFrame } from "@react-three/fiber";
+import { Float, Shadow, ShadowType } from "@react-three/drei";
 import { FloatProps } from "@react-three/drei/core/Float";
-import { DeviceData } from "../../../constants/ProjectsData.ts";
+import { DeviceData, SmartphoneData } from "../../../constants/ProjectsData.ts";
+import useBreakpoint from "../../../hooks/useBreakpoint.ts";
 import DeviceModel from "../../model3D/DeviceModel.tsx";
+import { easing } from "maath";
 
 type ProjectModelProps = FloatProps & {
     device: DeviceData;
@@ -14,9 +17,33 @@ export default function ProjectModel({
     inView = true,
     ...props
 }: ProjectModelProps) {
-    const { viewport } = useThree();
+    const shadowRef = useRef<ShadowType>(null!);
+    useFrame((_state, delta) => {
+        if (!inView) return;
 
-    const isMobile = viewport.width < 1024;
+        easing.damp(shadowRef.current.material, "opacity", 1, 2, delta);
+    });
+
+    const { viewport, isSm, isMd } = useBreakpoint();
+
+    const isMobile = isSm && isMd;
+
+    const isSmartphone = device.type === "smartphone";
+    const isDeviceLandscape = isSmartphone
+        ? (device as SmartphoneData).deviceOrientation === "landscape"
+        : undefined;
+
+    const shadowPosition: [number, number, number] = isSmartphone
+        ? isDeviceLandscape
+            ? [0, -0.35, 0]
+            : [0, -0.8, 0]
+        : [0, -0.55, 0];
+
+    const shadowScale: [number, number, number] = isSmartphone
+        ? isDeviceLandscape
+            ? [2.5, 3, 1]
+            : [1.5, 2, 1]
+        : [2.65, 3.5, 1];
 
     return (
         <group
@@ -30,18 +57,19 @@ export default function ProjectModel({
                 {...props}>
                 <DeviceModel
                     animDuration={3}
-                    scale={device.type === "smartphone" ? 1.5 : 1}
+                    scale={isSmartphone ? 1.5 : 1}
                     inView={inView}
                     device={device}
                     screenLoop={true}
                 />
             </Float>
             <Shadow
-                position={[0, -0.65, 0]}
-                scale={[2.35, 3.5, 2.35]}
+                ref={shadowRef}
+                position={shadowPosition}
+                scale={shadowScale}
                 color='black'
                 colorStop={0.3}
-                opacity={0.5}
+                opacity={0}
                 fog={false}
             />
         </group>

@@ -22,7 +22,7 @@ const ProjectModelContainer = memo(
                     <PerspectiveCamera
                         makeDefault
                         fov={90}
-                        position={[0, 0.35, 5]}
+                        position={[0, 0.3, 5]}
                         zoom={4}
                     />
                     <Environment files='stars.hdr' path='./environment/'>

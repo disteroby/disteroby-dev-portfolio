@@ -1,8 +1,9 @@
 import { useRef } from "react";
 import { Group, Vector3 } from "three";
 import * as THREE from "three";
-import { useFrame, useThree } from "@react-three/fiber";
+import { useFrame } from "@react-three/fiber";
 import { useTexture } from "@react-three/drei";
+import useBreakpoint from "../../hooks/useBreakpoint.ts";
 import { texturePath } from "../../utils/ResourcesUtils.ts";
 import { latLongToCartesian } from "../../utils/TransformUtils.ts";
 import { EarthMaterial } from "./EarthMaterial.tsx";
@@ -10,7 +11,8 @@ import { useControls } from "leva";
 
 export default function EarthModel() {
     const textureMask = useTexture(texturePath("texture_earth_mask.jpg"));
-    const { viewport } = useThree();
+
+    useBreakpoint();
 
     // console.log(viewport.getCurrentViewport());
 

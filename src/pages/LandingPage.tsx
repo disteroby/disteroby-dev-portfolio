@@ -50,21 +50,21 @@ function LandingPage() {
             ref: heroRef,
             jsx: <SectionHeroOverlay pageIsLoaded={pageIsLoaded} />,
         },
-        // {
-        //     tag: "projects",
-        //     ref: projectsRef,
-        //     jsx: <SectionProjects />,
-        // },
-        // {
-        //     tag: "about-me",
-        //     ref: aboutRef,
-        //     jsx: <SectionAbout />,
-        // },
-        // {
-        //     tag: "skills",
-        //     ref: skillsRef,
-        //     jsx: <SectionSkills />,
-        // },
+        {
+            tag: "projects",
+            ref: projectsRef,
+            jsx: <SectionProjects />,
+        },
+        {
+            tag: "about-me",
+            ref: aboutRef,
+            jsx: <SectionAbout />,
+        },
+        {
+            tag: "skills",
+            ref: skillsRef,
+            jsx: <SectionSkills />,
+        },
         {
             tag: "contact",
             ref: contactRef,
@@ -103,7 +103,6 @@ function LandingPage() {
     return (
         <SectionRefsContext.Provider value={refs}>
             <div className='relative'>
-                <div className='absolute inset-0 top-[150vh] bg-blurry bg-[length:100%_200rem] bg-repeat-y' />
                 <div
                     className={twJoin(
                         "relative",

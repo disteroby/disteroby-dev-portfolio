@@ -5,8 +5,8 @@
     --icon-padding: .5rem;
     --icon-size: calc(var(--input-height) - var(--icon-padding) * 2 - var(--border-size) * 2);
     --icon-space: calc(var(--icon-size) + var(--icon-padding) * 2);
-    --inactive-text-color: rgb(48, 53, 57);
-    --inactive-color: rgb(30, 33, 35);
+    --inactive-text-color: rgb(107, 113, 118);
+    --inactive-color: rgb(68, 72, 76);
     --active-color: rgb(6 182 212);
     --active-color-opaque: rgba(6 182 212 / .5);
     --shadow-blur: 2.4rem;
@@ -21,7 +21,7 @@
     border-radius: 100rem;
     position: relative;
     display: flex;
-    align-content: center;
+    align-items: center;
     transition: var(--anim-settings);
 }
 
@@ -83,7 +83,7 @@
 }
 
 .roundInput:focus-visible.roundInput::placeholder {
-    opacity: 1;
+    opacity: .8;
 }
 
 .icon {

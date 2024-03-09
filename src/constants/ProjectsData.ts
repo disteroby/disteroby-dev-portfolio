@@ -31,14 +31,14 @@ export type DeviceType = "laptop" | "smartphone";
 /**
  * Represents data specific to a laptop.
  */
-type LaptopData = {
+export type LaptopData = {
     type: "laptop";
 };
 
 /**
  * Represents data specific to a smartphone.
  */
-type SmartphoneData = {
+export type SmartphoneData = {
     type: "smartphone";
     deviceOrientation: "portrait" | "landscape";
 };

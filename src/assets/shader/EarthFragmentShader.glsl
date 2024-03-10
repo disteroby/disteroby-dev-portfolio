@@ -35,10 +35,11 @@ float getMask(vec2 uv) {
 
     vec2 dotUv = fract(uv * normalize(texSize) * dotDensity) - vec2(0.5);
     float dotPattern = 1.0 - step(0.5, length(dotUv) / pulseDotSize);
-    float mask = tex.x * dotPattern;
 
     float viewDotNormal = clamp01(dot(normalize(vNormal), normalize(vViewPosition)));
     float fresnel = pow(1.0 - viewDotNormal, fresnelIntensity);
+
+    float mask = tex.x * dotPattern * (1.0 - pow(fresnel, 0.23));
 
     return mix(mask, 1.0, map(fresnel,0.0,1.0,fresnelMin, fresnelMax));
 }
@@ -53,7 +54,7 @@ void main() {
     vec3 gradient = getGradientColor(finalMask);
 
 
-    gl_FragColor = vec4(gradient * intensity, 0.5);
+    gl_FragColor = vec4(gradient * intensity, 1.0);
 
 
 //    #include <tonemapping_fragment>

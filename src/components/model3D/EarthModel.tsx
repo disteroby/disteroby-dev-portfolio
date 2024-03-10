@@ -1,65 +1,28 @@
 import { useRef } from "react";
 import { Group, Vector3 } from "three";
 import * as THREE from "three";
-import { useFrame } from "@react-three/fiber";
+import { useFrame, useThree } from "@react-three/fiber";
 import { useTexture } from "@react-three/drei";
 import useBreakpoint from "../../hooks/useBreakpoint.ts";
+import { Lerp } from "../../utils/LerpUtils.ts";
 import { texturePath } from "../../utils/ResourcesUtils.ts";
 import { latLongToCartesian } from "../../utils/TransformUtils.ts";
 import { EarthMaterial } from "./EarthMaterial.tsx";
+import { useWindowWidth } from "@react-hook/window-size";
 import { useControls } from "leva";
+
+const earthGradientFrom = new THREE.Color("#ffb1f7");
+const earthGradientTo = new THREE.Color("#9d96ff");
 
 export default function EarthModel() {
     const textureMask = useTexture(texturePath("texture_earth_mask.jpg"));
 
-    useBreakpoint();
+    const { width, isSm, isMd, isLg } = useBreakpoint();
 
-    // console.log(viewport.getCurrentViewport());
+    const isLgOrBelow = isSm || isMd || isLg;
 
-    const { ii, intensity, c1, c2, minF, maxF, pos, dd, ds } = useControls(
-        "Earth",
-        {
-            intensity: {
-                min: 0,
-                value: 4,
-            },
-            c1: {
-                value: "#ff48ed",
-            },
-            c2: {
-                value: "#5ae1ff",
-            },
-            minF: {
-                min: 0,
-                max: 1,
-                value: 0.05,
-            },
-            maxF: {
-                min: 0,
-                max: 1,
-                value: 0.75,
-            },
-            dd: {
-                min: 0,
-                value: 400,
-                step: 1,
-            },
-            ds: {
-                min: 0,
-                value: 0.3,
-                max: 1,
-            },
-            pos: {
-                min: 0,
-                max: Math.PI,
-                value: [0.4, 1.1, 0],
-            },
-            ii: {
-                min: 0,
-                value: 1.5,
-            },
-        },
-    );
+    const dotDensity = isLgOrBelow ? Lerp(70, 400, width / 1024) : 350;
+    const dotFillSize = isLgOrBelow ? Lerp(0.2, 0.3, width / 1024) : 0.3;
 
     const { lat, long, radius, altitude } = useControls("Pin", {
         lat: {
@@ -97,22 +60,21 @@ export default function EarthModel() {
     const posVec3 = new Vector3(position![0], position![1], position![2]);
 
     return (
-        <group ref={ref} rotation={pos}>
+        <group ref={ref} rotation={[0.4, 1.1, 0]}>
             <mesh>
                 <icosahedronGeometry args={[1, 32]} />
                 <earthMaterial
                     ref={matRef}
                     earthMask={textureMask}
-                    fresnelIntensity={intensity}
-                    fresnelMin={minF}
-                    fresnelMax={maxF}
-                    dotDensity={dd}
-                    dotFillSize={ds}
-                    transparent
-                    intensity={ii}
+                    fresnelIntensity={4.5}
+                    fresnelMin={0.1}
+                    fresnelMax={0.75}
+                    dotDensity={dotDensity}
+                    dotFillSize={dotFillSize}
+                    intensity={1.5}
                     toneMapped={true}
-                    color1={new THREE.Color(c1)}
-                    color2={new THREE.Color(c2)}
+                    color1={earthGradientFrom}
+                    color2={earthGradientTo}
                 />
             </mesh>
             <group position={transform.position}></group>

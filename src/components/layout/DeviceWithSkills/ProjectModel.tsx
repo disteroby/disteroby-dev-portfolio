@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { useFrame } from "@react-three/fiber";
+import { useFrame, useThree } from "@react-three/fiber";
 import { Float, Shadow, ShadowType } from "@react-three/drei";
 import { FloatProps } from "@react-three/drei/core/Float";
 import { DeviceData, SmartphoneData } from "../../../constants/ProjectsData.ts";
@@ -24,7 +24,8 @@ export default function ProjectModel({
         easing.damp(shadowRef.current.material, "opacity", 1, 2, delta);
     });
 
-    const { viewport, isSm, isMd } = useBreakpoint();
+    const { viewport } = useThree();
+    const { isSm, isMd } = useBreakpoint();
 
     const isMobile = isSm && isMd;
 

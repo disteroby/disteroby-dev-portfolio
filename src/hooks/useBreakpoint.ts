@@ -1,22 +1,22 @@
-import { useThree } from "@react-three/fiber";
+import { useWindowWidth } from "@react-hook/window-size";
 
 export default function useBreakpoint() {
-    const { viewport } = useThree();
+    const width = useWindowWidth();
 
-    const currentWidth = viewport.width;
-
-    const isSm = currentWidth <= 640;
-    const isMd = !isSm && currentWidth <= 768;
-    const isLg = !isMd && currentWidth <= 1024;
-    const isXl = !isLg && currentWidth <= 1280;
-    const is2Xl = !isXl && currentWidth <= 1536;
+    const isSm = width < 640;
+    const isMd = width >= 640 && width < 768;
+    const isLg = width >= 768 && width < 1024;
+    const isXl = width >= 1024 && width < 1280;
+    const is2Xl = width >= 1280 && width < 1536;
+    const is3Xl = width >= 1536;
 
     return {
-        viewport,
+        width,
         isSm,
         isMd,
         isLg,
         isXl,
         is2Xl,
+        is3Xl,
     };
 }

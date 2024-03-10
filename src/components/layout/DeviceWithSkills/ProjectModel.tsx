@@ -27,7 +27,7 @@ export default function ProjectModel({
     const { viewport } = useThree();
     const { isSm, isMd } = useBreakpoint();
 
-    const isMobile = isSm && isMd;
+    const isMobile = isSm || isMd;
 
     const isSmartphone = device.type === "smartphone";
     const isDeviceLandscape = isSmartphone
@@ -49,7 +49,7 @@ export default function ProjectModel({
     return (
         <group
             position-y={0.05}
-            scale={isMobile ? viewport.aspect * 0.9 : viewport.aspect}>
+            scale={isMobile ? viewport.aspect * 0.85 : viewport.aspect}>
             <Float
                 floatIntensity={0.25}
                 speed={3}

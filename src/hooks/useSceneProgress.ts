@@ -17,7 +17,7 @@ export default function useSceneProgress(
     }, minTimeout);
 
     useEffect(() => {
-        let timer: number | undefined = undefined;
+        let timer: NodeJS.Timeout | undefined = undefined;
         if (!isSceneLoading) {
             timer = setTimeout(() => {
                 setExtraTimeoutFlag(true);

@@ -21,8 +21,8 @@ export default function PerformanceCanvas({ children, ...props }: CanvasProps) {
             {...props}>
             <Suspense fallback={null}>
                 {children}
-                {/*TODO Is this necessary???*/}
-                <AdaptiveDpr pixelated />
+                {/*/!*TODO Is this necessary???*!/*/}
+                {/*<AdaptiveDpr pixelated />*/}
                 <Preload all />
             </Suspense>
         </Canvas>

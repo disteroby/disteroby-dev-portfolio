@@ -63,10 +63,10 @@ html {
 }
 
 .grid-fade-out {
-    --_grid-section-stroke: 0.15vh;
-    --_grid-cell-stroke: max(1px, 0.075vh);
-    --_grid-section-size: 98.6vh;
-    --_grid-cell-size: 19.7vh;
+    --_grid-section-stroke: 0.15svh;
+    --_grid-cell-stroke: max(1px, 0.08svh);
+    --_grid-section-size: 100svh;
+    --_grid-cell-size: 19.75svh;
     --_color_section: #5b6466;
     --_color_cell: #262727;
     background-image: linear-gradient(

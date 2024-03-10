@@ -15,6 +15,7 @@ import SectionContacts from "../components/layout/Section/SectionContacts.tsx";
 import SectionHeroOverlay from "../components/layout/Section/SectionHeroOverlay.tsx";
 import SectionProjects from "../components/layout/Section/SectionProjects.tsx";
 import SectionSkills from "../components/layout/Section/SectionSkills.tsx";
+import Footer from "../components/UI/Footer.tsx";
 import Navbar from "../components/UI/Navbar.tsx";
 import SceneLoader from "../components/UI/SceneLoader.tsx";
 import { PROJECTS } from "../constants/ProjectsData.ts";
@@ -145,6 +146,7 @@ function LandingPage() {
                                 {jsx}
                             </LandingPageSection>
                         ))}
+                    <Footer />
                 </div>
             </div>
         </SectionRefsContext.Provider>

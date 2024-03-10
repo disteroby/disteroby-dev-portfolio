@@ -5,7 +5,7 @@ import {
     Firestore,
     getFirestore,
     Timestamp,
-} from "firebase/firestore";
+} from "firebase/firestore/lite";
 
 /**
  * Firebase configuration object.
@@ -21,17 +21,26 @@ const firebaseConfig: FirebaseOptions = {
     appId: import.meta.env.VITE_APP_ID,
 };
 
+console.log("NNNNNNNNNNNN");
+
 /**
  * The initialized Firebase App with the provided configuration.
  * @type {FirebaseApp}
  */
-const firebaseApp: FirebaseApp = initializeApp(firebaseConfig);
+let firebaseApp: FirebaseApp | null = null;
 
 /**
  * The initialized Firestore Database with the provided configuration.
  * @type {Firestore}
  */
-const firestore: Firestore = getFirestore(firebaseApp);
+let firestore: Firestore | null = null;
+
+export function initFirebase() {
+    if (firebaseApp === null || firestore === null) {
+        firebaseApp = initializeApp(firebaseConfig);
+        firestore = getFirestore(firebaseApp);
+    }
+}
 
 /**
  * Saves a message to the Firestore database under the 'contacts' collection.
@@ -44,6 +53,10 @@ export async function saveDbMessage(
     message: string,
 ): Promise<boolean> {
     await new Promise(resolve => setTimeout(resolve, 1000));
+
+    if (firestore === null) {
+        return false;
+    }
 
     try {
         const now = Timestamp.now();

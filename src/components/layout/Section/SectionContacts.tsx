@@ -1,10 +1,11 @@
-import { useRef } from "react";
+import { FormEvent, useRef } from "react";
 import { PerspectiveCamera } from "@react-three/drei";
 import { saveDbMessage } from "../../../utils/FirebaseUtils.ts";
 import EarthModel from "../../model3D/EarthModel.tsx";
 import PerformanceCanvas from "../../model3D/PerformanceCanvas.tsx";
 import RoundInput from "../../UI/RoundInput/RoundInput.tsx";
 import SectionTitle from "../../UI/SectionTitle.tsx";
+import { BsSendCheckFill } from "react-icons/bs";
 import { MdMail } from "react-icons/md";
 import { RiSparkling2Line } from "react-icons/ri";
 import { TbMessageCircle2Filled } from "react-icons/tb";
@@ -15,7 +16,9 @@ export default function SectionContacts() {
     const emailRef = useRef<HTMLInputElement>(null!);
     const messageRef = useRef<HTMLInputElement>(null!);
 
-    async function onSendMessage() {
+    async function onSendMessage(e: FormEvent<HTMLFormElement>) {
+        e.preventDefault();
+
         const email = emailRef.current.value.trim();
         const message = messageRef.current.value.trim();
 
@@ -28,6 +31,7 @@ export default function SectionContacts() {
             draggable: true,
             theme: "dark",
             transition: Bounce,
+            className: "m-[1rem!important]",
         };
 
         if (email === "" || message === "") {
@@ -61,7 +65,7 @@ export default function SectionContacts() {
     return (
         <div className='flex min-h-screen flex-col items-center'>
             <SectionTitle title='Contacts Me' />
-            <div className='flex w-full flex-col items-stretch border border-green-600/20 lg:flex-row'>
+            <div className='flex w-full flex-col items-stretch lg:flex-row'>
                 <div className='aspect-square hover:select-none lg:aspect-[15/14] lg:w-[60%]'>
                     <PerformanceCanvas
                         id='canvas-earth'
@@ -76,10 +80,10 @@ export default function SectionContacts() {
                     </PerformanceCanvas>
                 </div>
                 <div className='grid place-items-center p-8 lg:w-[40%]'>
-                    <div className='flex max-w-[23rem] flex-col justify-center gap-8 '>
-                        <h3
-                            onClick={onSendMessage}
-                            className='w-fit bg-gradient-to-r from-indigo-500 to-cyan-500 bg-clip-text text-3xl font-medium text-transparent lg:text-4xl xl:text-5xl'>
+                    <form
+                        onSubmit={onSendMessage}
+                        className='flex max-w-[23rem] flex-col justify-center gap-8 '>
+                        <h3 className='w-fit bg-gradient-to-r from-indigo-500 to-cyan-500 bg-clip-text text-3xl font-medium text-transparent lg:text-4xl xl:text-5xl'>
                             Get in touch!
                         </h3>
                         <span className='-mt-4 mb-4'>
@@ -91,6 +95,7 @@ export default function SectionContacts() {
                             ref={emailRef}
                             label='Your Email'
                             icon={<MdMail />}
+                            type='email'
                             placeholder='your.name@your.mail.com'
                             autocompleted='email'
                         />
@@ -100,7 +105,15 @@ export default function SectionContacts() {
                             icon={<TbMessageCircle2Filled />}
                             placeholder='Write me a message...'
                         />
-                    </div>
+                        <button
+                            type='submit'
+                            className='group relative mx-auto flex h-12 w-12 cursor-pointer items-center justify-center overflow-hidden rounded-[3rem] bg-white/10 outline outline-2 outline-transparent transition-all duration-300 ease-in-out hover:w-28 hover:bg-fuchsia-500 hover:shadow-[0_.15rem_2.5rem_rgba(240,0,255,.5),0_.15rem_.65rem_rgba(240,0,255,.75)] focus-visible:outline-white active:bg-fuchsia-400 active:duration-75'>
+                            <span className='absolute -top-5 text-sm font-semibold tracking-wider opacity-15 transition-all duration-200 group-hover:top-2 group-hover:opacity-100'>
+                                SEND
+                            </span>
+                            <BsSendCheckFill className='text-xl transition-all duration-200 group-hover:translate-y-[60%] group-hover:text-5xl' />
+                        </button>
+                    </form>
                 </div>
             </div>
             <ToastContainer newestOnTop />

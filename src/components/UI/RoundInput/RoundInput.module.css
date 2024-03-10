@@ -8,7 +8,8 @@
     --inactive-text-color: rgb(107, 113, 118);
     --inactive-color: rgb(68, 72, 76);
     --active-color: rgb(6 182 212);
-    --active-color-opaque: rgba(6 182 212 / .5);
+    --active-color-opaque-1: rgba(6 182 212 / .5);
+    --active-color-opaque-2: rgba(6 182 212 / .75);
     --shadow-blur: 2.4rem;
     --anim-settings: all 250ms ease-in-out;
     box-sizing: border-box;
@@ -60,7 +61,7 @@
 
 .inputGroup:focus-within {
     border-color: var(--active-color);
-    box-shadow: 0 0 2.3rem var(--active-color-opaque),  0 0 .65rem var(--active-color);
+    box-shadow: 0 .15rem 2.5rem var(--active-color-opaque-1),  0 .15rem .65rem var(--active-color-opaque-2);
 }
 
 .roundInput:where(:focus-visible, :not(:placeholder-shown)) ~ .inputLabel {

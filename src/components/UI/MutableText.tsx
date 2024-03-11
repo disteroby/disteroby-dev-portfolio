@@ -31,10 +31,10 @@ function MutableText({ words, time, pause = false }: MutableTextProps) {
             {words.map((word, id) => (
                 <div
                     className={twMerge(
-                        "absolute flex translate-x-0 items-center justify-center transition duration-[1500ms] ease-out",
+                        "absolute flex translate-x-0 items-center justify-center [transition:.75s_opacity_ease-in-out,.75s_transform_ease-in-out]",
                         id === wordId ? "opacity-100" : "opacity-0",
-                        isPrevious(id) && "-translate-x-[15rem]",
-                        isFollowing(id) && "translate-x-[15rem]",
+                        isPrevious(id) && "-translate-y-10",
+                        isFollowing(id) && "[transition:.25s_opacity_ease-out]",
                     )}
                     key={word}>
                     <GlowingText text={word} className='text-5xl lg:text-6xl' />

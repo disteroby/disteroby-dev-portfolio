@@ -29,11 +29,10 @@ export default function SkillFilterCircularButton({
     currentFilters,
     onClick,
 }: SkillFilterButtonProps) {
-    const radius = 10;
     const coords = types.map((_, i) =>
-        polarToCartesian(((Math.PI * 2) / types.length) * i, radius).map(
+        polarToCartesian(((Math.PI * 2) / types.length) * i, 1).map(
             (coord, dim) => {
-                return coord * (dim === 0 ? 1 : -1) + radius;
+                return coord * (dim === 0 ? 50 : -50) + 50;
             },
         ),
     );
@@ -50,27 +49,16 @@ export default function SkillFilterCircularButton({
             transition={{
                 duration: 2.5,
             }}
-            viewport={{ amount: 0.5, once: true }}
-            style={{ height: `${radius * 2}rem`, width: `${radius * 2}rem` }}
-            className='relative'>
-            <div
-                style={{
-                    maskImage:
-                        "radial-gradient(100% 100% at center, black 0%,transparent 50%)",
-                }}
-                className='pattern-dots absolute inset-0 rounded-full border-4 border-dashed pattern-white pattern-bg-dark-gray pattern-opacity-20 pattern-size-6'
-            />
-            <div className='absolute inset-0 flex flex-col items-center justify-center gap-2 rounded-full border-2 pt-4 text-center text-4xl uppercase tracking-widest text-white/30'>
-                <div>Filter</div>
-                <ImFilter />
-            </div>
-            <div className='absolute inset-0 overflow-hidden rounded-full'>
+            viewport={{ amount: 0.35, once: true }}
+            className='relative aspect-square w-full'>
+            <div className='absolute inset-[35%] flex flex-col items-center justify-center gap-2 rounded-full border-2 pt-4 text-center text-4xl uppercase tracking-widest text-white/30' />
+            <div className='absolute inset-[35%] overflow-hidden rounded-full'>
                 {types.map((type, idx) => (
                     <div
                         key={`border-${type}`}
                         style={{
-                            left: `${coords[idx][0]}rem`,
-                            top: `${coords[idx][1]}rem`,
+                            left: `${coords[idx][0]}%`,
+                            top: `${coords[idx][1]}%`,
                         }}
                         className={twMerge(
                             "absolute size-[7rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/60 transition duration-300 ease-in-out",
@@ -79,13 +67,13 @@ export default function SkillFilterCircularButton({
                     />
                 ))}
             </div>
-            <div className='absolute inset-0 rounded-full'>
+            <div className='absolute inset-[35%] rounded-full'>
                 {types.map((type, idx) => (
                     <div
                         key={`button-${type}`}
                         style={{
-                            left: `${coords[idx][0]}rem`,
-                            top: `${coords[idx][1]}rem`,
+                            left: `${coords[idx][0]}%`,
+                            top: `${coords[idx][1]}%`,
                         }}
                         className={twMerge(
                             "group absolute grid size-[5.5rem] -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-white text-dark-gray/30 hover:cursor-pointer",

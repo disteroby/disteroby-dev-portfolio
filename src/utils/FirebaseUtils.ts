@@ -21,8 +21,6 @@ const firebaseConfig: FirebaseOptions = {
     appId: import.meta.env.VITE_APP_ID,
 };
 
-console.log("NNNNNNNNNNNN");
-
 /**
  * The initialized Firebase App with the provided configuration.
  * @type {FirebaseApp}
@@ -53,6 +51,7 @@ export async function saveDbMessage(
     message: string,
 ): Promise<boolean> {
     await new Promise(resolve => setTimeout(resolve, 1000));
+    initFirebase();
 
     if (firestore === null) {
         return false;

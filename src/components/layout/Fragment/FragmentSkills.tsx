@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { SkillType } from "../../../constants/SkillsData.ts";
+import useBreakpoint from "../../../hooks/useBreakpoint.ts";
 import useSkillPlanets from "../../../hooks/useSkillPlanets.ts";
-import useWindowSize from "../../../hooks/useWindowSize.ts";
 import { opacityVariants } from "../../../utils/FramerMotionUtils.ts";
 import { Lerp } from "../../../utils/LerpUtils.ts";
 import HardSkill from "../../UI/HardSkill.tsx";
@@ -15,16 +15,14 @@ const fullSizePadding = 0.3;
 
 const planetPerRing = 5;
 
-const maxMobileWidth = 1024;
-
 export default function FragmentSkills() {
     const [currentSelectedIdx, setCurrentSelectedIdx] = useState(-1);
     const [filters, setFilters] = useState<SkillType[]>([]);
 
     const skillPlanets = useSkillPlanets(mobilePadding, fullSizePadding);
 
-    const [width] = useWindowSize();
-    const isMobile = width < maxMobileWidth;
+    const { isSm, isMd } = useBreakpoint();
+    const isMobile = isSm || isMd;
 
     const orbitPadding = (1 - (isMobile ? mobilePadding : fullSizePadding)) / 2;
 
@@ -46,7 +44,7 @@ export default function FragmentSkills() {
 
     return (
         <div className='flex w-full flex-col items-stretch justify-center gap-8 px-2 py-8 lg:px-8 xl:px-16'>
-            <div className='relative isolate aspect-square w-full'>
+            <div className='relative isolate mx-auto aspect-square w-full max-w-[125svh]'>
                 <motion.div
                     className='absolute inset-0'
                     variants={opacityVariants}

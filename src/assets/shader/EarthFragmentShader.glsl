@@ -33,9 +33,10 @@ highp float getMask(vec2 uv) {
     float pulseDotSize = sin(uTime * 3.0) * 0.04 + dotFillSize;
 
     vec4 tex = texture2D(earthMask, uv);
-    vec4 tex2 = texture2D(earthMask2, fract(uv * 4.0));
 
     vec2 texSize = vec2(textureSize(earthMask, 0));
+
+    vec4 tex2 = texture2D(earthMask2, fract(uv * texSize * 0.15));
 
     vec2 dotUv = fract(uv * normalize(texSize) * dotDensity) - vec2(0.5);
     float dotPattern = 1.0 - step(0.5, length(dotUv) / pulseDotSize);
@@ -46,7 +47,7 @@ highp float getMask(vec2 uv) {
     float fresnel = pow(1.0 - viewDotNormal, fresnelIntensity);
 
     float mask = tex.x * dotPattern * (1.0 - pow(fresnel, 0.23));
-    float mask2 = step( 0.5, 1.0 - tex2.x) * step( 0.5, tex.x) * (1.0 - pow(fresnel, 0.23));
+    float mask2 = step( 0.9, 1.0 - tex2.x) * step( 0.5, tex.x) * (1.0 - pow(fresnel, 10.0));
 
 //    return mix(mask, 1.0, map(fresnel,0.0,1.0,fresnelMin, fresnelMax));
 

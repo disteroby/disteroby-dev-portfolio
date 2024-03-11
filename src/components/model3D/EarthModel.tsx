@@ -20,9 +20,11 @@ const earthGradientTo = new THREE.Color("#9d96ff");
 
 export default function EarthModel() {
     const textureMask = useTexture(texturePath("texture_earth_mask_small.jpg"));
-    const textureMask2 = useTexture(texturePath("texture_dot_mask.jpg"));
+    const textureMask2 = useTexture(
+        texturePath("texture_single_dot_pattern.png"),
+    );
     textureMask.anisotropy = 8;
-    textureMask2.anisotropy = 8;
+    textureMask2.anisotropy = 64;
 
     const groupRef = useRef<Group>(null!);
     const matRef = useRef<typeof EarthMaterial>(null!);
@@ -35,13 +37,12 @@ export default function EarthModel() {
     const dotDensity = isLgOrBelow ? Lerp(70, 400, width / 1024) : 50;
     const dotFillSize = isLgOrBelow ? Lerp(0.2, 0.3, width / 1024) : 0.3;
 
-    const { position }: MeshTransform = latLongToCartesian(
-        pinLatitude,
-        pinLongitude,
-        earthRadius,
-    );
-
     useEffect(() => {
+        const { position }: MeshTransform = latLongToCartesian(
+            pinLatitude,
+            pinLongitude,
+            earthRadius,
+        );
         const posVec3 = new Vector3(position![0], position![1], position![2]);
         pinRef.current.lookAt(posVec3);
     }, []);
@@ -101,4 +102,4 @@ export default function EarthModel() {
 }
 
 useTexture.preload(texturePath("texture_earth_mask_small.jpg"));
-useTexture.preload(texturePath("texture_dot_mask.jpg"));
+useTexture.preload(texturePath("texture_single_dot_pattern.png"));

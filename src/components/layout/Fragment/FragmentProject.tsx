@@ -20,7 +20,7 @@ export default function FragmentProject({
                 index % 2 ? "lg:flex-row-reverse" : "lg:flex-row",
             )}>
             <div className='relative aspect-square h-auto w-full lg:w-[50%]'>
-                <div className='absolute -inset-[4rem] lg:-inset-[5rem] xl:-inset-[7rem]'>
+                <div className='absolute -inset-[4rem] md:inset-0 lg:-inset-[2rem] xl:-inset-[1rem] 2xl:-inset-[0rem]'>
                     <ProjectModelContainer project={project} />
                 </div>
             </div>

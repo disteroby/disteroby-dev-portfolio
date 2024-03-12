@@ -6,7 +6,7 @@ varying vec4 vScreenPosition;
 
 void main() {
     vUv = uv;
-    vNormal = normalMatrix * normal;
+    vNormal = (normalMatrix * normal + normalize(vec3(-1.1, 1.1, .5))) * 0.5;
     vPosition = position;
 
     vec4 worldPosition = modelMatrix * vec4(position, 1.0);

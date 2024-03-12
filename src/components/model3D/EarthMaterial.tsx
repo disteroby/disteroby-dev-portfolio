@@ -6,16 +6,22 @@ import shaderMaterial from "../../utils/ShaderUtils.ts";
 
 const EarthMaterialProps = {
     uTime: 0,
-    earthMask: new THREE.Texture(),
-    earthMask2: new THREE.Texture(),
+
+    earthTextureMask: new THREE.Texture(),
+    dotTextureMask: new THREE.Texture(),
+
+    dotPatternDensity: 1.0,
+    dotPatternFillSize: 1.0,
+    dotPatternPulseVariation: 1.0,
+    dotPatternPulseSpeed: 0.0,
+
     fresnelIntensity: 1.0,
     fresnelMin: 0.0,
     fresnelMax: 1.0,
-    intensity: 10,
-    dotDensity: 1.0,
-    dotFillSize: 1.0,
-    color1: new THREE.Color(),
-    color2: new THREE.Color(),
+
+    gradientColorFrom: new THREE.Color(),
+    gradientColorTo: new THREE.Color(),
+    globalColorIntensity: 1.0,
 };
 
 export const EarthMaterial = shaderMaterial(

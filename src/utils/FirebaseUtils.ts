@@ -8,7 +8,7 @@ import {
 } from "firebase/firestore/lite";
 
 /**
- * Firebase configuration object.
+ * Firebase configuration data.
  * @type {FirebaseOptions}
  */
 const firebaseConfig: FirebaseOptions = {
@@ -33,7 +33,10 @@ let firebaseApp: FirebaseApp | null = null;
  */
 let firestore: Firestore | null = null;
 
-export function initFirebase() {
+/**
+ * Initializes Firebase with the provided configuration, if it has not been initialized already.
+ */
+function initFirebase() {
     if (firebaseApp === null || firestore === null) {
         firebaseApp = initializeApp(firebaseConfig);
         firestore = getFirestore(firebaseApp);

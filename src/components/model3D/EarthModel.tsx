@@ -11,12 +11,13 @@ import {
     MeshTransform,
 } from "../../utils/TransformUtils.ts";
 import { EarthMaterial } from "./EarthMaterial.tsx";
+import { useControls } from "leva";
 
 const earthRadius = 1;
 const pinLatitude = 24.1;
 const pinLongitude = -103.7;
-const earthGradientFrom = new THREE.Color("#ffb1f7");
-const earthGradientTo = new THREE.Color("#9d96ff");
+const earthGradientFrom = new THREE.Color("#e37cff");
+const earthGradientTo = new THREE.Color("#00c8ff");
 
 export default function EarthModel() {
     const textureMask = useTexture(texturePath("texture_earth_mask_small.jpg"));
@@ -34,8 +35,48 @@ export default function EarthModel() {
 
     const isLgOrBelow = isSm || isMd || isLg;
 
-    const dotDensity = isLgOrBelow ? Lerp(70, 400, width / 1024) : 50;
-    const dotFillSize = isLgOrBelow ? Lerp(0.2, 0.3, width / 1024) : 0.3;
+    const dotDensity = isLgOrBelow ? Lerp(0.075, 0.15, width / 1024) : 0.15;
+    const dotFillSize = isLgOrBelow ? Lerp(0.925, 0.95, width / 1024) : 0.95;
+
+    const { dpfs, dpps, dppv, fresInt, dpd, fresMax, fresMin, intensity } =
+        useControls({
+            dpd: {
+                min: 0,
+                value: 0.15,
+            },
+            dpfs: {
+                min: 0,
+                value: 0.95,
+                max: 1,
+            },
+            dppv: {
+                min: 0,
+                value: 1,
+            },
+            dpps: {
+                min: 0,
+                value: 1,
+            },
+            fresInt: {
+                min: 0,
+                value: 0.3,
+                max: 10,
+            },
+            fresMin: {
+                min: -1,
+                value: -0.18,
+                max: 1,
+            },
+            fresMax: {
+                min: 0,
+                value: 2,
+                max: 2,
+            },
+            intensity: {
+                min: 0,
+                value: 0.7,
+            },
+        });
 
     useEffect(() => {
         const { position }: MeshTransform = latLongToCartesian(
@@ -53,28 +94,36 @@ export default function EarthModel() {
 
     const glassMat = (
         <MeshTransmissionMaterial
-            thickness={0.15}
-            ior={0.95}
+            thickness={0.4}
+            ior={0.975}
             iridescence={0.1}
             distortionScale={0.5}
             temporalDistortion={0.1}
             resolution={1024}
             samples={2}
+            roughness={0.05}
+            metalness={0.15}
+            specularIntensity={0.2}
         />
     );
 
     return (
         <group ref={groupRef} rotation={[0.4, 1.1, 0]}>
             <group ref={pinRef}>
+                <directionalLight
+                    color={"#aa7ad6"}
+                    position={[2, 5, 1]}
+                    intensity={100}
+                />
                 <group
                     position={[0, 0, earthRadius]}
                     rotation={[Math.PI / 2, 0, 0]}>
                     <mesh>
-                        <cylinderGeometry args={[0.01, -0.005, 0.15, 8]} />
+                        <cylinderGeometry args={[0.015, -0.015, 0.2, 8]} />
                         {glassMat}
                     </mesh>
-                    <mesh position-y={0.1}>
-                        <sphereGeometry args={[0.025, 16]} />
+                    <mesh position-y={0.1 + 0.05}>
+                        <sphereGeometry args={[0.05, 32]} />
                         {glassMat}
                     </mesh>
                 </group>
@@ -84,17 +133,19 @@ export default function EarthModel() {
                 <icosahedronGeometry args={[earthRadius, 32]} />
                 <earthMaterial
                     ref={matRef}
-                    earthMask={textureMask}
-                    earthMask2={textureMask2}
-                    fresnelIntensity={4.5}
-                    fresnelMin={0.1}
-                    fresnelMax={0.75}
-                    dotDensity={dotDensity}
-                    dotFillSize={dotFillSize}
-                    intensity={1.5}
+                    earthTextureMask={textureMask}
+                    dotTextureMask={textureMask2}
+                    dotPatternDensity={dotDensity}
+                    dotPatternFillSize={dotFillSize}
+                    dotPatternPulseVariation={dppv}
+                    dotPatternPulseSpeed={dpps}
+                    fresnelIntensity={fresInt}
+                    fresnelMin={fresMin}
+                    fresnelMax={fresMax}
+                    globalColorIntensity={intensity}
+                    gradientColorFrom={earthGradientFrom}
+                    gradientColorTo={earthGradientTo}
                     toneMapped={true}
-                    color1={earthGradientFrom}
-                    color2={earthGradientTo}
                 />
             </mesh>
         </group>

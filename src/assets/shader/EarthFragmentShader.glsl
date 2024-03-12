@@ -7,18 +7,22 @@ varying vec3 vViewPosition;
 varying vec4 vScreenPosition;
 
 uniform float uTime;
-uniform sampler2D earthMask;
-uniform sampler2D earthMask2;
+
+uniform sampler2D earthTextureMask;
+uniform sampler2D dotTextureMask;
+
+uniform float dotPatternDensity;
+uniform float dotPatternFillSize;
+uniform float dotPatternPulseVariation;
+uniform float dotPatternPulseSpeed;
+
 uniform float fresnelIntensity;
 uniform float fresnelMin;
 uniform float fresnelMax;
-uniform vec3 color1;
-uniform vec3 color2;
 
-uniform float intensity;
-
-uniform float dotDensity;
-uniform float dotFillSize;
+uniform vec3 gradientColorFrom;
+uniform vec3 gradientColorTo;
+uniform float globalColorIntensity;
 
 float map(float value, float min1, float max1, float min2, float max2) {
     return min2 + (value - min1) * (max2 - min2) / (max1 - min1);
@@ -30,33 +34,28 @@ float clamp01(float x) {
 
 highp float getMask(vec2 uv) {
 
-    float pulseDotSize = sin(uTime * 3.0) * 0.04 + dotFillSize;
+    //float pulseDotSize = sin(uTime * 3.0) * 0.04 + dotPatternFillSize;
+    float pulseDotSize = sin(uTime * dotPatternPulseSpeed) * dotPatternPulseVariation + dotPatternFillSize;
 
-    vec4 tex = texture2D(earthMask, uv);
+    vec4 texEarth = texture2D(earthTextureMask, uv);
 
-    vec2 texSize = vec2(textureSize(earthMask, 0));
+    vec2 texSize = vec2(textureSize(earthTextureMask, 0));
 
-    vec4 tex2 = texture2D(earthMask2, fract(uv * texSize * 0.15));
-
-    vec2 dotUv = fract(uv * normalize(texSize) * dotDensity) - vec2(0.5);
-    float dotPattern = 1.0 - step(0.5, length(dotUv) / pulseDotSize);
-    float squarePattern = 1.0 - step(0.5, dotUv.x / pulseDotSize);
-    float squarePattern2 = 1.0 - step(0.5, dotUv.y / pulseDotSize);
+    vec4 texDot = texture2D(dotTextureMask, fract(uv * texSize * dotPatternDensity));
 
     float viewDotNormal = clamp01(dot(normalize(vNormal), normalize(vViewPosition)));
-    float fresnel = pow(1.0 - viewDotNormal, fresnelIntensity);
+    float fresnel = 1.0 - pow(1.0 - viewDotNormal, fresnelIntensity);
+    float fresnelRemapped = map(clamp(0.0, 0.5, fresnel), 0.0, 0.5, fresnelMin, fresnelMax);
 
-    float mask = tex.x * dotPattern * (1.0 - pow(fresnel, 0.23));
-    float mask2 = step( 0.9, 1.0 - tex2.x) * step( 0.5, tex.x) * (1.0 - pow(fresnel, 10.0));
+    float finalMask = step(pulseDotSize, 1.0 - texDot.x) * step(0.5, texEarth.x) * fresnelRemapped;
 
-//    return mix(mask, 1.0, map(fresnel,0.0,1.0,fresnelMin, fresnelMax));
-
-    return mix(mask2, 1.0, map(fresnel,0.0,1.0,fresnelMin, fresnelMax));
+    float fresnel2 = pow(1.0 - viewDotNormal, 4.0);
+    return clamp01(mix(finalMask, 1.0, map(fresnel2, 0.0, 1.0, 0.05, .9)));
 }
 
 vec3 getGradientColor(float mask) {
     float range = normalize(vNormal).x * 0.5 + 0.5;
-    return mix(color1, color2, range) * mask;
+    return mix(gradientColorFrom, gradientColorTo, range) * mask;
 }
 
 void main() {
@@ -64,10 +63,10 @@ void main() {
     vec3 gradient = getGradientColor(finalMask);
 
 
-    gl_FragColor = vec4(gradient * intensity, 1.0);
+    gl_FragColor = vec4(gradient * globalColorIntensity, 1.0);
 //    gl_FragColor = vec4(finalMask, finalMask, finalMask, 1.0);
 
 
-//    #include <tonemapping_fragment>
-//    #include <colorspace_fragment>
+    #include <tonemapping_fragment>
+    #include <colorspace_fragment>
 }

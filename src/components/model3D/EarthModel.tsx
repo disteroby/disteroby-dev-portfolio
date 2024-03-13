@@ -11,13 +11,16 @@ import {
     MeshTransform,
 } from "../../utils/TransformUtils.ts";
 import { EarthMaterial } from "./EarthMaterial.tsx";
-import { useControls } from "leva";
+
+const generalRotation: [number, number, number] = [0.4, 1.1, 0];
 
 const earthRadius = 1;
+
 const pinLatitude = 24.1;
 const pinLongitude = -103.7;
+
 const earthGradientFrom = new THREE.Color("#e37cff");
-const earthGradientTo = new THREE.Color("#00c8ff");
+const earthGradientTo = new THREE.Color("#00b2ff");
 
 export default function EarthModel() {
     const textureMask = useTexture(texturePath("texture_earth_mask_small.jpg"));
@@ -38,47 +41,11 @@ export default function EarthModel() {
     const dotDensity = isLgOrBelow ? Lerp(0.075, 0.15, width / 1024) : 0.15;
     const dotFillSize = isLgOrBelow ? Lerp(0.925, 0.95, width / 1024) : 0.95;
 
-    const { dpfs, dpps, dppv, fresInt, dpd, fresMax, fresMin, intensity } =
-        useControls({
-            dpd: {
-                min: 0,
-                value: 0.15,
-            },
-            dpfs: {
-                min: 0,
-                value: 0.95,
-                max: 1,
-            },
-            dppv: {
-                min: 0,
-                value: 1,
-            },
-            dpps: {
-                min: 0,
-                value: 1,
-            },
-            fresInt: {
-                min: 0,
-                value: 0.3,
-                max: 10,
-            },
-            fresMin: {
-                min: -1,
-                value: -0.18,
-                max: 1,
-            },
-            fresMax: {
-                min: 0,
-                value: 2,
-                max: 2,
-            },
-            intensity: {
-                min: 0,
-                value: 0.7,
-            },
-        });
-
     useEffect(() => {
+        groupRef.current.rotation.x = generalRotation[0];
+        groupRef.current.rotation.y = generalRotation[1];
+        groupRef.current.rotation.z = generalRotation[2];
+
         const { position }: MeshTransform = latLongToCartesian(
             pinLatitude,
             pinLongitude,
@@ -90,6 +57,7 @@ export default function EarthModel() {
 
     useFrame((_state, delta) => {
         groupRef.current.rotation.y += 0.15 * delta;
+        matRef.current.uTime += delta;
     });
 
     const glassMat = (
@@ -108,16 +76,14 @@ export default function EarthModel() {
     );
 
     return (
-        <group ref={groupRef} rotation={[0.4, 1.1, 0]}>
+        <group ref={groupRef} rotation={generalRotation}>
             <group ref={pinRef}>
                 <directionalLight
                     color={"#aa7ad6"}
                     position={[2, 5, 1]}
-                    intensity={100}
+                    intensity={20}
                 />
-                <group
-                    position={[0, 0, earthRadius]}
-                    rotation={[Math.PI / 2, 0, 0]}>
+                <group position-z={earthRadius} rotation-x={Math.PI / 2}>
                     <mesh>
                         <cylinderGeometry args={[0.015, -0.015, 0.2, 8]} />
                         {glassMat}
@@ -137,12 +103,10 @@ export default function EarthModel() {
                     dotTextureMask={textureMask2}
                     dotPatternDensity={dotDensity}
                     dotPatternFillSize={dotFillSize}
-                    dotPatternPulseVariation={dppv}
-                    dotPatternPulseSpeed={dpps}
-                    fresnelIntensity={fresInt}
-                    fresnelMin={fresMin}
-                    fresnelMax={fresMax}
-                    globalColorIntensity={intensity}
+                    fresnelIntensity={0.3}
+                    fresnelMin={-0.18}
+                    fresnelMax={2.0}
+                    globalColorIntensity={0.7}
                     gradientColorFrom={earthGradientFrom}
                     gradientColorTo={earthGradientTo}
                     toneMapped={true}

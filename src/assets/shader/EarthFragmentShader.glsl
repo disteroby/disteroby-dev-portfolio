@@ -33,8 +33,6 @@ float clamp01(float x) {
 }
 
 highp float getMask(vec2 uv) {
-
-    //float pulseDotSize = sin(uTime * 3.0) * 0.04 + dotPatternFillSize;
     float pulseDotSize = sin(uTime * dotPatternPulseSpeed) * dotPatternPulseVariation + dotPatternFillSize;
 
     vec4 texEarth = texture2D(earthTextureMask, uv);
@@ -62,10 +60,7 @@ void main() {
     highp float finalMask = getMask(vUv);
     vec3 gradient = getGradientColor(finalMask);
 
-
     gl_FragColor = vec4(gradient * globalColorIntensity, 1.0);
-//    gl_FragColor = vec4(finalMask, finalMask, finalMask, 1.0);
-
 
     #include <tonemapping_fragment>
     #include <colorspace_fragment>

@@ -60,7 +60,7 @@ export default function SectionContacts() {
 
     return (
         <div className='flex flex-col items-center'>
-            <SectionTitle title='Contacts Me' />
+            <SectionTitle title='Contacts' />
             <div className='flex w-full flex-col items-stretch pb-4 lg:flex-row lg:py-24'>
                 <div className='relative aspect-square h-auto w-full hover:select-none max-lg:translate-y-[15%] lg:aspect-[15/14] lg:w-[60%]'>
                     <EarthContainer />

@@ -129,9 +129,9 @@ export const PROJECTS: ProjectData[] = [
         title: "Mind Blooming",
         isTeam: false,
         description: [
-            "Enter the realm of mental wellness with Mind Blooming, a groundbreaking academic initiative born from the collaboration between the Department of Psychology and the Department of Computer Science at the University of Milano-Bicocca. Its mission: to democratize access to psychological support for all.",
+            "Enter the realm of mental wellness with Mind Blooming,  an innovative initiative from the University of Milano-Bicocca's Psychology and Computer Science departments, aims to democratize access to psychological support",
             "Mind Blooming heralds a new era in mental health care by offering remote pathways for the treatment of various psychological disorders. Designed to combat afflictions such as anxiety, depression, burnout, psychosomatic disorders, sleep disturbances, and self-destructive thoughts, the application serves as a beacon of hope for those in need.",
-            "Upon launch, users embark on a journey of self-discovery, beginning with a comprehensive questionnaire to identify prevalent psychological disorders. Week by week, Mind Blooming delivers personalized lessons, insights, and exercises aimed at defeating these silent adversaries, empowering users to reclaim their mental well-being.",
+            "Upon launch, users begin with a thorough questionnaire to identify prevalent psychological disorders. Week by week, Mind Blooming provides personalized lessons and exercises to empower users in reclaiming mental well-being.",
             "This visionary project, the focus of my bachelor thesis, exemplifies the intersection of psychology and technology, reshaping the landscape of mental health care for generations to come.",
         ],
         tags: ["flutter", "university-project", "bachelor-thesis"],

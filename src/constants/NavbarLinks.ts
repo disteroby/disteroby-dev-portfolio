@@ -59,7 +59,7 @@ export const NAVBAR_LINKS: NavbarLink[] = [
         },
     },
     {
-        text: "Skills",
+        text: "Technical Skills",
         href: "skills",
         textColor: "hover:text-blue-400",
         icons: {

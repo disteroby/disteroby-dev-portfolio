@@ -11,26 +11,26 @@ export default function Footer() {
             </div>
             <div className='mx-auto flex flex-row flex-wrap items-center justify-center gap-4 text-center'>
                 <a
-                    className='text-3xl'
+                    className='text-3xl transition duration-500 hover:scale-110'
                     href='https://github.com/disteroby'
                     target='_blank'>
                     <IoLogoGithub />
                 </a>
                 <a
-                    className='text-3xl'
+                    className='text-3xl transition duration-500 hover:scale-110'
                     href='https://www.linkedin.com/in/disteroby1999'
                     target='_blank'>
                     <IoLogoLinkedin />
                 </a>
             </div>
             <div className='mx-auto pt-4 text-center text-sm lg:pt-8'>
-                <span className='opacity-75'>
+                <span className='opacity-60'>
                     Curious about how I designed this portfolio?
                     <br />
                     Feel free to explore the magic behind it by visiting my
                 </span>{" "}
                 <a
-                    className='italic underline opacity-80'
+                    className='italic underline opacity-70 transition duration-200 hover:opacity-100'
                     href='https://github.com/disteroby/disteroby-dev-porfolio'
                     target='_blank'>
                     GitHub Repository

@@ -9,6 +9,7 @@ import {
     BiLogoFigma,
     BiLogoFirebase,
     BiLogoFlutter,
+    BiLogoGit,
     BiLogoGithub,
     BiLogoHtml5,
     BiLogoJavascript,
@@ -23,7 +24,7 @@ import {
 import { FaGitlab } from "react-icons/fa";
 import { GrMysql } from "react-icons/gr";
 import { LiaJava } from "react-icons/lia";
-import { SiCypress, SiJest, SiUnrealengine } from "react-icons/si";
+import { SiCypress, SiUnrealengine } from "react-icons/si";
 
 /**
  * Represents the type of skill.
@@ -57,10 +58,10 @@ export const SKILLS_DATA: Skill[] = [
         level: 4,
     },
     {
-        name: "Jest",
-        type: "web",
-        logo: SiJest,
-        level: 3.5,
+        name: "Git",
+        type: ["web", "mobile", "game"],
+        logo: BiLogoGit,
+        level: 4,
     },
     {
         name: "Java",
@@ -132,7 +133,7 @@ export const SKILLS_DATA: Skill[] = [
         name: "MongoDb",
         type: ["mobile", "web", "game"],
         logo: BiLogoMongodb,
-        level: 2.5,
+        level: 2,
     },
     {
         name: "Cypress",
@@ -168,7 +169,7 @@ export const SKILLS_DATA: Skill[] = [
         name: "Docker",
         type: ["web", "mobile"],
         logo: BiLogoDocker,
-        level: 1.5,
+        level: 2.5,
     },
     {
         name: "TypeScript",

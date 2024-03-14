@@ -42,12 +42,25 @@ export default function HardSkill({
                     isActive: {},
                 }}
                 className={twMerge(
-                    "relative select-none duration-200",
+                    "group relative select-none duration-200",
                     isFiltered && "cursor-pointer hover:scale-110",
                     isSelected && "scale-110",
                 )}
                 animate={isSelected ? "isActive" : "init"}
                 onClick={() => isFiltered && onClick(idx)}>
+                {["blur-sm", "blur-lg"].map(blur => (
+                    <div
+                        key={blur}
+                        style={{
+                            backgroundColor: `#${color}`,
+                        }}
+                        className={twJoin(
+                            "absolute inset-0 rounded-full opacity-0 transition duration-500",
+                            !isSelected && "group-hover:opacity-100",
+                            blur,
+                        )}
+                    />
+                ))}
                 <motion.div
                     variants={{
                         init: { transition: {} },
@@ -93,7 +106,7 @@ export default function HardSkill({
                     )}
                     <div
                         style={{ backgroundColor: `#${color}` }}
-                        className='absolute inset-0 rounded-full border border-white lg:border-2'
+                        className='absolute inset-0 rounded-full'
                     />
                     <div className='pointer-events-none absolute inset-0 grid select-none place-items-center'>
                         {<skill.logo />}

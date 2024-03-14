@@ -99,7 +99,7 @@ export default function FragmentSkills() {
                                     color={
                                         isMobile ? mobile.color : fullSize.color
                                     }
-                                    className='z-50 size-8 text-xl sm:size-12 sm:text-2xl md:size-16 md:text-4xl'
+                                    className='z-50 size-8 text-xl sm:size-12 sm:text-2xl md:size-14 md:text-4xl'
                                     filters={filters}
                                 />
                             </motion.div>

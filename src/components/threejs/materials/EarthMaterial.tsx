@@ -1,8 +1,8 @@
 import * as THREE from "three";
 import { ReactThreeFiber } from "@react-three/fiber";
-import fragmentShader from "../../assets/shader/EarthFragmentShader.glsl?raw";
-import vertexShader from "../../assets/shader/EarthVertexShader.glsl?raw";
-import shaderMaterial from "../../utils/ShaderUtils.ts";
+import fragmentShader from "../../../assets/shader/EarthFragmentShader.glsl?raw";
+import vertexShader from "../../../assets/shader/EarthVertexShader.glsl?raw";
+import shaderMaterial from "../../../utils/ShaderUtils.ts";
 
 const EarthMaterialProps = {
     uTime: 0,

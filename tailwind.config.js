@@ -3,11 +3,6 @@ export default {
     content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
     theme: {
         extend: {
-            backgroundImage: {
-                hero: "url('/src/assets/backgrounds/hero-bg.jpg')",
-                blurry: "url('/src/assets/backgrounds/bg-blurry-2.jpg')",
-                blurrytmp: "url('/src/assets/backgrounds/bg-blurry-tmp.jpg')",
-            },
             colors: {
                 "dark-gray": "#0C0C0F",
             },

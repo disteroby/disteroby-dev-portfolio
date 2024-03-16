@@ -1,9 +1,9 @@
 import { memo } from "react";
 import { Environment, Lightformer, Sparkles } from "@react-three/drei";
-import PerformanceCanvas from "../../model3D/PerformanceCanvas.tsx";
-import HeroDevices from "./HeroDevices.tsx";
-import HeroGrid from "./HeroGrid.tsx";
-import HeroLights from "./HeroLights.tsx";
+import HeroDevices from "../models/HeroDevices.tsx";
+import HeroGrid from "../models/HeroGrid.tsx";
+import HeroLights from "../models/HeroLights.tsx";
+import PerformanceCanvas from "../utils/PerformanceCanvas.tsx";
 
 type HeroStage3DProps = {
     inView: boolean;

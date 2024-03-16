@@ -1,7 +1,7 @@
 import { memo } from "react";
 import { PerspectiveCamera } from "@react-three/drei";
-import EarthModel from "../../model3D/EarthModel.tsx";
-import PerformanceCanvas from "../../model3D/PerformanceCanvas.tsx";
+import EarthModel from "../models/EarthModel.tsx";
+import PerformanceCanvas from "../utils/PerformanceCanvas.tsx";
 
 const EarthContainer = memo(() => {
     return (

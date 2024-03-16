@@ -1,6 +1,6 @@
 import { Euler, Vector3 } from "@react-three/fiber";
 import { ThreeEvent } from "@react-three/fiber/dist/declarations/src/core/events";
-import { DeviceData } from "../../constants/ProjectsData.ts";
+import { DeviceData } from "../../../constants/ProjectsData.ts";
 import Laptop from "./Laptop.tsx";
 import Smartphone from "./Smartphone.tsx";
 import { motion } from "framer-motion-3d";

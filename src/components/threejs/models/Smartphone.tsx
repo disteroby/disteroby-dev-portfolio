@@ -3,10 +3,10 @@ import { Group } from "three";
 import * as THREE from "three";
 import { GLTF } from "three-stdlib";
 import { ThreeEvent } from "@react-three/fiber/dist/declarations/src/core/events";
-import { DeviceData } from "../../constants/ProjectsData.ts";
-import useCursorPointer from "../../hooks/useCursorPointer.ts";
-import useModelAnimations from "../../hooks/useModelAnimations.ts";
-import useProjectTexture from "../../hooks/useProjectTexture.ts";
+import { DeviceData } from "../../../constants/ProjectsData.ts";
+import useCursorPointer from "../../../hooks/useCursorPointer.ts";
+import useModelAnimations from "../../../hooks/useModelAnimations.ts";
+import useProjectTexture from "../../../hooks/useProjectTexture.ts";
 
 type GLTFResult = GLTF & {
     nodes: {

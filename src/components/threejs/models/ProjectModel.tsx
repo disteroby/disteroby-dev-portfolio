@@ -4,7 +4,7 @@ import { Float, Shadow, ShadowType } from "@react-three/drei";
 import { FloatProps } from "@react-three/drei/core/Float";
 import { DeviceData, SmartphoneData } from "../../../constants/ProjectsData.ts";
 import useBreakpoint from "../../../hooks/useBreakpoint.ts";
-import DeviceModel from "../../model3D/DeviceModel.tsx";
+import DeviceModel from "./DeviceModel.tsx";
 import { easing } from "maath";
 
 type ProjectModelProps = FloatProps & {

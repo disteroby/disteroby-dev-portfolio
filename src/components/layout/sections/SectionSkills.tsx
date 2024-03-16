@@ -1,5 +1,5 @@
 import SectionTitle from "../../UI/SectionTitle.tsx";
-import FragmentSkills from "../Fragment/FragmentSkills.tsx";
+import FragmentSkills from "../fragments/FragmentSkills.tsx";
 
 export default function SectionSkills() {
     return (

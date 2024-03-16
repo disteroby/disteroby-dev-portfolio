@@ -1,8 +1,8 @@
 import * as THREE from "three";
 import { ReactThreeFiber } from "@react-three/fiber";
-import fragmentShader from "../../assets/shader/ImageFadeFragmentShader.glsl?raw";
-import vertexShader from "../../assets/shader/ImageFadeVertexShader.glsl?raw";
-import shaderMaterial from "../../utils/ShaderUtils.ts";
+import fragmentShader from "../../../assets/shader/ImageFadeFragmentShader.glsl?raw";
+import vertexShader from "../../../assets/shader/ImageFadeVertexShader.glsl?raw";
+import shaderMaterial from "../../../utils/ShaderUtils.ts";
 
 const ImageFadeMaterialProps = {
     tex: new THREE.Texture(),

@@ -4,7 +4,7 @@ import { IoIosSchool } from "react-icons/io";
 import { IoGameController } from "react-icons/io5";
 
 /**
- * Represents a topic in the About Section.
+ * Represents a topic in the About sections.
  */
 export type AboutTopic = {
     title: string;
@@ -24,7 +24,7 @@ const aStyle =
     "underline text-white/90 hover:text-white duration-300 decoration-[unset] underline-offset-2 transition hover:decoration-[inherit] font-semibold";
 
 /**
- * Array of About Section topics.
+ * Array of About sections topics.
  */
 export const ABOUT_TOPICS: AboutTopic[] = [
     {

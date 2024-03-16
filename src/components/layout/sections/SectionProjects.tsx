@@ -1,6 +1,6 @@
 import { PROJECTS } from "../../../constants/ProjectsData.ts";
 import SectionTitle from "../../UI/SectionTitle.tsx";
-import FragmentProject from "../Fragment/FragmentProject.tsx";
+import FragmentProject from "../fragments/FragmentProject.tsx";
 
 export default function SectionProjects() {
     return (

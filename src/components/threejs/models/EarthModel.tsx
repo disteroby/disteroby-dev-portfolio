@@ -3,14 +3,14 @@ import { Group, Vector3 } from "three";
 import * as THREE from "three";
 import { useFrame } from "@react-three/fiber";
 import { MeshTransmissionMaterial, useTexture } from "@react-three/drei";
-import useBreakpoint from "../../hooks/useBreakpoint.ts";
-import { Lerp } from "../../utils/LerpUtils.ts";
-import { texturePath } from "../../utils/ResourcesUtils.ts";
+import useBreakpoint from "../../../hooks/useBreakpoint.ts";
+import { Lerp } from "../../../utils/LerpUtils.ts";
+import { texturePath } from "../../../utils/ResourcesUtils.ts";
 import {
     latLongToCartesian,
     MeshTransform,
-} from "../../utils/TransformUtils.ts";
-import { EarthMaterial } from "./EarthMaterial.tsx";
+} from "../../../utils/TransformUtils.ts";
+import { EarthMaterial } from "../materials/EarthMaterial.tsx";
 
 const generalRotation: [number, number, number] = [0.4, 1.1, 0];
 

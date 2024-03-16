@@ -1,6 +1,6 @@
 import { ProjectData } from "../../../constants/ProjectsData.ts";
+import ProjectModelContainer from "../../threejs/scenes/ProjectModelContainer.tsx";
 import ProjectDescription from "../../UI/ProjectDescription.tsx";
-import ProjectModelContainer from "../DeviceWithSkills/ProjectModelContainer.tsx";
 import { twMerge } from "tailwind-merge";
 
 type FragmentProjectProps = {

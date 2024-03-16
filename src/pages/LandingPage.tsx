@@ -7,14 +7,14 @@ import {
     useState,
 } from "react";
 import { useGLTF, useTexture } from "@react-three/drei";
-import FragmentBelowHero from "../components/layout/Fragment/FragmentBelowHero.tsx";
-import HeroStage3D from "../components/layout/HeroStage3D/HeroStage3D.tsx";
-import LandingPageSection from "../components/layout/Section/LandingPageSection.tsx";
-import SectionAbout from "../components/layout/Section/SectionAbout.tsx";
-import SectionContacts from "../components/layout/Section/SectionContacts.tsx";
-import SectionHeroOverlay from "../components/layout/Section/SectionHeroOverlay.tsx";
-import SectionProjects from "../components/layout/Section/SectionProjects.tsx";
-import SectionSkills from "../components/layout/Section/SectionSkills.tsx";
+import FragmentBelowHero from "../components/layout/fragments/FragmentBelowHero.tsx";
+import LandingPageSection from "../components/layout/sections/LandingPageSection.tsx";
+import SectionAbout from "../components/layout/sections/SectionAbout.tsx";
+import SectionContacts from "../components/layout/sections/SectionContacts.tsx";
+import SectionHeroOverlay from "../components/layout/sections/SectionHeroOverlay.tsx";
+import SectionProjects from "../components/layout/sections/SectionProjects.tsx";
+import SectionSkills from "../components/layout/sections/SectionSkills.tsx";
+import HeroStage3D from "../components/threejs/scenes/HeroStage3D.tsx";
 import Footer from "../components/UI/Footer.tsx";
 import Navbar from "../components/UI/Navbar.tsx";
 import SceneLoader from "../components/UI/SceneLoader.tsx";

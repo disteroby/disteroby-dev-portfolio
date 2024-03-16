@@ -1,8 +1,8 @@
 import { FormEvent, useRef } from "react";
 import { saveDbMessage } from "../../../utils/FirebaseUtils.ts";
+import EarthContainer from "../../threejs/scenes/EarthContainer.tsx";
 import RoundInput from "../../UI/RoundInput/RoundInput.tsx";
 import SectionTitle from "../../UI/SectionTitle.tsx";
-import EarthContainer from "../EarthRepresentation/EarthContainer.tsx";
 import { BsSendCheckFill } from "react-icons/bs";
 import { MdMail } from "react-icons/md";
 import { RiSparkling2Line } from "react-icons/ri";

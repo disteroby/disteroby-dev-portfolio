@@ -48,7 +48,7 @@ highp float getMask(vec2 uv) {
     float finalMask = step(pulseDotSize, 1.0 - texDot.x) * step(0.5, texEarth.x) * fresnelRemapped;
 
     float fresnel2 = pow(1.0 - viewDotNormal, 4.0);
-    return clamp01(mix(finalMask, 1.0, map(fresnel2, 0.0, 1.0, 0.05, .9)));
+    return clamp01(mix(finalMask, 1.0, map(fresnel2, 0.0, 1.0, 0.075, 1.1)));
 }
 
 vec3 getGradientColor(float mask) {

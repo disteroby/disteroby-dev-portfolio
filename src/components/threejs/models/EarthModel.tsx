@@ -19,8 +19,8 @@ const earthRadius = 1;
 const pinLatitude = 24.1;
 const pinLongitude = -103.7;
 
-const earthGradientFrom = new THREE.Color("#e37cff");
-const earthGradientTo = new THREE.Color("#00b2ff");
+const earthGradientFrom = new THREE.Color("#db56ff");
+const earthGradientTo = new THREE.Color("#29b4ff");
 
 export default function EarthModel() {
     const textureMask = useTexture(texturePath("texture_earth_mask_small.jpg"));
@@ -68,7 +68,7 @@ export default function EarthModel() {
             distortionScale={0.5}
             temporalDistortion={0.1}
             resolution={1024}
-            samples={2}
+            samples={8}
             roughness={0.05}
             metalness={0.15}
             specularIntensity={0.2}

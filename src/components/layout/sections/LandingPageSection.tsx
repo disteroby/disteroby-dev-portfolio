@@ -7,19 +7,19 @@ type SectionProps = {
     tag: SectionTag;
     children?: JSX.Element;
     className?: string;
-    onInView: (tag: SectionTag, isInView: boolean) => void;
+    onView: (tag: SectionTag, isInView: boolean) => void;
 };
 
 const LandingPageSection = forwardRef(
     (
-        { tag, children, className, onInView }: SectionProps,
+        { tag, children, className, onView }: SectionProps,
         ref: LegacyRef<HTMLElement>,
     ) => {
         const isInView = useInView(ref as RefObject<Element>, {
             margin: "-20px",
         });
 
-        const callbackOnInView = useRef(onInView);
+        const callbackOnInView = useRef(onView);
 
         useEffect(() => {
             callbackOnInView.current(tag, isInView);
@@ -29,7 +29,7 @@ const LandingPageSection = forwardRef(
             <section
                 ref={ref}
                 className={twMerge(
-                    "mx-auto w-full max-w-[92rem] px-4 pt-24 lg:pt-32",
+                    "mx-auto w-full max-w-[92rem] px-4 pt-12 lg:pt-32",
                     className,
                 )}>
                 {children}

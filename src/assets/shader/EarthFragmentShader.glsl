@@ -2,6 +2,7 @@ precision highp float;
 
 varying vec2 vUv;
 varying vec3 vNormal;
+varying vec3 vNormalOffset;
 varying vec3 vPosition;
 varying vec3 vViewPosition;
 varying vec4 vScreenPosition;
@@ -41,18 +42,19 @@ highp float getMask(vec2 uv) {
 
     vec4 texDot = texture2D(dotTextureMask, fract(uv * texSize * dotPatternDensity));
 
-    float viewDotNormal = clamp01(dot(normalize(vNormal), normalize(vViewPosition)));
+    float viewDotNormal = clamp01(dot(vNormal, normalize(vViewPosition)));
     float fresnel = 1.0 - pow(1.0 - viewDotNormal, fresnelIntensity);
     float fresnelRemapped = map(clamp(0.0, 0.5, fresnel), 0.0, 0.5, fresnelMin, fresnelMax);
 
     float finalMask = step(pulseDotSize, 1.0 - texDot.x) * step(0.5, texEarth.x) * fresnelRemapped;
 
-    float fresnel2 = pow(1.0 - viewDotNormal, 4.0);
-    return clamp01(mix(finalMask, 1.0, map(fresnel2, 0.0, 1.0, 0.075, 1.1)));
+    float viewDotNormal2 = clamp01(dot(normalize(vNormalOffset), normalize(vViewPosition)));
+    float fresnel2 = pow(1.0 - viewDotNormal2, 4.0);
+    return  clamp01(mix(finalMask, 1.2, map(fresnel2, 0.0, 1.0, 0.075, 1.1)));
 }
 
 vec3 getGradientColor(float mask) {
-    float range = normalize(vNormal).x * 0.5 + 0.5;
+    float range = vNormal.x * 0.5 + 0.5;
     return mix(gradientColorFrom, gradientColorTo, range) * mask;
 }
 

@@ -3,7 +3,6 @@ import { opacityVariants } from "../../utils/FramerMotionUtils.ts";
 import { hasFilter } from "../../utils/SkillUtils.ts";
 import { motion } from "framer-motion";
 import { FaMobile } from "react-icons/fa6";
-import { ImFilter } from "react-icons/im";
 import { IoLogoGameControllerB } from "react-icons/io";
 import { IoDesktop } from "react-icons/io5";
 import { twMerge } from "tailwind-merge";
@@ -41,14 +40,11 @@ export default function SkillFilterFlatButton({
                 staggerChildren: 0.5,
             }}
             viewport={{ amount: "some", once: true }}
-            className='space-y-4 px-12'>
+            className='space-y-4 rounded-xl border border-white/60 px-12 pb-12'>
             <motion.div
                 variants={opacityVariants}
-                className='flex items-center justify-center gap-2 text-3xl font-light uppercase tracking-widest text-white/30'>
-                <div>Filter</div>
-                <span className='pb-2 text-2xl'>
-                    <ImFilter />
-                </span>
+                className='tracking-widert relative flex -translate-y-[45%] items-center justify-center gap-2 text-3xl font-light text-white/80'>
+                <span className='bg-dark-gray px-4 '>Skill Set</span>
             </motion.div>
             <motion.div
                 variants={opacityVariants}

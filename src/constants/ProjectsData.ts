@@ -200,7 +200,7 @@ export const PROJECTS: ProjectData[] = [
         tags: ["unreal-engine-5"],
         cta: [
             {
-                text: "Promotional Video",
+                text: "Gameplay Video",
                 type: "video",
                 href: "https://www.youtube.com/watch?v=noz2mGBLV-4",
             },

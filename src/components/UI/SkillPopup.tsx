@@ -48,7 +48,7 @@ export default function SkillPopup({ skill }: SkillPopupProps) {
             <div className='relative text-nowrap text-center font-bold'>
                 {skill.name}
             </div>
-            <div className='relative mb-2 mt-1 h-[.1rem] w-full bg-gradient-to-r from-transparent via-white to-transparent'></div>
+            <div className='relative mb-2 mt-1 h-px w-full bg-gradient-to-r from-transparent via-white to-transparent'></div>
             <div className='relative flex justify-center gap-1'>
                 <span className='mr-1'>Lv:</span>
                 {steps.map((star, idx) => renderLevel(star, idx))}

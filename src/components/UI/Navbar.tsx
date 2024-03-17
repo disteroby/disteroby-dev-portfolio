@@ -13,7 +13,7 @@ export default function Navbar({ activeIdx, onItemClick }: NavbarProps) {
     const [isShow, setIsShow] = useState(false);
 
     const variants: Variants = {
-        visible: ([delay = 0.25, duration = 0.75] = []) => ({
+        visible: ([delay = 0.25, duration = 0.95] = []) => ({
             opacity: 1,
             transition: {
                 delay,
@@ -25,13 +25,17 @@ export default function Navbar({ activeIdx, onItemClick }: NavbarProps) {
         },
     };
 
-    function renderLinks(baseDelay = 0) {
+    function renderLinks(
+        baseDelay: number,
+        itemDelay: number,
+        duration: number,
+    ) {
         return NAVBAR_LINKS.map((link, idx) => (
             <motion.li
                 variants={variants}
                 animate='visible'
                 exit='close'
-                custom={[baseDelay + (idx + 1) * 0.2]}
+                custom={[baseDelay + (idx + 1) * itemDelay, duration]}
                 key={link.href}
                 className='cursor-pointer opacity-0'>
                 <span
@@ -70,7 +74,7 @@ export default function Navbar({ activeIdx, onItemClick }: NavbarProps) {
                             variants={variants}
                             animate='visible'
                             exit='close'>
-                            {renderLinks()}
+                            {renderLinks(0.15, 0.2, 0.25)}
                         </motion.ul>
                     )}
                 </AnimatePresence>
@@ -79,9 +83,9 @@ export default function Navbar({ activeIdx, onItemClick }: NavbarProps) {
                 <motion.ul
                     className='flex flex-row items-stretch justify-center gap-4 rounded-full bg-white/5 p-2 text-white/70 opacity-0 shadow-xl backdrop-blur'
                     variants={variants}
-                    custom={[0.5, 1]}
+                    custom={[0.35, 1]}
                     animate='visible'>
-                    {renderLinks(1)}
+                    {renderLinks(1, 0.5, 1)}
                 </motion.ul>
             </div>
         </nav>

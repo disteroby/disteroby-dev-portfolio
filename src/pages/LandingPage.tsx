@@ -119,7 +119,7 @@ function LandingPage() {
                         <LandingPageSection
                             ref={sections[0].ref}
                             tag={sections[0].tag}
-                            onInView={onView}
+                            onView={onView}
                             className='pointer-events-none absolute inset-0 z-10 select-none'>
                             {sections[0].jsx}
                         </LandingPageSection>
@@ -142,7 +142,7 @@ function LandingPage() {
                                 key={tag}
                                 ref={ref}
                                 tag={tag}
-                                onInView={onView}>
+                                onView={onView}>
                                 {jsx}
                             </LandingPageSection>
                         ))}

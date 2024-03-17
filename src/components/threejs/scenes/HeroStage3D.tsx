@@ -4,12 +4,15 @@ import HeroDevices from "../models/HeroDevices.tsx";
 import HeroGrid from "../models/HeroGrid.tsx";
 import HeroLights from "../models/HeroLights.tsx";
 import PerformanceCanvas from "../utils/PerformanceCanvas.tsx";
+import { isMobileOnly, mobileVendor } from "react-device-detect";
 
 type HeroStage3DProps = {
     inView: boolean;
 };
 
 const HeroStage3D = memo(({ inView }: HeroStage3DProps) => {
+    const isIPhone = isMobileOnly && mobileVendor === "Apple";
+
     return (
         <PerformanceCanvas
             id='main-canvas'
@@ -29,7 +32,7 @@ const HeroStage3D = memo(({ inView }: HeroStage3DProps) => {
             </Environment>
             <fog attach='fog' args={["#0C0C0F", 3, 12]} />
             <HeroLights />
-            <HeroDevices inView={inView} />
+            {!isIPhone && <HeroDevices inView={inView} />}
             <HeroGrid />
             <mesh position={[0, -1.7, 0]} rotation-x={-Math.PI / 2}>
                 <planeGeometry args={[50, 50]} />

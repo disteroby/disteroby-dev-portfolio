@@ -23,7 +23,7 @@ Ready to dive in and explore my portfolio on your own machine? Let me guide you 
 
 2. Clone the repository to your local machine using the following command:
    ```shell
-   git clone https://github.com/disteroby/disteroby-dev-porfolio.git
+   git clone https://github.com/disteroby/disteroby-dev-portfolio.git
    ```
 
 3. Navigate to the project directory and install all dependencies by running:

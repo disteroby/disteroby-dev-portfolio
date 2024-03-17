@@ -4,7 +4,7 @@ import LandingPage from "./LandingPage.tsx";
 function App() {
     useEffect(() => {
         console.log(
-            "Hey there, curious mind!\n\nEver wondered what makes things tick? Take a journey into the heart of innovation. Explore the intricate web of code that powers my portfolio: it's all right here, waiting for you to unravel its secrets.\n\nDive into the depths of creativity at: https://github.com/disteroby/disteroby-dev-porfolio.\n\nHappy exploring!",
+            "Hey there, curious mind!\n\nEver wondered what makes things tick? Take a journey into the heart of innovation. Explore the intricate web of code that powers my portfolio: it's all right here, waiting for you to unravel its secrets.\n\nDive into the depths of creativity at: https://github.com/disteroby/disteroby-dev-portfolio.\n\nHappy exploring!",
         );
     }, []);
 

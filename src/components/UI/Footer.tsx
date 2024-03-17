@@ -31,7 +31,7 @@ export default function Footer() {
                 </span>{" "}
                 <a
                     className='underline opacity-70 transition duration-200 hover:opacity-100'
-                    href='https://github.com/disteroby/disteroby-dev-porfolio'
+                    href='https://github.com/disteroby/disteroby-dev-portfolio'
                     target='_blank'>
                     GitHub Repository
                 </a>

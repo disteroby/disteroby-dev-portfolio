@@ -65,11 +65,11 @@ function LandingPage() {
             ref: skillsRef,
             jsx: <SectionSkills />,
         },
-        {
-            tag: "contact",
-            ref: contactRef,
-            jsx: <SectionContacts />,
-        },
+        // {
+        //     tag: "contact",
+        //     ref: contactRef,
+        //     jsx: <SectionContacts />,
+        // },
     ];
 
     const tags: SectionTag[] = sections.map(section => section.tag);

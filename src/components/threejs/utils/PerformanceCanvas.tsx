@@ -1,7 +1,6 @@
 import { Suspense, useRef } from "react";
 import { Canvas, extend } from "@react-three/fiber";
 import { CanvasProps } from "@react-three/fiber/dist/declarations/src/web/Canvas";
-import { Preload } from "@react-three/drei";
 import { EarthMaterial } from "../materials/EarthMaterial.tsx";
 import { ImageFadeMaterial } from "../materials/ImageFadeMaterial.tsx";
 import { useInView } from "framer-motion";
@@ -19,10 +18,7 @@ export default function PerformanceCanvas({ children, ...props }: CanvasProps) {
             frameloop={isInView ? "always" : "never"}
             ref={ref}
             {...props}>
-            <Suspense fallback={null}>
-                {children}
-                {/*<Preload all />*/}
-            </Suspense>
+            <Suspense fallback={null}>{children}</Suspense>
         </Canvas>
     );
 }

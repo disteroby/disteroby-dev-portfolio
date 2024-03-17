@@ -28,7 +28,6 @@ function MutableText({
     useInterval(
         () => {
             setWordId(oldId => (oldId + 1) % words.length);
-            console.log("tick", Date.now());
         },
         time,
         !pause,

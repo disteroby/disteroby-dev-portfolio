@@ -44,7 +44,7 @@ export default function SceneLoader() {
                     <MutableText
                         words={greetingsIntro}
                         time={5000}
-                        className='text-center text-2xl lg:text-3xl xl:text-4xl'
+                        className='text-center text-2xl font-light lg:text-3xl xl:text-4xl'
                         classNameIfPrevious='translate-y-0 translate-x-0'
                         renderItem={word => (
                             <div className='w-screen max-w-[50rem] px-8'>

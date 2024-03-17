@@ -21,7 +21,7 @@ export default function PerformanceCanvas({ children, ...props }: CanvasProps) {
             {...props}>
             <Suspense fallback={null}>
                 {children}
-                <Preload all />
+                {/*<Preload all />*/}
             </Suspense>
         </Canvas>
     );

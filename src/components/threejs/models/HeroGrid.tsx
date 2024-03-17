@@ -5,7 +5,7 @@ export default function HeroGrid() {
         <>
             <Grid
                 renderOrder={-1}
-                position={[0, -1.1, 0]}
+                position={[0, -1.1, -0.475]}
                 infiniteGrid
                 cellSize={0.5}
                 cellThickness={0.75}

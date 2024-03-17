@@ -54,9 +54,11 @@ export default function HardSkill({
                         style={{
                             backgroundColor: `#${color}`,
                         }}
-                        className={twJoin(
+                        className={twMerge(
                             "absolute inset-0 rounded-full opacity-0 transition duration-500",
-                            !isSelected && "group-hover:opacity-100",
+                            !isSelected &&
+                                isFiltered &&
+                                "group-hover:opacity-100",
                             blur,
                         )}
                     />

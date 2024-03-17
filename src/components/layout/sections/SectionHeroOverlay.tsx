@@ -1,3 +1,5 @@
+import React from "react";
+import GlowingText from "../../UI/GlowingText.tsx";
 import MutableText from "../../UI/MutableText.tsx";
 import { motion, Variants } from "framer-motion";
 
@@ -27,7 +29,7 @@ export default function SectionHeroOverlay({ pageIsLoaded }: SectionHeroProps) {
     return (
         <div className='-mt-8 flex h-[37%] flex-col justify-center text-center font-bold uppercase tracking-wider lg:-mt-16'>
             <motion.div
-                className='text-5xl opacity-0 lg:text-6xl'
+                className='text-4xl opacity-0 lg:text-5xl'
                 animate={pageIsLoaded ? "animate" : "enter"}
                 variants={variants}
                 custom={0.5}>
@@ -35,10 +37,11 @@ export default function SectionHeroOverlay({ pageIsLoaded }: SectionHeroProps) {
                     words={["web", "mobile", "game"]}
                     time={4000}
                     pause={!pageIsLoaded}
+                    renderItem={word => <GlowingText text={word} />}
                 />
             </motion.div>
             <motion.div
-                className='text-3xl opacity-0 lg:text-5xl'
+                className='text-3xl opacity-0 lg:text-4xl'
                 animate={pageIsLoaded ? "animate" : "enter"}
                 variants={variants}
                 custom={1.25}>

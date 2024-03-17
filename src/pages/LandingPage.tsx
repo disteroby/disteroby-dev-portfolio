@@ -36,7 +36,7 @@ type SectionData = {
 };
 
 function LandingPage() {
-    const pageIsLoaded = useSceneProgress(100, 1000) === 100;
+    const pageIsLoaded = useSceneProgress(500, 5000) === 100;
     //TODO Change 1000 with 5000
 
     const heroRef = useRef(null!);

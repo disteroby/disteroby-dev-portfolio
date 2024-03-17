@@ -1,7 +1,15 @@
+import React from "react";
 import { opacityVariants } from "../../utils/FramerMotionUtils.ts";
+import MutableText from "./MutableText.tsx";
 import { motion } from "framer-motion";
 
 export default function SceneLoader() {
+    const greetingsIntro = [
+        "Get ready, the digital journey is about to begin!",
+        "Hold tight, the web is weaving its magic!",
+        "Patience, the cyber pathways are aligning for your entry!",
+    ];
+
     return (
         <motion.div
             style={{
@@ -9,7 +17,7 @@ export default function SceneLoader() {
             }}
             className='absolute left-0 top-0 z-[999] flex h-[100svh] w-screen flex-col items-center justify-center bg-dark-gray'
             variants={opacityVariants}
-            transition={{ duration: 1, easings: ["easeIn"] }}
+            transition={{ duration: 0.5, easings: ["easeIn"] }}
             animate='visible'
             exit='invisible'>
             <motion.div
@@ -22,21 +30,28 @@ export default function SceneLoader() {
                         blurIntensity => (
                             <div
                                 key={blurIntensity}
+                                style={{
+                                    transform: "translateZ(0)",
+                                    perspective: "1000",
+                                    backfaceVisibility: "hidden",
+                                }}
                                 className={`absolute inset-0 rounded-full bg-gradient-to-r from-fuchsia-500 to-cyan-500 ${blurIntensity}`}
                             />
                         ),
                     )}
                 </div>
-                <div className='tracking-wider'>
-                    <span>Resources loading</span>
-                    {["0ms", "250ms", "500ms"].map(delay => (
-                        <span
-                            key={delay}
-                            className='animate-pulse'
-                            style={{ animationDelay: delay }}>
-                            .
-                        </span>
-                    ))}
+                <div className='pt-8 tracking-wider'>
+                    <MutableText
+                        words={greetingsIntro}
+                        time={5000}
+                        className='text-center text-2xl lg:text-3xl xl:text-4xl'
+                        classNameIfPrevious='translate-y-0 translate-x-0'
+                        renderItem={word => (
+                            <div className='w-screen max-w-[50rem] px-8'>
+                                {word}
+                            </div>
+                        )}
+                    />
                 </div>
             </motion.div>
         </motion.div>

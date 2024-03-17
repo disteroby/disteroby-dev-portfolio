@@ -30,7 +30,7 @@ export default function Footer() {
                     Feel free to explore the magic behind it by visiting my
                 </span>{" "}
                 <a
-                    className='italic underline opacity-70 transition duration-200 hover:opacity-100'
+                    className='underline opacity-70 transition duration-200 hover:opacity-100'
                     href='https://github.com/disteroby/disteroby-dev-porfolio'
                     target='_blank'>
                     GitHub Repository

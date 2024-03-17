@@ -16,7 +16,7 @@ const HeroStage3D = memo(({ inView }: HeroStage3DProps) => {
             className='hover:select-none'
             camera={{
                 position: [0, 0.2365, 7.15],
-                fov: 60,
+                fov: 50,
             }}>
             <Environment files='stars.hdr' path='./environment/'>
                 <Lightformer
@@ -37,12 +37,12 @@ const HeroStage3D = memo(({ inView }: HeroStage3DProps) => {
             </mesh>
             <group>
                 <Sparkles
-                    count={50}
-                    scale={15}
-                    size={20}
+                    count={40}
+                    scale={[15, 15, 5]}
+                    size={10}
                     speed={0.15}
-                    opacity={0.2}
-                    color={"#baccd5"}
+                    opacity={0.1}
+                    color={"#ffffff"}
                 />
             </group>
         </PerformanceCanvas>

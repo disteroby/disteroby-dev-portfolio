@@ -54,7 +54,7 @@ function HeroDevices({ inView }: HeroDevicesProps) {
     });
 
     return (
-        <group ref={devicesRef} position-y={-3}>
+        <group ref={devicesRef} position-y={-3.1} position-z={-0.5}>
             {devices.map((device, idx) => (
                 <group
                     key={idx}

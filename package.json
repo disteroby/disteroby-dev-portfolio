@@ -17,6 +17,7 @@
         "@react-three/fiber": "^8.15.15",
         "@react-three/postprocessing": "^2.15.12",
         "@types/three": "^0.160.0",
+        "@vercel/analytics": "^1.2.2",
         "dotenv": "^16.4.5",
         "firebase": "^10.8.1",
         "framer-motion": "^10.18.0",

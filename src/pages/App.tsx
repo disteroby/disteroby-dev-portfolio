@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import LandingPage from "./LandingPage.tsx";
+import { Analytics } from "@vercel/analytics/react";
 
 function App() {
     useEffect(() => {
@@ -9,9 +10,12 @@ function App() {
     }, []);
 
     return (
-        <main className='min-h-[100svh] w-full overflow-x-hidden scroll-smooth bg-dark-gray'>
-            <LandingPage />
-        </main>
+        <>
+            <Analytics />
+            <main className='min-h-[100svh] w-full overflow-x-hidden scroll-smooth bg-dark-gray'>
+                <LandingPage />
+            </main>
+        </>
     );
 }
 

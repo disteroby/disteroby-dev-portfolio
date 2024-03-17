@@ -43,7 +43,7 @@ export default function SceneLoader() {
                 <div className='pt-8 tracking-wider'>
                     <MutableText
                         words={greetingsIntro}
-                        time={5000}
+                        time={4000}
                         className='text-center text-2xl font-light lg:text-3xl xl:text-4xl'
                         classNameIfPrevious='translate-y-0 translate-x-0'
                         renderItem={word => (

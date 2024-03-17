@@ -58,7 +58,7 @@ export default function SkillFilterFlatButton({
                         variants={opacityVariants}
                         transition={{ duration: 1 }}
                         className={twMerge(
-                            "group grid size-[3rem] place-items-center rounded-full bg-white text-dark-gray/20 ring-[.25rem] ring-white/80 transition duration-300 ease-in-out hover:cursor-pointer",
+                            "group flex size-[3rem] items-center justify-center rounded-full bg-white text-dark-gray/20 ring-[.25rem] ring-white/80 transition duration-300 ease-in-out hover:cursor-pointer",
                             isFilterSelected[idx] && [
                                 textColors[idx],
                                 ringColors[idx],

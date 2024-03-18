@@ -85,8 +85,7 @@ export default function Smartphone({
                 e.stopPropagation();
                 onClick?.(e);
                 if (screenLoop) changeScreen();
-            }}
-            dispose={null}>
+            }}>
             <group name='Scene'>
                 <group name='root' rotation={[Math.PI / 2, 0, 0]}>
                     <mesh

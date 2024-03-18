@@ -1,5 +1,3 @@
-import { useRef } from "react";
-import { Group } from "three";
 import { Float, Shadow } from "@react-three/drei";
 import {
     DeviceData,

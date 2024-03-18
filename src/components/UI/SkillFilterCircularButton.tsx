@@ -4,7 +4,6 @@ import { hasFilter } from "../../utils/SkillUtils.ts";
 import { polarToCartesian } from "../../utils/TransformUtils.ts";
 import { motion } from "framer-motion";
 import { FaMobile } from "react-icons/fa6";
-import { ImFilter } from "react-icons/im";
 import { IoLogoGameControllerB } from "react-icons/io";
 import { IoDesktop } from "react-icons/io5";
 import { twMerge } from "tailwind-merge";

@@ -37,15 +37,16 @@ export default function SkillFilterFlatButton({
             whileInView='visible'
             initial='invisible'
             transition={{
-                staggerChildren: 0.5,
+                staggerChildren: 1,
+                delay: 1,
+                duration: 2,
+                delayChildren: 2,
             }}
-            viewport={{ amount: "some", once: true }}
+            viewport={{ amount: "all", once: true }}
             className='space-y-4 rounded-xl border border-white/60 px-12 pb-12'>
-            <motion.div
-                variants={opacityVariants}
-                className='tracking-widert relative flex -translate-y-[45%] items-center justify-center gap-2 text-3xl font-light text-white/80'>
+            <div className='tracking-widert relative flex -translate-y-[45%] items-center justify-center gap-2 text-3xl font-light text-white/80'>
                 <span className='bg-dark-gray px-4 '>Skill Set</span>
-            </motion.div>
+            </div>
             <motion.div
                 variants={opacityVariants}
                 transition={{
@@ -54,18 +55,22 @@ export default function SkillFilterFlatButton({
                 className='flex justify-between '>
                 {types.map((type, idx) => (
                     <motion.div
-                        key={`button-${type}`}
                         variants={opacityVariants}
                         transition={{ duration: 1 }}
-                        className={twMerge(
-                            "group flex size-[3rem] items-center justify-center rounded-full bg-white text-dark-gray/20 ring-[.25rem] ring-white/80 transition duration-300 ease-in-out hover:cursor-pointer",
-                            isFilterSelected[idx] && [
-                                textColors[idx],
-                                ringColors[idx],
-                            ],
-                        )}
-                        onClick={() => onClick(type)}>
-                        <div className='absolute text-2xl'>{icons[type]}</div>
+                        key={`button-${type}`}>
+                        <div
+                            className={twMerge(
+                                "group flex size-[3rem] items-center justify-center rounded-full bg-white text-dark-gray/20 ring-[.25rem] ring-white/80 transition duration-300 ease-in-out hover:cursor-pointer",
+                                isFilterSelected[idx] && [
+                                    textColors[idx],
+                                    ringColors[idx],
+                                ],
+                            )}
+                            onClick={() => onClick(type)}>
+                            <div className='absolute text-2xl'>
+                                {icons[type]}
+                            </div>
+                        </div>
                     </motion.div>
                 ))}
             </motion.div>

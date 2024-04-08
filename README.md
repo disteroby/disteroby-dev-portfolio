@@ -1,6 +1,9 @@
-[![License: CC BY-NC-ND 4.0](https://img.shields.io/badge/License-CC%20BY--NC--ND%204.0-blue.svg)](https://creativecommons.org/licenses/by-nc-nd/4.0/)
-
-[![Vercel Deployment](https://img.shields.io/github/deployments/disteroby/disteroby-dev-portfolio/production?label=Vercel%20Deploy)](https://disteroby-dev-portfolio.vercel.app)
+[![React Version](https://img.shields.io/badge/React-v18.2.43-blue.svg?logo=React&label=React&logoColor=white)](https://reactjs.org/)
+[![Main Language](https://img.shields.io/github/languages/top/disteroby/disteroby-dev-portfolio?logo=Typescript&label=TypeScript&logoColor=white)](https://github.com/disteroby/disteroby-dev-portfolio)
+[![Last Update](https://img.shields.io/github/last-commit/disteroby/disteroby-dev-portfolio?label=Last%20Update&logo=GitHub&logoColor=white)](https://github.com/disteroby/disteroby-dev-portfolio/commits/main)
+[![Vercel Deployment](https://img.shields.io/github/deployments/disteroby/disteroby-dev-portfolio/production?label=Vercel%20Deploy&logo=Vercel)](https://disteroby-dev-portfolio.vercel.app)
+[![License: CC BY-NC-ND 4.0](https://img.shields.io/badge/License-CC%20BY--NC--ND%204.0-lightgrey.svg?logo=Creative%20Commons&logoColor=white)](https://creativecommons.org/licenses/by-nc-nd/4.0/)
+[![GitHub Stars](https://img.shields.io/github/stars/disteroby/disteroby-dev-portfolio?style=social)](https://github.com/disteroby/disteroby-dev-portfolio)
 
 
 # Roberto Di Stefano's Portfolio! 🚀

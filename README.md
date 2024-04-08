@@ -1,3 +1,8 @@
+[![License: CC BY-NC-ND 4.0](https://img.shields.io/badge/License-CC%20BY--NC--ND%204.0-blue.svg)](https://creativecommons.org/licenses/by-nc-nd/4.0/)
+
+[![Vercel Deployment](https://img.shields.io/github/deployments/disteroby/disteroby-dev-portfolio/production?label=Vercel%20Deploy)](https://disteroby-dev-portfolio.vercel.app)
+
+
 # Roberto Di Stefano's Portfolio! 🚀
 
 Hi and welcome to my online portfolio!
@@ -51,3 +56,16 @@ Ready to dive in and explore my portfolio on your own machine? Let me guide you 
 Interested in collaborating with me or simply want to connect? Don't hesitate to reach out! Whether it's through the contact form on my portfolio or via my LinkedIn profile: [Roberto Di Stefano](https://www.linkedin.com/in/disteroby1999/).
 
 Thank you for taking the time to visit my portfolio! I hope you find *inspiration* and *excitement* as you explore my projects.✨
+
+
+## License
+
+This project is licensed under the Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License (CC BY-NC-ND 4.0).
+
+This license allows users to share and distribute the original work in any format or medium, provided proper credit is given to the author. However, it does not allow commercial use of the work or the creation of derivative works.
+
+If you wish to use this project for commercial purposes or create derivative works, you must obtain explicit permission from the project's author.
+
+For more information about the CC BY-NC-ND 4.0 license, please visit the following link: [Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License](https://creativecommons.org/licenses/by-nc-nd/4.0/)
+
+Please refer to the [LICENSE](LICENSE.md) file for further details on the license.

@@ -2,6 +2,7 @@ import { IconType } from "react-icons";
 import { FaHouseFlag, FaUserTie } from "react-icons/fa6";
 import { IoIosSchool } from "react-icons/io";
 import { IoGameController } from "react-icons/io5";
+import { calculateAge } from "../utils/DateUtils.ts";
 
 /**
  * Represents a topic in the About sections.
@@ -23,6 +24,8 @@ const boldStyle = "font-bold text-white/90";
 const aStyle =
     "underline text-white/90 hover:text-white duration-300 decoration-[unset] underline-offset-2 transition hover:decoration-[inherit] font-semibold";
 
+const birthDate = '1999-02-15';
+
 /**
  * Array of About sections topics.
  */
@@ -33,7 +36,7 @@ export const ABOUT_TOPICS: AboutTopic[] = [
             <>
                 Hi There! I'm{" "}
                 <span className={boldStyle}>Roberto Di Stefano</span>, a
-                25-year-old developer living in Milan, Italy.
+                {' ' + calculateAge(birthDate)}-year-old developer living in Milan, Italy.
             </>,
             <>
                 What kind of developer am I? Well,{" "}

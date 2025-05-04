@@ -135,8 +135,8 @@ export default function FragmentSkills() {
                                             scale: 1,
                                             transition: {
                                                 type: "spring",
-                                                stiffness: 200,
-                                                damping: 10,
+                                                stiffness: 400,
+                                                damping: 15,
                                             },
                                         },
                                     }}

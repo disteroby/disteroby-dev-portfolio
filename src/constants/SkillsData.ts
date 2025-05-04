@@ -1,7 +1,7 @@
 import { IconType } from "react-icons";
 import {
     BiLogoAndroid,
-    BiLogoBlender,
+    BiLogoAws,
     BiLogoBootstrap,
     BiLogoCPlusPlus,
     BiLogoCss3,
@@ -14,17 +14,17 @@ import {
     BiLogoHtml5,
     BiLogoJavascript,
     BiLogoMongodb,
+    BiLogoPython,
     BiLogoReact,
     BiLogoSpringBoot,
     BiLogoTailwindCss,
-    BiLogoTrello,
     BiLogoTypescript,
     BiLogoUnity,
 } from "react-icons/bi";
 import { FaGitlab } from "react-icons/fa";
 import { GrMysql } from "react-icons/gr";
 import { LiaJava } from "react-icons/lia";
-import { SiCypress, SiUnrealengine } from "react-icons/si";
+import { SiSvelte, SiUnrealengine } from "react-icons/si";
 
 /**
  * Represents the type of skill.
@@ -55,7 +55,7 @@ export const SKILLS_DATA: Skill[] = [
         name: "Bootstrap",
         type: "web",
         logo: BiLogoBootstrap,
-        level: 4,
+        level: 3,
     },
     {
         name: "Git",
@@ -82,16 +82,16 @@ export const SKILLS_DATA: Skill[] = [
         level: 4.5,
     },
     {
-        name: "Blender",
-        type: "game",
-        logo: BiLogoBlender,
+        name: "AWS",
+        type: ["web", "mobile", "game"],
+        logo: BiLogoAws,
         level: 2,
     },
     {
         name: "Firebase",
         type: ["mobile", "web", "game"],
         logo: BiLogoFirebase,
-        level: 3,
+        level: 2,
     },
     {
         name: "JavaScript",
@@ -109,13 +109,13 @@ export const SKILLS_DATA: Skill[] = [
         name: "Android",
         type: "mobile",
         logo: BiLogoAndroid,
-        level: 3,
+        level: 2,
     },
     {
         name: "Unreal Engine",
         type: "game",
         logo: SiUnrealengine,
-        level: 4,
+        level: 3,
     },
     {
         name: "GitHub",
@@ -136,16 +136,16 @@ export const SKILLS_DATA: Skill[] = [
         level: 2,
     },
     {
-        name: "Cypress",
+        name: "Svelte",
         type: "web",
-        logo: SiCypress,
-        level: 2,
+        logo: SiSvelte,
+        level: 3,
     },
     {
         name: "Tailwind CSS",
         type: "web",
         logo: BiLogoTailwindCss,
-        level: 3.5,
+        level: 4,
     },
     {
         name: "React",
@@ -163,31 +163,31 @@ export const SKILLS_DATA: Skill[] = [
         name: "MySQL",
         type: ["mobile", "web", "game"],
         logo: GrMysql,
-        level: 4,
+        level: 4.5,
     },
     {
         name: "Docker",
         type: ["web", "mobile"],
         logo: BiLogoDocker,
-        level: 2.5,
+        level: 3.5,
     },
     {
         name: "TypeScript",
         type: "web",
         logo: BiLogoTypescript,
-        level: 3,
+        level: 4,
     },
     {
         name: "C++",
         type: "game",
         logo: BiLogoCPlusPlus,
-        level: 3.5,
+        level: 2.5,
     },
     {
-        name: "Trello",
+        name: "Python",
         type: ["mobile", "web", "game"],
-        logo: BiLogoTrello,
-        level: 4.5,
+        logo: BiLogoPython,
+        level: 2,
     },
     {
         name: "CSS3",

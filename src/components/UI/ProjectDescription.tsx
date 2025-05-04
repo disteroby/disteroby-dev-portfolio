@@ -24,12 +24,12 @@ export default function ProjectDescription({
         return isTeam ? (
             <>
                 <HiUserGroup />
-                <div>Team</div>
+                <div className="-translate-y-[0.12rem]">Team</div>
             </>
         ) : (
             <>
                 <HiUser />
-                <div>Solo</div>
+                <div className="-translate-y-[0.11rem]">Solo</div>
             </>
         );
     }
